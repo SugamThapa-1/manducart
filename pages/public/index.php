@@ -394,6 +394,11 @@ if (isset($_POST['buy_now'])) {
 
     slider.addEventListener('mouseleave', startAutoScroll);
   </script>
+  <script>
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
   <script src="../../assets/script.js"></script>
   <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>

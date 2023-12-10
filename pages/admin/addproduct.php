@@ -238,6 +238,11 @@ if (isset($_POST['add_product'])) {
       <button type="submit" name="back">Back</button>
     </form>
   </div>
+  <script>
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
 </body>
 
 </html>

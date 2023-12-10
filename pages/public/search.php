@@ -37,9 +37,9 @@
     </div>
     <div class="wrapper">
 
-        <form action="" method="GET" class="search-bar">
-            <div class="input-group mb-3">
-                <input type="text" placeholder="search" required value="<?php if (isset($_GET['search'])) {
+        <form action="" method="get" class="search-bar">
+            <div class="input-group">
+                <input type="text" placeholder="Search..." required value="<?php if (isset($_GET['search'])) {
                     echo $_GET['search'];
                 } ?>" class="form-control" placeholder="Search data">
                 <button type="submit" class="fa-solid fa-magnifying-glass"></button>
@@ -51,9 +51,9 @@
     <div class="container-search">
         <div class="sidebar">
 
-            <div class="sidebody">
+            <div class="sidebar-left">
                 <div class="filter">
-                    <h3>Filter Products</h3>
+                    <h3>Filter By Price </h3>
                     <label for="">Lowest Price</label>
                     <input type="number">
                     <label for="">Higest Price</label>
@@ -61,6 +61,7 @@
                     <button>Filter</button>
                 </div>
                 <div class="filter">
+                    <h3>Filter By Size</h3>
                     <label for="size">Size</label>
                     <select name="size" id="size-filter">
                         <option value="">XL</option>
@@ -72,7 +73,8 @@
             </div>
 
         </div>
-        <div class="data">
+
+        <div class="sidebar-right">
             <div class="body">
                 <div class="card-wrapper">
                     <div class="card" style="height: 300px;">

@@ -7,7 +7,7 @@ $page = 'cart.php';
 //To display the alert for product deleted in cart page.
 $delete_product_from_cart = isset($_SESSION['delete_product_from_cart']) ? $_SESSION['delete_product_from_cart'] : false;
 
-if($delete_product_from_cart){
+if ($delete_product_from_cart) {
   echo "<script>alert('Product Removed Sucessfully')</script>";
   unset($_SESSION['delete_product_from_cart']);
 }
@@ -30,32 +30,39 @@ if (!$_SESSION['logged_in']) {
   }
 
 
-    if (isset($_POST['checkout'])) {
+  if (isset($_POST['checkout'])) {
 
-      if(mysqli_num_rows($select_res) >= 1){
-        $product_ids = isset($_POST['product_ids']) ? $_POST['product_ids'] : false;
+    if (mysqli_num_rows($select_res) >= 1) {
+      $product_ids = isset($_POST['product_ids']) ? $_POST['product_ids'] : false;
 
-        if($product_ids){
-          $quantity = isset($_POST['updated_cart_qty']) ? $_POST['updated_cart_qty'] : 1;
-          $select_sql1 = " UPDATE tbl_carts SET quantity = $quantity WHERE product_id=$product_ids AND customer_id=$customer_id";
+      if ($product_ids) {
+        $quantity = isset($_POST['updated_cart_qty']) ? $_POST['updated_cart_qty'] : 1;
+        $select_sql1 = " UPDATE tbl_carts SET quantity = $quantity WHERE product_id=$product_ids AND customer_id=$customer_id";
 
-          $select_res1 = mysqli_query($connection, $select_sql1);
+        $select_res1 = mysqli_query($connection, $select_sql1);
 
-          if (!$select_res1) {
-            echo "query not send";
-          }
-          $form_page = "cart";
-          header("location:checkout.php?product_id=$product_ids&form_page=$form_page");
-        }else{
-          echo'<script>alert("Select a product to buy")</script>';
+        if (!$select_res1) {
+          echo "query not send";
         }
+        $form_page = "cart";
+        header("location:checkout.php?product_id=$product_ids&form_page=$form_page");
+      } else {
+        echo '<script>alert("Select a product to buy")</script>';
+      }
 
-      
-      
-    }else{
+
+
+    } else {
       echo '<script>alert("No products to buy")</script>';
     }
   }
+
+  if (isset($_POST['cont_shopping'])) {
+
+    header("location: index.php");
+
+  }
+
 
 }
 
@@ -91,14 +98,15 @@ if (!$_SESSION['logged_in']) {
             </tr>
           </thead>
           <tbody>
-            <?php $i = 0; while ($db_data = mysqli_fetch_assoc($select_res)): ?>
+            <?php $i = 0;
+            while ($db_data = mysqli_fetch_assoc($select_res)): ?>
               <?php
               $product_id = $db_data['product_id'];
               $select_sql2 = "SELECT * FROM tbl_products WHERE product_id =$product_id";
               $select_res2 = mysqli_query($connection, $select_sql2);
               $db_data_prod = mysqli_fetch_assoc($select_res2) ?>
               <tr>
-                <td style="width: 20px;"><input type="checkbox" value="<?php echo $product_id?>" name="product_ids"></td>
+                <td style="width: 20px;"><input type="checkbox" value="<?php echo $product_id ?>" name="product_ids"></td>
                 <td> <img src="../../images/<?php echo $db_data_prod['product_image']; ?>" alt=""
                     style="width:50px; height: 100%;"></td>
                 <td>
@@ -110,8 +118,8 @@ if (!$_SESSION['logged_in']) {
                 <td>
 
 
-                  <input type="number" value="<?php echo $db_data['quantity']; ?>" name="product_quantity" id="quantity<?php echo $i; ?>"
-                    min="1">
+                  <input type="number" value="<?php echo $db_data['quantity']; ?>" name="product_quantity"
+                    id="quantity<?php echo $i; ?>" min="1">
 
                 </td>
 
@@ -124,9 +132,8 @@ if (!$_SESSION['logged_in']) {
                 <td>
                   <?php echo $total_price ?>
                 </td>
-                <td> <a
-                    href="cartdelete.php?product_id=<?php echo $product_id; ?>"><i
-                      class="fa-solid fa-trash"></i></a></td>
+                <td> <a href="cartdelete.php?product_id=<?php echo $product_id; ?>"><i class="fa-solid fa-trash"></i></a>
+                </td>
 
               </tr>
 
@@ -146,10 +153,10 @@ if (!$_SESSION['logged_in']) {
                     //console.log($("#updated_cart_qty").val());
                   });
                 })
-            </script>
+              </script>
 
-            <?php $i++; endwhile; ?>
-            
+              <?php $i++; endwhile; ?>
+
 
           </tbody>
     </div>
@@ -157,20 +164,21 @@ if (!$_SESSION['logged_in']) {
 
 
     <div class="btns-2">
-      <button type="submit" class="cont_shopping" name="cont_shopping">Continue
-        Shopping</button>
-
-
-
-
       <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
       <input type="hidden" name="updated_cart_qty" id="updated_cart_qty" value="1">
       <button type="submit" class="checkout-btn" name="checkout">Proceed to Checkout</button>
+
+      <button type="submit" class="cont_shopping" name="cont_shopping">Continue Shopping</button>
       </form>
     </div>
   </div>
+  <script>
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
   <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
-  
+
 </body>
 
 </html>

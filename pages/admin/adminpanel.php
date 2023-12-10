@@ -1,12 +1,12 @@
-<?php 
+<?php
 session_start();
 include("db_connection.php");
 
 
-if(!$_SESSION['admin_logged_in']){
-   
+if (!$_SESSION['admin_logged_in']) {
+
     header("location: vendorlogin.php");
-}else{
+} else {
     $admin_id = $_SESSION['admin_id'];
 }
 ?>
@@ -20,6 +20,7 @@ if(!$_SESSION['admin_logged_in']){
     <title>Admin Panel</title>
     <link rel="stylesheet" href="../../assets/adminpanel.css">
 </head>
+
 <body>
     <nav>
         <div class="nav">
@@ -34,12 +35,12 @@ if(!$_SESSION['admin_logged_in']){
                 <li type="none"><a href="managecustomers.php">Customers</a></li>
                 <li type="none"><a href="#">Analytics</a></li>
                 <li type="none"><a href="manageorders.php">Orders</a></li>
-                
+
             </ul>
             <div class="icons">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <i class="fa-solid fa-bell"></i>
-                <i class="fa-solid fa-user-gear"></i>
+                <a href="adminprofile.php"> <i class="fa-solid fa-user-gear"></i></a>
             </div>
         </div>
     </nav>
@@ -51,7 +52,7 @@ if(!$_SESSION['admin_logged_in']){
             <div class="card">
                 <div class="items">
                     <h2>View Products</h2>
-                    <a href="manageproduct.php" class="link">See More</a>
+                    <a href="manageproducts.php" class="link">See More</a>
                 </div>
             </div>
             <div class="card">
@@ -74,6 +75,11 @@ if(!$_SESSION['admin_logged_in']){
             </div>
         </div>
     </div>
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
     <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>
 

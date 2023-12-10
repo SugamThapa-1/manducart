@@ -1,5 +1,5 @@
-1. search dynamic=> working 7th Dec
-2. search dynamic=> working 7th Dec
+1. search dynamic=> working 7th Dec❌
+2. search UI=> working 7th Dec✅
 
 pending 
 
@@ -15,14 +15,14 @@ pending
 9. cart icon ma no. dekhune
 10. cart page refining
 11. login signup validation with js
-12. display proper conformation messages
+12. display proper conformation messages {using modal}
 13. add size options in product detail page
 
 <!-- user dashboard side panel -->
-update account
-change password
-delete account
-logout out
+update account✅
+change password✅
+delete account✅
+logout out✅
 heeo
 
 hello sanjeev
