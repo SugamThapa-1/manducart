@@ -7,7 +7,7 @@ pending
 1. pagination
 2. rating and reviews
 3. cupons and discount
-4. add product multiple images
+4. add product multiple images ----------------------------------------------------------------------->  ✅
 5. size in product details
 6. userdashboard [cancelorder => increase no of product in stock]-----------------------------------> ✅
 7. admin panel refining
