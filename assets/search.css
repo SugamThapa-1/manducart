@@ -8,7 +8,6 @@
 }
 
 .wrapper {
-  /* width: 100%; */
   margin-bottom: 20px;
   min-height: 5vh;
   padding: 0%;
@@ -18,29 +17,28 @@
 }
 
 .search-bar {
-  /* width: 100%; */
   min-width: 10px;
   background: rgb(255, 255, 255);
   display: flex;
+  justify-content: space-around;
   align-items: center;
   border-radius: 60px;
-  padding: 10px 20px;
-  border: solid black;
+  padding: 5px 10px;
+  border: 0.8px solid rgb(76, 76, 76);
 }
 
 .search-bar input {
-  /* background: transparent; */
   flex: 1;
   border: 0;
-  outline: none;
+  outline: 1px;
   padding: 10px 20px;
   padding-right: 300px;
-  font-size: 20px;
+  font-size: 18px;
   color: rgb(0, 0, 0);
 }
 
 .search-bar button i {
-  width: 5px;
+  width: 8px;
 }
 .search-bar button {
   border: 0;
@@ -49,18 +47,7 @@
   height: 60px;
   background: rgb(255, 0, 0);
   cursor: pointer;
-
-  /* border: solid black; */
 }
-
-/* .filter {
-  width: 100px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-} */
-
-/* new  */
 
 .container-search {
   display: grid;
@@ -68,26 +55,21 @@
   gap: 20px;
   max-width: 1200px;
   margin-top: 40px;
+  margin-bottom: 80px;
 }
 
 .sidebar {
   margin-left: 60px;
-  margin-top: 80px;
-  height: 500px;
-  width: 25%;
+  width: 250px;
   border-radius: 3px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.data {
+.sidebar-right {
   width: 70%;
   border-radius: 3px;
-}
-
-::-webkit-scrollbar {
-  display: none;
 }
 
 .body {
@@ -111,4 +93,58 @@
   object-fit: contain;
   width: 250px !important;
   margin-bottom: 10px;
+}
+
+/* .sidebar  */
+
+.sidebar-left {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+.filter label {
+  margin: 10px 0px 1px 0px;
+  float: left;
+}
+
+.filter input {
+  margin-top: 1px;
+  margin-bottom: 10px;
+
+  width: 100%;
+  padding: 7px 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.filter button {
+  background-color: #f13c3c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 7px 12px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  margin-left: 150px;
+}
+
+.filter button:hover {
+  background-color: #555555;
+  box-shadow: 5px 5px 0px;
+  transition: all ease 0.5s;
+}
+
+.filter select {
+  margin-top: 1px;
+  margin-bottom: 10px;
+
+  width: 100%;
+  padding: 7px 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
 }
