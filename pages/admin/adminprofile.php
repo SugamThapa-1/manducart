@@ -3,7 +3,7 @@ include("db_connection.php");
 session_start();
 
 
-$customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : header("location: login.php");
+$admin_id = isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : header("location: vendorlogin.php");
 
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@ $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : head
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Account</title>
+    <title>Admin Profile</title>
     <link rel="stylesheet" href="../../assets/customeracc.css">
     <link rel="stylesheet" href="../../assets/footer.css">
 </head>
@@ -26,16 +26,16 @@ $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : head
         <div class="profile-container">
             <div class="profile-card">
                 <div id="profile-items">
-                    <form action="customeraccountupdate.php" method="post">
+                    <form action="adminaccountupdate.php" method="post">
                         <button name="update_acc"><i class="fa-solid fa-pen-nib"></i> Update Account</button>
                     </form>
-                    <form action="customerchangepassword.php" method="post">
+                    <form action="adminchangepassword.php" method="post">
                         <button name="change_pwd"><i class="fa-solid fa-key"></i> Change Password</button>
                     </form>
-                    <form action="customeraccountdelete.php" method="post">
+                    <form action="adminaccountdelete.php" method="post">
                         <button name="delete_acc"><i class="fa-solid fa-delete-left"></i> Delete Account</button>
                     </form>
-                    <form action="logout.php" method="post">
+                    <form action="../public/logout.php" method="post">
                         <button name="logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
 
                     </form>
@@ -49,9 +49,9 @@ $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : head
 
         </div>
     </div>
-    <?php include("footer.php"); ?>
-    <!-- <a href="customeraccountdelete.php">Delete Account</a>
-    <a href="customeraccountupdate.php">Update Account</a> -->
+    <?php
+    // include("footer.php");
+    ?>
 </body>
 
 </html>
