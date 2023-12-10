@@ -39,7 +39,7 @@ if (isset($_POST['add_to_cart'])) {
 if (isset($_POST['buy_now'])) {
   if (isset($_SESSION['logged_in'])) {
     $product_id = $_POST['product_id'];
-    $customer_id = isset($_GET['customer_id']) ? $_GET['customer_id'] : "";
+    $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : "";
     $product_quantity_buy = isset($_POST['updated_prod_qty_buy']) ? $_POST['updated_prod_qty_buy'] : 1;
 
     $form_page = "buy";

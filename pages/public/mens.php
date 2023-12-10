@@ -112,7 +112,7 @@ if (isset($_POST['buy_now'])) {
                                     src="../../images/<?php echo $db_data_product['product_image']; ?>" alt=""></a>
                             <div>
                                 <div class="product-image">
-                                    <a href="productdetail.php?product_id=<?php echo $product_id; ?>&customer_id=<?php echo $customer_id; ?>"
+                                    <a href="productdetail.php?product_id=<?php echo $product_id; ?>"
                                         alt="product-image"></a>
                                 </div>
                                 <div class="btn">

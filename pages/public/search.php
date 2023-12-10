@@ -1,3 +1,25 @@
+<?php 
+include("db_connection.php");
+
+$i = 0;
+
+if(isset($_GET['price'])){
+    $filter_by_price_min = isset($_POST['filter_by_price_min']) ? $_POST['filter_by_price_min'] : true;
+    $filter_by_price_max = isset($_POST['filter_by_price_max']) ? $_POST['filter_by_price_max'] : true;
+
+    $sql_search_product = "SELECT product_price FROM tbl_products WHERE product_price >= $filter_by_price_min AND product_price <= $filter_by_price_max";
+    $result_search_product = mysqli_query($connection, $sql_search_product);
+}
+
+if(isset($_GET['search'])){
+    $from_search = $_GET['search'];
+    $sql_search_product = "SELECT * FROM tbl_products WHERE CONCAT(product_name, product_details) LIKE '%$from_search%'";
+    $result_search_product = mysqli_query($connection, $sql_search_product);
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -6,32 +28,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search</title>
     <link rel="stylesheet" href="../../assets/search.css" />
-    <link rel="stylesheet" href="../../assets/style.css" />
     <link rel="stylesheet" href="../../assets/footer.css" />
 </head>
 
 <body>
-    <nav>
-        <div class="nav">
-            <div class="logo">
-                <i class="fa-brands fa-opencart"></i>
-                <h1 id="logo-text">Mandu Cart <span id="last-word">.</span> </h1>
-            </div>
-            <ul class="nav-links">
-                <li type="none"><a href="index.php">Home</a></li>
-                <li type="none"><a href="mens.php">Men's</a></li>
-                <li type="none"><a href="womens.php">Women's</a></li>
-                <li type="none"><a href="shop.php">Shop</a></li>
-                <li type="none"><a href="contact.php">Contact</a></li>
-            </ul>
-            <div class="icons">
-                <a href="search.php"><i class="fa-solid fa-magnifying-glass"></i></a>
-                <i class="fa-solid fa-heart"></i>
-                <a href="cart.php"><i class="fa-solid fa-cart-shopping" id="nav-cart-icon"></i></a>
-                <a href="customerdashboard.php"> <i class="fa-solid fa-user"></i></a>
-            </div>
-        </div>
-    </nav>
+   <?php 
+        include("nav.php");
+   ?>
     <div class="text">
         <h3>Search Clothes from ManduCart</h3>
     </div>
@@ -39,7 +42,7 @@
 
         <form action="" method="get" class="search-bar">
             <div class="input-group">
-                <input type="text" placeholder="Search..." required value="<?php if (isset($_GET['search'])) {
+                <input type="text" name="search" placeholder="Search..." value="<?php if (isset($_GET['search'])) {
                     echo $_GET['search'];
                 } ?>" class="form-control" placeholder="Search data">
                 <button type="submit" class="fa-solid fa-magnifying-glass"></button>
@@ -49,113 +52,101 @@
 
     </div>
     <div class="container-search">
-        <div class="sidebar">
+        
 
-            <div class="sidebar-left">
-                <div class="filter">
-                    <h3>Filter By Price </h3>
-                    <label for="">Lowest Price</label>
-                    <input type="number">
-                    <label for="">Higest Price</label>
-                    <input type="number">
-                    <button>Filter</button>
+            <div class="sidebar">
+
+                <div class="sidebar-left">
+                <form action="#" method="post">
+                    <div class="filter">
+                        <h3>Filter By Price </h3>
+                        <label for="">Lowest Price</label>
+                        <input type="number" value="1" name="min_value" id="quantity1" min="1">
+                        <label for="">Higest Price</label>
+                        <input type="number" value="1" name="max_value" id="quantity2" min="1">
+                        <button type="submit" method="post" name="price">Filter</button>
+                    </div>
+
+                    </form>
+
+                    <form action="#" method="post">
+
+                        <div class="filter">
+                            <h3>Filter By Size</h3>
+                            <label for="size">Size</label>
+                            <select name="size" id="size-filter">
+                                <option value="">XL</option>
+                                <option value="">XL</option>
+                                <option value="">XL</option>
+                            </select>
+                            <button type="submit" method="post" >Filter</button>
+                        </div>
+                    </form>
+                    
                 </div>
-                <div class="filter">
-                    <h3>Filter By Size</h3>
-                    <label for="size">Size</label>
-                    <select name="size" id="size-filter">
-                        <option value="">XL</option>
-                        <option value="">XL</option>
-                        <option value="">XL</option>
-                    </select>
-                    <button>Filter</button>
-                </div>
+
             </div>
 
-        </div>
+        
+
 
         <div class="sidebar-right">
             <div class="body">
-                <div class="card-wrapper">
-                    <div class="card" style="height: 300px;">
-                        <img src="../../images/8.jpg" alt="">
-                        <div>
-                            <div class="product-image">
-                                <a href="productdetail.html" style="width:100%; height: 100%;" alt="product-image"></a>
-                            </div>
-                            <div class="btn">
-                                <button type="submit" name="buy-now"><i class="fa-solid fa-bag-shopping"
-                                        id="cart-button"></i></button>
-                                <button type="submit" name="add-to-cart"><i class="fa-solid fa-cart-plus"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pro_info">
-                        <p>MENS</p>
-                        <h2>Product name</h2>
-                        <h2>Rs.0.00</h2>
-                    </div>
-                </div>
-                <div class="card-wrapper">
-                    <div class="card" style="height: 300px;">
-                        <img src="../../images/8.jpg" alt="">
-                        <div>
-                            <div class="product-image">
-                                <a href="productdetail.html" style="width:100%; height: 100%;" alt="product-image"></a>
-                            </div>
-                            <div class="btn">
-                                <button type="submit" name="buy-now"><i class="fa-solid fa-bag-shopping"
-                                        id="cart-button"></i></button>
-                                <button type="submit" name="add-to-cart"><i class="fa-solid fa-cart-plus"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pro_info">
-                        <p>MENS</p>
-                        <h2>Product name</h2>
-                        <h2>Rs.0.00</h2>
-                    </div>
-                </div>
-                <div class="card-wrapper">
-                    <div class="card" style="height: 300px;">
-                        <img src="../../images/8.jpg" alt="">
-                        <div>
-                            <div class="product-image">
-                                <a href="productdetail.html" style="width:100%; height: 100%;" alt="product-image"></a>
-                            </div>
-                            <div class="btn">
-                                <button type="submit" name="buy-now"><i class="fa-solid fa-bag-shopping"
-                                        id="cart-button"></i></button>
-                                <button type="submit" name="add-to-cart"><i class="fa-solid fa-cart-plus"></i></button>
+
+                <?php if ($result_search_product):?>
+                <?php while ($db_data_product = mysqli_fetch_assoc($result_search_product)):
+
+                    $product_id = $db_data_product['product_id'];
+                    $category_id = $db_data_product['category_id'];
+
+                    $sql_search_category = "SELECT * FROM tbl_categories WHERE category_id = $category_id ";
+                    $result_search_category = mysqli_query($connection, $sql_search_category);
+                    $db_data_category = mysqli_fetch_assoc($result_search_category);
+                    ?>
+
+                    <div class="card-wrapper">
+                        <div class="card">
+                            <a href="productdetail.php?product_id=<?php echo $product_id; ?>"><img
+                                    src="../../images/<?php echo $db_data_product['product_image']; ?>" alt=""></a>
+                            <div>
+                                <div class="product-image">
+                                    <a href="productdetail.php?product_id=<?php echo $product_id; ?>"
+                                        alt="product-image"></a>
+                                </div>
+                                <div class="btn">
+                                    <form action="#" method="post">
+                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                                        <button type="submit" name="buy_now"><i class="fa-solid fa-bag-shopping"
+                                                id="cart-button"></i></button>
+                                    </form>
+
+
+                                    <form action="#" method="post">
+                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                                        <button type="submit" name="add_to_cart"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </form>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="pro_info">
-                        <p>MENS</p>
-                        <h2>Product name</h2>
-                        <h2>Rs.0.00</h2>
-                    </div>
-                </div>
-                <div class="card-wrapper">
-                    <div class="card" style="height: 300px;">
-                        <img src="../../images/8.jpg" alt="">
-                        <div>
-                            <div class="product-image">
-                                <a href="productdetail.html" style="width:100%; height: 100%;" alt="product-image"></a>
-                            </div>
-                            <div class="btn">
-                                <button type="submit" name="buy-now"><i class="fa-solid fa-bag-shopping"
-                                        id="cart-button"></i></button>
-                                <button type="submit" name="add-to-cart"><i class="fa-solid fa-cart-plus"></i></button>
-                            </div>
+                        <div class="pro_info">
+                            <p style="text-transform:uppercase">
+                                <?php echo $db_data_category['product_category']; ?>
+                            </p>
+                            <h2>
+                                <?php echo $db_data_product['product_name']; ?>
+                            </h2>
+                            <h2>
+                                <?php echo $db_data_product['product_price']; ?>
+                            </h2>
                         </div>
                     </div>
-                    <div class="pro_info">
-                        <p>MENS</p>
-                        <h2>Product name</h2>
-                        <h2>Rs.0.00</h2>
-                    </div>
-                </div>
+                <?php endwhile; ?>
+            <?php
+         endif; ?>
+                
+            
+                
             </div>
         </div>
     </div>
@@ -200,6 +191,43 @@
             </div>
         </div>
     </footer>
+    <script>
+        jQuery("#quantity1").on("change", function () {
+      $.ajax({
+        url: "http://localhost/finalexp/pages/public/quantity.php",
+        type: "POST",
+        data: { id: quantity1.value },
+        dataType: "TEXT",
+        success: function (resp) {
+          $("#filter_by_price_min").val(resp);
+
+        }
+      }).done(function () {
+        console.log($("#filter_by_price_min").val());
+
+      });
+    })
+  </script>
+  <script>
+        jQuery("#quantity2").on("change", function () {
+      $.ajax({
+        url: "http://localhost/finalexp/pages/public/quantity.php",
+        type: "POST",
+        data: { id: quantity2.value },
+        dataType: "TEXT",
+        success: function (resp) {
+          $("#filter_by_price_max").val(resp);
+        }
+      }).done(function () {
+        console.log($("#filter_by_price_max").val());
+      });
+    })
+  </script>
+  <script>
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
     <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>
 
