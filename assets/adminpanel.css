@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.nav {
+  padding: 30px 10%;
+  background: #eaeaeab3;
+  width: 100%;
+  height: 91px;
+  display: flex;
+  overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo i {
+  font-size: 30px;
+}
+
+.logo,
+i,
+h1 {
+  display: inline-block;
+  justify-content: space-between;
+}
+
+#logo-text {
+  position: relative;
+}
+
+#last-word {
+  position: absolute;
+  top: 0;
+  bottom: 100%;
+  color: red;
+}
+
+.admin_txt {
+  position: absolute;
+}
+
+.logo i:hover {
+  color: red;
+}
+
+.nav-links {
+  margin-left: 100px;
+  padding-left: 250px;
+}
+
+.nav-links li {
+  display: inline-block;
+  padding: 0px 15px;
+  font-weight: 50px;
+}
+
+.nav-links li:hover {
+  cursor: pointer;
+  color: red;
+}
+
+#nav-cart-icon {
+  cursor: pointer;
+  color: red;
+  transition: all ease 0.9s;
+}
+
+#nav-cart-icon:hover {
+  scale: 1.2;
+}
+
+.icons i {
+  transition: all ease 0.3s;
+  padding: 10px;
+}
+
+.icons i:nth-child(1):hover {
+  cursor: pointer;
+  color: red;
+}
+
+.icons i:nth-child(2):hover {
+  cursor: pointer;
+  color: red;
+}
+.icons i:nth-child(3):hover {
+  cursor: pointer;
+  scale: 1.01;
+  color: red;
+}
+
+.wrapper {
+  align-items: center;
+  text-align: center;
+}
+
+.heading {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  height: 200px;
+  width: 80%;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all ease 0.2s;
+  text-align: center;
+}
+
+.card:hover {
+  cursor: pointer;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  scale: 1.05;
+}
+
+.items {
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+}
+
+.items h2 {
+  margin-bottom: 20px;
+}
+
+.link {
+  background-color: red;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  color: white;
+  font-size: 10px;
+  margin: 15px;
+  width: 80px;
+}
+
+.link:hover {
+  cursor: pointer;
+  background-color: #555555;
+  box-shadow: 5px 5px 0px;
+  transition: all ease 0.5s;
+}

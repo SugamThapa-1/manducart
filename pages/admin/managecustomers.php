@@ -1,0 +1,74 @@
+<?php
+session_start();
+include("db_connection.php");
+
+
+$sql_select = "SELECT * FROM tbl_customers";
+$result_select = mysqli_query($connection, $sql_select);
+
+$i = 1;
+
+$delete_message = isset($_SESSION['delete_message']) ? $_SESSION['delete_message'] : false;
+
+if($delete_message){
+    echo "<script>alert('Product deleted Sucessfully')</script>";
+    unset($_SESSION['delete_message']);
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Customers</title>
+    <link rel="stylesheet" href="../../assets/table.css">
+    <link rel="stylesheet" href="../../assets/signup.css">
+</head>
+
+<body>
+<?php if ($result_select) : ?>
+    <table id="table">
+        <thead>
+            <tr>
+                <td>SN</td>
+                <td>Full Name</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>Manage</td>
+            </tr>
+
+        </thead>
+
+        <tbody>
+            <?php while ($db_data = mysqli_fetch_assoc($result_select)) :
+
+                $customer_id = $db_data['customer_id'];
+                $customer_name = $db_data['fullname'];
+                $email = $db_data['email'];
+                $phone = $db_data['phone'];
+
+            ?>
+
+            <tr>
+                <td><?php echo"$i" ?></td>
+                <td><?php echo"$customer_name" ?></td>
+                <td><?php echo"$email" ?></td>
+                <td><?php echo"$phone" ?></td>
+                <td> <a href="deletecustomer.php?customer_id=<?php echo $customer_id;?>" title="Delete"><i class="fa-solid fa-trash"
+                            style="margin-left: 25px; color:black;"></i></a></td>
+            </tr>
+            <?php $i++; endwhile; ?>
+        </tbody>
+    </table>
+    <?php else : ?>
+        <p>Data not found!</p>
+    <?php endif;?>
+    <form action="adminpanel.php" method="post" class="">
+        <button type="submit" name="back">back</button>
+    </form>
+    <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
