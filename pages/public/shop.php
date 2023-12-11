@@ -174,8 +174,6 @@ if (isset($_POST['buy_now'])) {
         
         <?php 
             if(isset($_GET['page-nr']) && $_GET['page-nr'] > 1){
-        <?php
-        if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) {
 
             ?>
             <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>" class="page-link"><i
