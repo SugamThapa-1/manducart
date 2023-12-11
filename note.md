@@ -17,6 +17,7 @@ pending
 11. login signup validation with js
 12. display proper conformation messages {using modal}
 13. add size options in product detail page
+14. When product is edited showing four photo adding option
 
 <!-- user dashboard side panel -->
 update account✅

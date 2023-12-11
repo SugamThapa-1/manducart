@@ -72,7 +72,11 @@ if (isset($_POST['add_product'])) {
     
       $sql_photo = "UPDATE tbl_products SET product_image='$photo_name1' WHERE product_id =$product_id";
       $connection->query($sql_photo);
+    }else{
+      $sql_photo = "UPDATE tbl_products SET product_image='$photo_name1' WHERE product_id =$product_id";
+    $connection->query($sql_photo);
     }
+    
     
 
   }
@@ -110,6 +114,9 @@ if (isset($_POST['add_product'])) {
       $sql_photo2 = "UPDATE tbl_products SET product_image2='$photo_name2' WHERE product_id =$product_id";
       $connection->query($sql_photo2);
 
+    }else{
+      $sql_photo2 = "UPDATE tbl_products SET product_image2='$photo_name2' WHERE product_id =$product_id";
+      $connection->query($sql_photo2);
     }
 
     
@@ -150,6 +157,9 @@ if (isset($_POST['add_product'])) {
       $photo_name3 = '';
       $sql_photo3 = "UPDATE tbl_products SET product_image3='$photo_name3' WHERE product_id =$product_id";
       $connection->query($sql_photo3);
+    }else{
+      $sql_photo3 = "UPDATE tbl_products SET product_image3='$photo_name3' WHERE product_id =$product_id";
+      $connection->query($sql_photo3);
     }
   }
 
@@ -183,6 +193,9 @@ if (isset($_POST['add_product'])) {
     }
     if(!isset($photo_name4)){
       $photo_name4 = '';
+      $sql_photo4 = "UPDATE tbl_products SET product_image4='$photo_name4' WHERE product_id =$product_id";
+      $connection->query($sql_photo4);
+    }else{
       $sql_photo4 = "UPDATE tbl_products SET product_image4='$photo_name4' WHERE product_id =$product_id";
       $connection->query($sql_photo4);
     }
