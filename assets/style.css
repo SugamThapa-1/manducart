@@ -506,18 +506,9 @@ button:hover {
   background-color: #fff;
   transition: background-color 0.3s;
 }
-.page-link i {
-  color: #333;
-}
-
-.page-link:hover {
-  color: red;
-  background-color: #ddd;
-}
 
 .page-link i:hover {
   color: #ff0000;
-  background-color: #ddd;
 }
 
 .active {
@@ -526,5 +517,8 @@ button:hover {
 }
 
 .active i {
+  color: #fff;
+}
+.active:hover {
   color: #fff;
 }

@@ -151,7 +151,8 @@ if (isset($_POST['add_product'])) {
     echo "Error: " . $sql1 . "<br>" . $connection->error;
   }
 
-  $sql2 = "INSERT INTO tbl_products (category_id, product_name, product_details, product_image,product_image2,product_image3,product_image4,product_quantity,product_price,created_by) VALUES('$latest_id','$product_name', '$product_details', '$photo_name1', '$photo_name2','$photo_name3','$photo_name4','$product_quantity','$product_price','$admin_id')";
+  $sql2 = "INSERT INTO tbl_products (category_id, product_name, product_details, product_image,product_image2,product_image3,product_image4,product_quantity,product_price,created_by) 
+          VALUES('$latest_id','$product_name', '$product_details', '$photo_name1', '$photo_name2','$photo_name3','$photo_name4','$product_quantity','$product_price','$admin_id')";
 
 
   if ($connection->query($sql2) === true) {
@@ -171,78 +172,78 @@ if (isset($_POST['add_product'])) {
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Product</title>
-  <link rel="stylesheet" href="../../assets/addproduct.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="../../assets/addproduct.css">
 
 </head>
 
 <body>
 
 
-  <div class="container">
-    <form action="#" method="post" enctype="multipart/form-data">
-      <label for="product_name">Product Name</label>
-      <input type="text" name="product_name" required>
+    <div class="container">
+        <form action="#" method="post" enctype="multipart/form-data">
+            <label for="product_name">Product Name</label>
+            <input type="text" name="product_name" required>
 
-      <label for="product_category">Product Category</label>
-      <select name="product_category" id="product_category">
-        <option value="Mens">Mens</option>
-        <option value="Womens">Womens</option>
-        <option value="Unisex">Unisex</option>
-      </select>
+            <label for="product_category">Product Category</label>
+            <select name="product_category" id="product_category">
+                <option value="Mens">Mens</option>
+                <option value="Womens">Womens</option>
+                <option value="Unisex">Unisex</option>
+            </select>
 
-      <label for="product_details">Product Details</label>
-      <textarea type="text" name="product_details"></textarea>
+            <label for="product_details">Product Details</label>
+            <textarea type="text" name="product_details"></textarea>
 
-      <label for="product_color">Available Colors</label>
-      <select name="product_color" id="product_color">
-        <option value="Black">Black</option>
-        <option value="White">White</option>
-        <option value="Blue">Blue</option>
-        <option value="All of Above">All of Above</option>
+            <label for="product_color">Available Colors</label>
+            <select name="product_color" id="product_color">
+                <option value="Black">Black</option>
+                <option value="White">White</option>
+                <option value="Blue">Blue</option>
+                <option value="All of Above">All of Above</option>
 
-      </select>
-      <label for="product_size">Select Size</label>
-      <select name="product_size" id="product_size">
-        <option value="x">X</option>
-        <option value="xl">XL</option>
-        <option value="xxl">XXL</option>
-        <option value="All of Above">All of Above</option>
+            </select>
+            <label for="product_size">Select Size</label>
+            <select name="product_size" id="product_size">
+                <option value="x">X</option>
+                <option value="xl">XL</option>
+                <option value="xxl">XXL</option>
+                <option value="All of Above">All of Above</option>
 
-      </select>
+            </select>
 
-      <label for="product_image">Choose Product Image</label>
-      <input type="file" name="product_image1" required>
+            <label for="product_image">Choose Product Image</label>
+            <input type="file" name="product_image1" required>
 
-      <label for="product_image">Product Image 2 (Optional) </label>
-      <input type="file" name="product_image2">
+            <label for="product_image">Product Image 2 (Optional) </label>
+            <input type="file" name="product_image2">
 
-      <label for="product_image">Product Image 3 (Optional) </label>
-      <input type="file" name="product_image3">
+            <label for="product_image">Product Image 3 (Optional) </label>
+            <input type="file" name="product_image3">
 
-      <label for="product_image">Product Image 4 (Optional)</label>
-      <input type="file" name="product_image4">
+            <label for="product_image">Product Image 4 (Optional)</label>
+            <input type="file" name="product_image4">
 
-      <label for="quantity">Quantity</label>
-      <input type="number" name="product_quantity" value="1" min="1" required>
+            <label for="quantity">Quantity</label>
+            <input type="number" name="product_quantity" value="1" min="1" required>
 
-      <label for="product_price">Price</label>
-      <input type="text" name="product_price" required>
+            <label for="product_price">Price</label>
+            <input type="text" name="product_price" required>
 
-      <button type="submit" name="add_product">Add Product</button>
+            <button type="submit" name="add_product">Add Product</button>
 
-    </form>
-    <form action="adminpanel.php" method="post">
-      <button type="submit" name="back">Back</button>
-    </form>
-  </div>
-  <script>
+        </form>
+        <form action="adminpanel.php" method="post">
+            <button type="submit" name="back">Back</button>
+        </form>
+    </div>
+    <script>
     if (window.history.replaceState) {
-      window.history.replaceState(null, null, window.location.href);
+        window.history.replaceState(null, null, window.location.href);
     }
-  </script>
+    </script>
 </body>
 
 </html>
