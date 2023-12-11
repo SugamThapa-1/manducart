@@ -170,7 +170,6 @@ if (isset($_POST['buy_now'])) {
     ?>
 
     <!-- for pagination  -->
-    <!-- for pagination  -->
     <div class="pagination">
         <?php
         if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) {

@@ -2,7 +2,7 @@
 session_start();
 include "db_connection.php";
 
-$sql_select = "SELECT * FROM tbl_products ORDER BY RAND()";
+$sql_select = "SELECT * FROM tbl_products ORDER BY RAND() LIMIT 0, 4";
 $result = mysqli_query($connection, $sql_select);
 
 
@@ -278,15 +278,6 @@ if (isset($_POST['buy_now'])) {
         <?php endwhile; ?>
       <?php endif; ?>
     </div>
-  </div>
-  <div class="pagination">
-    <a href="#" class="page-link"><i class="fa-solid fa-angle-left"></i> Prev</a>
-    <a href="#" class="page-link active">1</a>
-    <a href="#" class="page-link">2</a>
-    <a href="#" class="page-link">3</a>
-    <a href="#" class="page-link">4</a>
-    <a href="#" class="page-link">5</a>
-    <a href="#" class="page-link">Next <i class="fa-solid fa-angle-right"></i></a>
   </div>
   <div class="bottom-carasouel">
     <div class="bottom-cara-text">
