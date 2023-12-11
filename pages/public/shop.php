@@ -170,28 +170,18 @@ if (isset($_POST['buy_now'])) {
     ?>
 
     <!-- for pagination  -->
+    <!-- for pagination  -->
     <div class="pagination">
-        
-        <?php 
-            if(isset($_GET['page-nr']) && $_GET['page-nr'] > 1){
+        <?php
+        if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) {
 
             ?>
             <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>" class="page-link"><i
                     class="fa-solid fa-angles-left"></i></a>
             <?php
-            }
-        ?>
-
-        <?php 
-            for($counter = 1; $counter <= $pages; $counter ++){
-                $class = '';
-                if ($current_page == $counter) {
-                    $class = 'active';
-                }
-                
-                ?>
-                <a href="?page-nr=<?php echo $counter?> " class="page-link <?php echo $class?>"><?php echo $counter ?></a>
-            
+        } else {
+            ?>
+            <a href="" class="page-link"><i class="fa-solid fa-angles-left"></i></a>
             <?php
         }
         ?>
