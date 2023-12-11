@@ -34,4 +34,4 @@ if ($result && $result_category) {
     $_SESSION['delete_message'] = true;
 }
 
-header("location: manageproduct.php");
+header("location: manageproducts.php");

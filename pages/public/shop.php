@@ -169,7 +169,6 @@ if (isset($_POST['buy_now'])) {
     ?>
 
     <div class="pagination">
-        <a href="?page-nr=1" class="page-link">First</a>
         
         <?php 
             if(isset($_GET['page-nr']) && $_GET['page-nr'] > 1){
@@ -186,8 +185,13 @@ if (isset($_POST['buy_now'])) {
 
         <?php 
             for($counter = 1; $counter <= $pages; $counter ++){
+                $class = '';
+                if ($current_page == $counter) {
+                    $class = 'active';
+                }
+                
                 ?>
-                <a href="?page-nr=<?php echo $counter?> " class="page-link "><?php echo $counter ?></a>
+                <a href="?page-nr=<?php echo $counter?> " class="page-link <?php echo $class?>"><?php echo $counter ?></a>
             
             <?php
             }
@@ -215,8 +219,7 @@ if (isset($_POST['buy_now'])) {
             }
             
         ?>
-        
-        <a href="?page-nr=<?php echo $pages ?>" class="page-link">Last</a>
+
     </div>
     <footer>
         <div class="main-div">

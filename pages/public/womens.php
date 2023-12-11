@@ -2,7 +2,24 @@
 session_start();
 include("db_connection.php");
 
-$sql = "SELECT * FROM tbl_categories WHERE product_category = 'Womens' ORDER BY RAND()";
+// for pagination
+$start = 0;
+$per_page = 12;
+
+$sql0 = "SELECT * FROM tbl_products";
+$result0 = mysqli_query($connection, $sql0);
+$nr_of_rows = $result0->num_rows;
+$pages = ceil($nr_of_rows/$per_page);
+
+if(isset($_GET['page-nr'])){
+    $current_page = $_GET['page-nr'];
+    $page = $current_page - 1;
+    $start= $page * $per_page;
+}
+
+
+
+$sql = "SELECT * FROM tbl_categories WHERE product_category = 'Womens' ORDER BY RAND() LIMIT $start, $per_page";
 $result = mysqli_query($connection, $sql);
 
 
@@ -151,13 +168,57 @@ if (isset($_POST['buy_now'])) {
         </div>
     </div>
     <div class="pagination">
-        <a href="#" class="page-link"><i class="fa-solid fa-angle-left"></i> Prev</a>
-        <a href="#" class="page-link active">1</a>
-        <a href="#" class="page-link">2</a>
-        <a href="#" class="page-link">3</a>
-        <a href="#" class="page-link">4</a>
-        <a href="#" class="page-link">5</a>
-        <a href="#" class="page-link">Next <i class="fa-solid fa-angle-right"></i></a>
+        
+    <?php 
+            if(isset($_GET['page-nr']) && $_GET['page-nr'] > 1){
+
+                ?>
+                <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>" class="page-link"><i class="fa-solid fa-angle-left"></i> Prev</a>
+                <?php
+            }else{
+                ?>
+                <a href=""class="page-link"><i class="fa-solid fa-angle-left"></i> Prev</a>
+            <?php
+            }
+        ?>
+
+        <?php 
+            for($counter = 1; $counter <= $pages; $counter ++){
+                $class = '';
+                if ($current_page == $counter) {
+                    $class = 'active';
+                }
+                
+                ?>
+                <a href="?page-nr=<?php echo $counter?> " class="page-link <?php echo $class?>"><?php echo $counter ?></a>
+            
+            <?php
+            }
+        
+        ?>
+        
+    
+
+        <?php
+            if(!isset($_GET['page-nr'])){
+                ?>
+                <a href="?page-nr=2" class="page-link">Next <i class="fa-solid fa-angle-right"></i></a>
+                <?php
+            }else{
+                if($_GET['page-nr']>= $pages){
+                    ?>
+                        <a class="page-link">Next <i class="fa-solid fa-angle-right"></i></a>
+                    <?php
+                }else{
+                    ?>
+                        <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>" class="page-link">Next <i class="fa-solid fa-angle-right"></i></a>
+                    <?php
+                }
+                
+            }
+            
+        ?>
+
     </div>
     <footer>
         <div class="main-div">
