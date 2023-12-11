@@ -186,13 +186,8 @@ if (isset($_POST['buy_now'])) {
 
         <?php 
             for($counter = 1; $counter <= $pages; $counter ++){
-                $class = '';
-                if($current_page ==$counter){
-                    $class = 'active';
-                }
-                
                 ?>
-                <a href="?page-nr=<?php echo $counter?> " class="page-link <?php echo $class ?>"><?php echo $counter ?></a>
+                <a href="?page-nr=<?php echo $counter?> " class="page-link "><?php echo $counter ?></a>
             
             <?php
             }
