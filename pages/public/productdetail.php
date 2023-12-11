@@ -72,27 +72,7 @@ if (isset($_POST['buy_now'])) {
 </head>
 
 <body>
-  <nav>
-    <div class="nav">
-      <div class="logo">
-        <i class="fa-brands fa-opencart"></i>
-        <h1 id="logo-text">Mandu Cart <span id="last-word">.</span> </h1>
-      </div>
-      <ul class="nav-links">
-        <li type="none"><a href="index.php">Home</a></li>
-        <li type="none"><a href="mens.php">Men's</a></li>
-        <li type="none"><a href="womens.php">Women's</a></li>
-        <li type="none"><a href="shop.php">Shop</a></li>
-        <li type="none"><a href="contact.php">Contact</a></li>
-      </ul>
-      <div class="icons">
-        <a href="search.php"><i class="fa-solid fa-magnifying-glass"></i></a>
-        <i class="fa-solid fa-heart"></i>
-        <a href="cart.php"><i class="fa-solid fa-cart-shopping" id="nav-cart-icon"></i></a>
-        <a href="customerdashboard.php"> <i class="fa-solid fa-user"></i></a>
-      </div>
-    </div>
-  </nav>
+<?php include("nav.php")?>
 
   <section>
     <?php while ($db_data = mysqli_fetch_assoc($result)): ?>
@@ -172,47 +152,7 @@ if (isset($_POST['buy_now'])) {
   </section>
 
 
-  <footer>
-    <div class="main-div">
-      <div class="footer-container">
-        <div class="footer-left">
-          <div class="logo">
-            <i class="fa-brands fa-opencart"></i>
-            <h1 id="logo-text">Mandu Cart <span id="last-word">.</span> </h1>
-          </div>
-          <p>Tinkune, Kathmandu</p>
-        </div>
-        <div class="footer-center">
-          <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="mens.php">Men's</a></li>
-            <li><a href="womens.php">Women's</a></li>
-            <li><a href="shop.php">Shop</a></li>
-          </ul>
-        </div>
-        <div class="footer-center">
-          <ul>
-            <li><a href="aboutus.php" target="/">About Us</a></li>
-            <li><a href="#" target="_blank">Terms & Conditions</a></li>
-            <li><a href="#" target="_blank">Customer Service</a></li>
-          </ul>
-        </div>
-        <div class="footer-right">
-          <ul>
-            <h3>Connect with us</h3>
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-square-x-twitter"></i>
-            <i class="fa-brands fa-youtube"></i>
-
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>Copyright &copy; 2023 | Mandu Cart | This is Assignment Work</p>
-      </div>
-    </div>
-  </footer>
+  <?php include("footer.php")?>
 
 
 

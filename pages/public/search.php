@@ -13,8 +13,6 @@ $filter_by_price_max = isset($_POST['filter_by_price_max']) ? $_POST['filter_by_
 // echo "The min value is $filter_by_price_min and The max price is $filter_by_price_max";
 if(isset($_POST['price'])){
     
-    
-    
     $sql_search_product = "SELECT * FROM tbl_products WHERE product_price BETWEEN $filter_by_price_min AND $filter_by_price_max";
     $result_search_product = mysqli_query($connection, $sql_search_product);
 }
@@ -31,6 +29,50 @@ if(isset($_POST['size'])){
     $result_search_category = mysqli_query($connection, $sql_search_category);
 }
 
+
+if (isset($_POST['add_to_cart'])) {
+    if (isset($_SESSION['logged_in'])) {
+        $product_id = $_POST['product_id'];
+        $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : '';
+
+
+        $query = "SELECT * FROM tbl_carts WHERE product_id='$product_id' AND customer_id ='$customer_id'";
+        $data = mysqli_query($connection, $query);
+
+        if (mysqli_num_rows($data) >= 1) {
+            echo '<script>alert("Product Already Added")</script>';
+        } else {
+            $product_quantity = 1;
+            $sql1 = "INSERT INTO tbl_carts (product_id,customer_id, quantity) VALUES('$product_id','$customer_id','$product_quantity')";
+            $result1 = mysqli_query($connection, $sql1);
+
+            if ($result1) {
+                echo '<script>alert("Product Added to Cart")</script>';
+            }
+        }
+    } else {
+        $page = "search.php";
+        $_SESSION["product_id"] = $_GET['product_id'];
+        header("location: login.php?page=$page");
+    }
+}
+
+if (isset($_POST['buy_now'])) {
+    if (isset($_SESSION['logged_in'])) {
+        $product_id = $_POST['product_id'];
+        $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : '';
+        $product_quantity_buy = 1;
+
+        $form_page = "buy";
+
+        header("location:checkout.php?product_id=$product_id&customer_id=$customer_id&quantity=$product_quantity_buy&form_page=$form_page");
+
+    } else {
+        $_SESSION["product_id"] = $_GET['product_id'];
+        $page = "search.php";
+        header("location:login.php?page=$page");
+    }
+}
 
     
 
@@ -223,47 +265,7 @@ if(isset($_POST['size'])){
             </div>
         </div>
     </div>
-    <footer>
-        <div class="main-div">
-            <div class="footer-container">
-                <div class="footer-left">
-                    <div class="logo">
-                        <i class="fa-brands fa-opencart"></i>
-                        <h1 id="logo-text">Mandu Cart <span id="last-word">.</span> </h1>
-                    </div>
-                    <p>Tinkune, Kathmandu</p>
-                </div>
-                <div class="footer-center">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="mens.php">Men's</a></li>
-                        <li><a href="womens.php">Women's</a></li>
-                        <li><a href="shop.php">Shop</a></li>
-                    </ul>
-                </div>
-                <div class="footer-center">
-                    <ul>
-                        <li><a href="aboutus.php" target="_blank">About Us</a></li>
-                        <li><a href="#" target="_blank">Terms & Conditions</a></li>
-                        <li><a href="#" target="_blank">Customer Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-right">
-                    <ul>
-                        <h3>Connect with us</h3>
-                        <i class="fa-brands fa-facebook"></i>
-                        <i class="fa-brands fa-instagram"></i>
-                        <i class="fa-brands fa-square-x-twitter"></i>
-                        <i class="fa-brands fa-youtube"></i>
-
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>Copyright &copy; 2023 | Mandu Cart | This is Assignment Work</p>
-            </div>
-        </div>
-    </footer>
+    <?php include("footer.php")?>
     <script>
         jQuery("#quantity1").on("change", function () {
       $.ajax({

@@ -50,8 +50,6 @@ $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : head
         </div>
     </div>
     <?php include("footer.php"); ?>
-    <!-- <a href="customeraccountdelete.php">Delete Account</a>
-    <a href="customeraccountupdate.php">Update Account</a> -->
 </body>
 
 </html>
