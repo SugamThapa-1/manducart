@@ -10,3 +10,8 @@ modalButton.onclick = function () {
   }, 5000);
 };
 //end modal
+
+// for history refresh
+if (window.history.replaceState) {
+  window.history.replaceState(null, null, window.location.href);
+}
