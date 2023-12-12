@@ -112,6 +112,3 @@ $hash_pass = sha1($new_pwd);
 </body>
 
 </html>
-
-
-header("location:customeraccount.php? page = $page");

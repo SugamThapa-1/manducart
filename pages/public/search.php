@@ -3,11 +3,17 @@ include("db_connection.php");
 
 $i = 0;
 
-if(isset($_GET['price'])){
-    $filter_by_price_min = isset($_POST['filter_by_price_min']) ? $_POST['filter_by_price_min'] : true;
-    $filter_by_price_max = isset($_POST['filter_by_price_max']) ? $_POST['filter_by_price_max'] : true;
 
-    $sql_search_product = "SELECT product_price FROM tbl_products WHERE product_price >= $filter_by_price_min AND product_price <= $filter_by_price_max";
+
+$result_search_product = false;
+$result_search_category = false;
+$filter_by_price_min = isset($_POST['filter_by_price_min']) ? $_POST['filter_by_price_min'] : 1;
+$filter_by_price_max = isset($_POST['filter_by_price_max']) ? $_POST['filter_by_price_max'] : 9999999999;
+
+// echo "The min value is $filter_by_price_min and The max price is $filter_by_price_max";
+if(isset($_POST['price'])){
+    
+    $sql_search_product = "SELECT * FROM tbl_products WHERE product_price BETWEEN $filter_by_price_min AND $filter_by_price_max";
     $result_search_product = mysqli_query($connection, $sql_search_product);
 }
 
@@ -15,8 +21,61 @@ if(isset($_GET['search'])){
     $from_search = $_GET['search'];
     $sql_search_product = "SELECT * FROM tbl_products WHERE CONCAT(product_name, product_details) LIKE '%$from_search%'";
     $result_search_product = mysqli_query($connection, $sql_search_product);
-
 }
+
+if(isset($_POST['size'])){
+    $size =  $_POST['size-filter'];
+    $sql_search_category = "SELECT * FROM tbl_categories WHERE product_size='$size'";
+    $result_search_category = mysqli_query($connection, $sql_search_category);
+}
+
+
+if (isset($_POST['add_to_cart'])) {
+    if (isset($_SESSION['logged_in'])) {
+        $product_id = $_POST['product_id'];
+        $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : '';
+
+
+        $query = "SELECT * FROM tbl_carts WHERE product_id='$product_id' AND customer_id ='$customer_id'";
+        $data = mysqli_query($connection, $query);
+
+        if (mysqli_num_rows($data) >= 1) {
+            echo '<script>alert("Product Already Added")</script>';
+        } else {
+            $product_quantity = 1;
+            $sql1 = "INSERT INTO tbl_carts (product_id,customer_id, quantity) VALUES('$product_id','$customer_id','$product_quantity')";
+            $result1 = mysqli_query($connection, $sql1);
+
+            if ($result1) {
+                echo '<script>alert("Product Added to Cart")</script>';
+            }
+        }
+    } else {
+        $page = "search.php";
+        $_SESSION["product_id"] = $_GET['product_id'];
+        header("location: login.php?page=$page");
+    }
+}
+
+if (isset($_POST['buy_now'])) {
+    if (isset($_SESSION['logged_in'])) {
+        $product_id = $_POST['product_id'];
+        $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : '';
+        $product_quantity_buy = 1;
+
+        $form_page = "buy";
+
+        header("location:checkout.php?product_id=$product_id&customer_id=$customer_id&quantity=$product_quantity_buy&form_page=$form_page");
+
+    } else {
+        $_SESSION["product_id"] = $_GET['product_id'];
+        $page = "search.php";
+        header("location:login.php?page=$page");
+    }
+}
+
+    
+
 
 ?>
 
@@ -29,6 +88,7 @@ if(isset($_GET['search'])){
     <title>Search</title>
     <link rel="stylesheet" href="../../assets/search.css" />
     <link rel="stylesheet" href="../../assets/footer.css" />
+    <script src="../../assets/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
@@ -43,8 +103,7 @@ if(isset($_GET['search'])){
         <form action="" method="get" class="search-bar">
             <div class="input-group">
                 <input type="text" name="search" placeholder="Search..." value="<?php if (isset($_GET['search'])) {
-                    echo $_GET['search'];
-                } ?>" class="form-control" placeholder="Search data">
+                    echo $_GET['search'];} ?>" class="form-control" placeholder="Search data">
                 <button type="submit" class="fa-solid fa-magnifying-glass"></button>
             </div>
 
@@ -62,24 +121,24 @@ if(isset($_GET['search'])){
                         <h3>Filter By Price </h3>
                         <label for="">Lowest Price</label>
                         <input type="number" value="1" name="min_value" id="quantity1" min="1">
+                        <input type="hidden" name="filter_by_price_min" id="filter_by_price_min" value="1">
                         <label for="">Higest Price</label>
                         <input type="number" value="1" name="max_value" id="quantity2" min="1">
+
+                        <input type="hidden" name="filter_by_price_max" id="filter_by_price_max" value="1">
                         <button type="submit" method="post" name="price">Filter</button>
                     </div>
 
-                    </form>
-
-                    <form action="#" method="post">
 
                         <div class="filter">
                             <h3>Filter By Size</h3>
-                            <label for="size">Size</label>
-                            <select name="size" id="size-filter">
-                                <option value="">XL</option>
-                                <option value="">XL</option>
-                                <option value="">XL</option>
+                            <label for="size-filter">Size</label>
+                            <select id="size-filter" name="size-filter">
+                                <option value="x">X</option>
+                                <option value="xl">XL</option>
+                                <option value="xxl">XXL</option>
                             </select>
-                            <button type="submit" method="post" >Filter</button>
+                            <button type="submit" method="post" name="size">Filter</button>
                         </div>
                     </form>
                     
@@ -103,7 +162,7 @@ if(isset($_GET['search'])){
                     $result_search_category = mysqli_query($connection, $sql_search_category);
                     $db_data_category = mysqli_fetch_assoc($result_search_category);
                     ?>
-
+                
                     <div class="card-wrapper">
                         <div class="card">
                             <a href="productdetail.php?product_id=<?php echo $product_id; ?>"><img
@@ -142,55 +201,71 @@ if(isset($_GET['search'])){
                         </div>
                     </div>
                 <?php endwhile; ?>
-            <?php
+                <?php
          endif; ?>
+            
                 
+
+                <?php if ($result_search_category):?>
+                <?php while ($db_data_category = mysqli_fetch_assoc($result_search_category)):
+
+                    
+                    $category_id = $db_data_category['category_id'];
+
+                    $sql_search_product = "SELECT * FROM tbl_products WHERE category_id = $category_id ";
+                    $result_search_product = mysqli_query($connection, $sql_search_product);
+                    $db_data_product = mysqli_fetch_assoc($result_search_product);
+                    $product_id = $db_data_product['product_id'];
+                    ?>
+                
+                    <div class="card-wrapper">
+                        <div class="card">
+                            <a href="productdetail.php?product_id=<?php echo $product_id; ?>"><img
+                                    src="../../images/<?php echo $db_data_product['product_image']; ?>" alt=""></a>
+                            <div>
+                                <div class="product-image">
+                                    <a href="productdetail.php?product_id=<?php echo $product_id; ?>"
+                                        alt="product-image"></a>
+                                </div>
+                                <div class="btn">
+                                    <form action="#" method="post">
+                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                                        <button type="submit" name="buy_now"><i class="fa-solid fa-bag-shopping"
+                                                id="cart-button"></i></button>
+                                    </form>
+
+
+                                    <form action="#" method="post">
+                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                                        <button type="submit" name="add_to_cart"><i class="fa-solid fa-cart-plus"></i></button>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pro_info">
+                            <p style="text-transform:uppercase">
+                                <?php echo $db_data_category['product_category']; ?>
+                            </p>
+                            <h2>
+                                <?php echo $db_data_product['product_name']; ?>
+                            </h2>
+                            <h2>
+                                <?php echo $db_data_product['product_price']; ?>
+                            </h2>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+                <?php
+         endif; ?>
+
+
             
                 
             </div>
         </div>
     </div>
-    <footer>
-        <div class="main-div">
-            <div class="footer-container">
-                <div class="footer-left">
-                    <div class="logo">
-                        <i class="fa-brands fa-opencart"></i>
-                        <h1 id="logo-text">Mandu Cart <span id="last-word">.</span> </h1>
-                    </div>
-                    <p>Tinkune, Kathmandu</p>
-                </div>
-                <div class="footer-center">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="mens.php">Men's</a></li>
-                        <li><a href="womens.php">Women's</a></li>
-                        <li><a href="shop.php">Shop</a></li>
-                    </ul>
-                </div>
-                <div class="footer-center">
-                    <ul>
-                        <li><a href="aboutus.php" target="_blank">About Us</a></li>
-                        <li><a href="#" target="_blank">Terms & Conditions</a></li>
-                        <li><a href="#" target="_blank">Customer Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-right">
-                    <ul>
-                        <h3>Connect with us</h3>
-                        <i class="fa-brands fa-facebook"></i>
-                        <i class="fa-brands fa-instagram"></i>
-                        <i class="fa-brands fa-square-x-twitter"></i>
-                        <i class="fa-brands fa-youtube"></i>
-
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>Copyright &copy; 2023 | Mandu Cart | This is Assignment Work</p>
-            </div>
-        </div>
-    </footer>
+    <?php include("footer.php")?>
     <script>
         jQuery("#quantity1").on("change", function () {
       $.ajax({
@@ -209,7 +284,7 @@ if(isset($_GET['search'])){
     })
   </script>
   <script>
-        jQuery("#quantity2").on("change", function () {
+    jQuery("#quantity2").on("change", function () {
       $.ajax({
         url: "http://localhost/finalexp/pages/public/quantity.php",
         type: "POST",
@@ -229,6 +304,7 @@ if(isset($_GET['search'])){
     }
   </script>
     <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
+    
 </body>
 
 </html>

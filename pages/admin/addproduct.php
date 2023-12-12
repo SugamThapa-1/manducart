@@ -22,6 +22,24 @@ if (isset($_POST['add_product'])) {
   $product_size = $_POST['product_size'];
 
 
+  $sql1 = "INSERT INTO tbl_categories (product_category, product_color, product_size,created_by) VALUES ('$product_category','$product_color', '$product_size', '$admin_id')";
+
+  if ($connection->query($sql1) === TRUE) {
+    $latest_id = $connection->insert_id;
+  } else {
+    echo "Error: " . $sql1 . "<br>" . $connection->error;
+  }
+  $sql_add_product = "INSERT INTO tbl_products (category_id, product_name, product_details,product_quantity,product_price,created_by) VALUES('$latest_id','$product_name', '$product_details','$product_quantity','$product_price','$admin_id')";
+
+
+    if ($connection->query($sql_add_product) === true) {
+      $product_id = $connection->insert_id;
+      echo '<script>alert("Product added Sucessfully")</script>';
+    } else {
+      // echo "Error: " . $sql1 . "<br>" . $connection->error;
+      echo "Error: " . $sql2 . "<br>" . $connection->error;
+    }
+
   if (isset($_FILES['product_image1'])) {
     $file = $_FILES['product_image1'];
     $photo = $file['name'];
@@ -49,6 +67,17 @@ if (isset($_POST['add_product'])) {
     } else {
       $confirmation_msg = 'Please choose your file to upload.';
     }
+    if(!isset($photo_name1)){
+      $photo_name1 = '';
+    
+      $sql_photo = "UPDATE tbl_products SET product_image='$photo_name1' WHERE product_id =$product_id";
+      $connection->query($sql_photo);
+    }else{
+      $sql_photo = "UPDATE tbl_products SET product_image='$photo_name1' WHERE product_id =$product_id";
+    $connection->query($sql_photo);
+    }
+    
+    
 
   }
 
@@ -80,6 +109,18 @@ if (isset($_POST['add_product'])) {
     } else {
       $confirmation_msg = 'Please choose your file to upload.';
     }
+    if(!isset($photo_name2)){
+      $photo_name2 = '';
+      $sql_photo2 = "UPDATE tbl_products SET product_image2='$photo_name2' WHERE product_id =$product_id";
+      $connection->query($sql_photo2);
+
+    }else{
+      $sql_photo2 = "UPDATE tbl_products SET product_image2='$photo_name2' WHERE product_id =$product_id";
+      $connection->query($sql_photo2);
+    }
+
+    
+
 
   }
 
@@ -111,6 +152,15 @@ if (isset($_POST['add_product'])) {
     } else {
       $confirmation_msg = 'Please choose your file to upload.';
     }
+
+    if(!isset($photo_name3)){
+      $photo_name3 = '';
+      $sql_photo3 = "UPDATE tbl_products SET product_image3='$photo_name3' WHERE product_id =$product_id";
+      $connection->query($sql_photo3);
+    }else{
+      $sql_photo3 = "UPDATE tbl_products SET product_image3='$photo_name3' WHERE product_id =$product_id";
+      $connection->query($sql_photo3);
+    }
   }
 
   // for 4th image 
@@ -141,26 +191,19 @@ if (isset($_POST['add_product'])) {
     } else {
       $confirmation_msg = 'Please choose your file to upload.';
     }
+    if(!isset($photo_name4)){
+      $photo_name4 = '';
+      $sql_photo4 = "UPDATE tbl_products SET product_image4='$photo_name4' WHERE product_id =$product_id";
+      $connection->query($sql_photo4);
+    }else{
+      $sql_photo4 = "UPDATE tbl_products SET product_image4='$photo_name4' WHERE product_id =$product_id";
+      $connection->query($sql_photo4);
+    }
 
   }
-  $sql1 = "INSERT INTO tbl_categories (product_category, product_color, product_size,created_by) VALUES ('$product_category','$product_color', '$product_size', '$admin_id')";
+  
 
-  if ($connection->query($sql1) === TRUE) {
-    $latest_id = $connection->insert_id;
-  } else {
-    echo "Error: " . $sql1 . "<br>" . $connection->error;
-  }
-
-  $sql2 = "INSERT INTO tbl_products (category_id, product_name, product_details, product_image,product_image2,product_image3,product_image4,product_quantity,product_price,created_by) 
-          VALUES('$latest_id','$product_name', '$product_details', '$photo_name1', '$photo_name2','$photo_name3','$photo_name4','$product_quantity','$product_price','$admin_id')";
-
-
-  if ($connection->query($sql2) === true) {
-    echo '<script>alert("Product added Sucessfully")</script>';
-  } else {
-    // echo "Error: " . $sql1 . "<br>" . $connection->error;
-    echo "Error: " . $sql2 . "<br>" . $connection->error;
-  }
+  
 }
 
 
