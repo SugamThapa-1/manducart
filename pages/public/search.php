@@ -1,5 +1,8 @@
 <?php 
+session_start();
 include("db_connection.php");
+
+$customer_id = $_SESSION['customer_id'];
 
 $i = 0;
 
@@ -11,23 +14,18 @@ $filter_by_price_min = isset($_POST['filter_by_price_min']) ? $_POST['filter_by_
 $filter_by_price_max = isset($_POST['filter_by_price_max']) ? $_POST['filter_by_price_max'] : 9999999999;
 
 // echo "The min value is $filter_by_price_min and The max price is $filter_by_price_max";
-if(isset($_POST['price'])){
-    
-    $sql_search_product = "SELECT * FROM tbl_products WHERE product_price BETWEEN $filter_by_price_min AND $filter_by_price_max";
-    $result_search_product = mysqli_query($connection, $sql_search_product);
-}
-
 if(isset($_GET['search'])){
     $from_search = $_GET['search'];
     $sql_search_product = "SELECT * FROM tbl_products WHERE CONCAT(product_name, product_details) LIKE '%$from_search%'";
     $result_search_product = mysqli_query($connection, $sql_search_product);
 }
 
-if(isset($_POST['size'])){
-    $size =  $_POST['size-filter'];
-    $sql_search_category = "SELECT * FROM tbl_categories WHERE product_size='$size'";
-    $result_search_category = mysqli_query($connection, $sql_search_category);
+if(isset($_POST['price'])){
+    $from_search = $_GET['search'];
+    $sql_search_product = "SELECT * FROM tbl_products WHERE CONCAT(product_name, product_details) LIKE '%$from_search%' AND product_price BETWEEN $filter_by_price_min AND $filter_by_price_max";
+    $result_search_product = mysqli_query($connection, $sql_search_product);  
 }
+
 
 
 if (isset($_POST['add_to_cart'])) {
@@ -64,7 +62,6 @@ if (isset($_POST['buy_now'])) {
         $product_quantity_buy = 1;
 
         $form_page = "buy";
-
         header("location:checkout.php?product_id=$product_id&customer_id=$customer_id&quantity=$product_quantity_buy&form_page=$form_page");
 
     } else {
@@ -113,38 +110,6 @@ if (isset($_POST['buy_now'])) {
     <div class="container-search">
         
 
-            <div class="sidebar">
-
-                <div class="sidebar-left">
-                <form action="#" method="post">
-                    <div class="filter">
-                        <h3>Filter By Price </h3>
-                        <label for="">Lowest Price</label>
-                        <input type="number" value="1" name="min_value" id="quantity1" min="1">
-                        <input type="hidden" name="filter_by_price_min" id="filter_by_price_min" value="1">
-                        <label for="">Higest Price</label>
-                        <input type="number" value="1" name="max_value" id="quantity2" min="1">
-
-                        <input type="hidden" name="filter_by_price_max" id="filter_by_price_max" value="1">
-                        <button type="submit" method="post" name="price">Filter</button>
-                    </div>
-
-
-                        <div class="filter">
-                            <h3>Filter By Size</h3>
-                            <label for="size-filter">Size</label>
-                            <select id="size-filter" name="size-filter">
-                                <option value="x">X</option>
-                                <option value="xl">XL</option>
-                                <option value="xxl">XXL</option>
-                            </select>
-                            <button type="submit" method="post" name="size">Filter</button>
-                        </div>
-                    </form>
-                    
-                </div>
-
-            </div>
 
         
 
@@ -153,69 +118,46 @@ if (isset($_POST['buy_now'])) {
             <div class="body">
 
                 <?php if ($result_search_product):?>
-                <?php while ($db_data_product = mysqli_fetch_assoc($result_search_product)):
+                    <div class="sidebar">
 
-                    $product_id = $db_data_product['product_id'];
-                    $category_id = $db_data_product['category_id'];
+                <div class="sidebar-left">
+                <form action="#" method="post">
+                    <div class="filter">
+                        <h3>Filter By Price </h3>
+                        <label for="">Lowest Price</label>
+                        <input type="number" value="1" name="min_value" id="quantity1" min="1">
+                        <input type="hidden" name="filter_by_price_min" id="filter_by_price_min" value="1">
+                        <label for="">Highest Price</label>
+                        <input type="number" value="1" name="max_value" id="quantity2" min="1">
 
-                    $sql_search_category = "SELECT * FROM tbl_categories WHERE category_id = $category_id ";
-                    $result_search_category = mysqli_query($connection, $sql_search_category);
-                    $db_data_category = mysqli_fetch_assoc($result_search_category);
-                    ?>
-                
-                    <div class="card-wrapper">
-                        <div class="card">
-                            <a href="productdetail.php?product_id=<?php echo $product_id; ?>"><img
-                                    src="../../images/<?php echo $db_data_product['product_image']; ?>" alt=""></a>
-                            <div>
-                                <div class="product-image">
-                                    <a href="productdetail.php?product_id=<?php echo $product_id; ?>"
-                                        alt="product-image"></a>
-                                </div>
-                                <div class="btn">
-                                    <form action="#" method="post">
-                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-                                        <button type="submit" name="buy_now"><i class="fa-solid fa-bag-shopping"
-                                                id="cart-button"></i></button>
-                                    </form>
-
-
-                                    <form action="#" method="post">
-                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-                                        <button type="submit" name="add_to_cart"><i class="fa-solid fa-cart-plus"></i></button>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pro_info">
-                            <p style="text-transform:uppercase">
-                                <?php echo $db_data_category['product_category']; ?>
-                            </p>
-                            <h2>
-                                <?php echo $db_data_product['product_name']; ?>
-                            </h2>
-                            <h2>
-                                <?php echo $db_data_product['product_price']; ?>
-                            </h2>
-                        </div>
+                        <input type="hidden" name="filter_by_price_max" id="filter_by_price_max" value="1">
+                        <button type="submit" method="post" name="price">Filter</button>
                     </div>
-                <?php endwhile; ?>
-                <?php
-         endif; ?>
-            
-                
+                        <!-- <div class="filter">
+                            <h3>Filter By Size</h3>
+                            <label for="size-filter">Size</label>
+                            <select id="size-filter" name="size-filter">
+                                <option value="x">X</option>
+                                <option value="xl">XL</option>
+                                <option value="xxl">XXL</option>
+                            </select>
+                            <button type="submit" method="post" name="size">Filter</button>
+                        </div> -->
+                    </form>
+                    
+                </div>
 
-                <?php if ($result_search_category):?>
-                <?php while ($db_data_category = mysqli_fetch_assoc($result_search_category)):
+            </div>
+                <?php while ($db_data_product = mysqli_fetch_assoc($result_search_product)):
+                        $product_id = $db_data_product['product_id'];
+                        $category_id = $db_data_product['category_id'];
+
+                        $sql_search_category = "SELECT * FROM tbl_categories WHERE category_id = $category_id ";
+                        $result_search_category = mysqli_query($connection, $sql_search_category);
+                        $db_data_category = mysqli_fetch_assoc($result_search_category);
+                    
 
                     
-                    $category_id = $db_data_category['category_id'];
-
-                    $sql_search_product = "SELECT * FROM tbl_products WHERE category_id = $category_id ";
-                    $result_search_product = mysqli_query($connection, $sql_search_product);
-                    $db_data_product = mysqli_fetch_assoc($result_search_product);
-                    $product_id = $db_data_product['product_id'];
                     ?>
                 
                     <div class="card-wrapper">
@@ -256,11 +198,7 @@ if (isset($_POST['buy_now'])) {
                         </div>
                     </div>
                 <?php endwhile; ?>
-                <?php
-         endif; ?>
-
-
-            
+                <?php endif; ?>
                 
             </div>
         </div>
