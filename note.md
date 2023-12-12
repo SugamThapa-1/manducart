@@ -23,6 +23,3 @@ update account✅
 change password✅
 delete account✅
 logout out✅
-heeo
-
-hello sanjeev

@@ -24,7 +24,9 @@ if (isset($_POST['add_to_cart'])) {
             $result1 = mysqli_query($connection, $sql1);
 
             if ($result1) {
-                echo '<script>alert("Product Added to Cart")</script>';
+                // echo '<script>alert("Product Added to Cart")</script>';
+                // header("location: alert.php");
+
             }
         }
     } else {
@@ -81,7 +83,7 @@ if (isset($_POST['buy_now'])) {
                 <li type="none"><a href="contact.php">Contact</a></li>
             </ul>
             <div class="icons">
-            <a href="search.php"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a href="search.php"><i class="fa-solid fa-magnifying-glass"></i></a>
                 <i class="fa-solid fa-heart"></i>
                 <a href="cart.php"><i class="fa-solid fa-cart-shopping" id="nav-cart-icon"></i></a>
                 <a href="customerdashboard.php"> <i class="fa-solid fa-user"></i></a>
@@ -112,8 +114,7 @@ if (isset($_POST['buy_now'])) {
                                     src="../../images/<?php echo $db_data_product['product_image']; ?>" alt=""></a>
                             <div>
                                 <div class="product-image">
-                                    <a href="productdetail.php?product_id=<?php echo $product_id; ?>"
-                                        alt="product-image"></a>
+                                    <a href="productdetail.php?product_id=<?php echo $product_id; ?>" alt="product-image"></a>
                                 </div>
                                 <div class="btn">
                                     <form action="#" method="post">
@@ -122,11 +123,13 @@ if (isset($_POST['buy_now'])) {
                                                 id="cart-button"></i></button>
                                     </form>
 
-
-                                    <form action="#" method="post">
-                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-                                        <button type="submit" name="add_to_cart"><i class="fa-solid fa-cart-plus"></i></button>
-                                    </form>
+                                    <div class="modal-button">
+                                        <form action="#" method="post">
+                                            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                                            <button type="submit" name="add_to_cart" id="modal-button"><i
+                                                    class="fa-solid fa-cart-plus"></i></button>
+                                        </form>
+                                    </div>
 
                                 </div>
                             </div>
