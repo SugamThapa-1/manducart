@@ -14,22 +14,23 @@
       <div class="logo">
         <i class="fa-brands fa-opencart"></i>
         <h1 id="logo-text">Mandu Cart <span id="last-word">.</span> </h1>
+        <p class="admin_txt" style="color:red; font-size: 10px;">ADMIN</p>
       </div>
       <ul class="nav-links">
-        <li type="none"><a href="index.php">Home</a></li>
-        <li type="none"><a href="mens.php">Men's</a></li>
-        <li type="none"><a href="womens.php">Women's</a></li>
-        <li type="none"><a href="shop.php">Shop</a></li>
-        <li type="none"><a href="contact.php">Contact</a></li>
+        <li type="none"><a href="adminpanel.php">Dashboard</a></li>
+        <li type="none"><a href="manageproducts.php">Catalog</a></li>
+        <li type="none"><a href="managecustomers.php">Customers</a></li>
+        <li type="none"><a href="#">Analytics</a></li>
+        <li type="none"><a href="manageorders.php">Orders</a></li>
+
       </ul>
       <div class="icons">
-      <a href="search.php"><i class="fa-solid fa-magnifying-glass"></i></a>
-        <i class="fa-solid fa-heart"></i>
-        <a href="cart.php"><i class="fa-solid fa-cart-shopping"
-            id="nav-cart-icon"></i></a>
-        <a href="customerdashboard.php"> <i class="fa-solid fa-user"></i></a>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <i class="fa-solid fa-bell"></i>
+        <a href="adminprofile.php"> <i class="fa-solid fa-user-gear"></i></a>
       </div>
     </div>
+  </nav>
   </nav>
   <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>

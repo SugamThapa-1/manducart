@@ -107,8 +107,8 @@ if (!$_SESSION['logged_in']) {
               $db_data_prod = mysqli_fetch_assoc($select_res2) ?>
               <tr>
                 <td style="width: 20px;"><input type="checkbox" value="<?php echo $product_id ?>" name="product_ids"></td>
-                <td> <img src="../../images/<?php echo $db_data_prod['product_image']; ?>" alt=""
-                    style="width:50px; height: 100%;"></td>
+                <td> <img src="../../images/<?php echo $db_data_prod['product_image']; ?>" alt="product image"
+                    style="width:50px; height: 100%; border-radius: 3px;"></td>
                 <td>
                   <?php echo $db_data_prod['product_name']; ?>
                 </td>
