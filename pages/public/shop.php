@@ -2,6 +2,8 @@
 session_start();
 include("db_connection.php");
 
+$page = "shop.php";
+
 $start = 0;
 $per_page = 12;
 
@@ -48,7 +50,6 @@ if (isset($_POST['add_to_cart'])) {
             }
         }
     } else {
-        $page = "shop.php";
         $_SESSION["product_id"] = $_GET['product_id'];
         header("location: login.php?page=$page");
     }
@@ -66,7 +67,6 @@ if (isset($_POST['buy_now'])) {
 
     } else {
         $_SESSION["product_id"] = $_GET['product_id'];
-        $page = "shop.php";
         header("location:login.php?page=$page");
     }
 }
@@ -128,11 +128,14 @@ if (isset($_POST['buy_now'])) {
                             <p style="text-transform:uppercase">
                                 <?php echo $db_data_category['product_category']; ?>
                             </p>
+                            <p style="text-transform:uppercase">
+                                SIZE: <?php echo $db_data_category['product_size']; ?>
+                            </p>
                             <h2>
                                 <?php echo $db_data['product_name']; ?>
                             </h2>
                             <h2>
-                                <?php echo $db_data['product_price']; ?>
+                            Rs. <?php echo $db_data['product_price']; ?>
                             </h2>
                         </div>
                     </div>

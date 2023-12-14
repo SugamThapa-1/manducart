@@ -244,12 +244,14 @@ if (isset($_POST['buy_now'])) {
               <p>
                 <?php echo $db_data_category['product_category']; ?>
               </p>
+              <p style="text-transform:uppercase">
+                  SIZE: <?php echo $db_data_category['product_size']; ?>
+              </p>
               <h2>
                 <?php echo $db_data['product_name']; ?>
               </h2>
               <h2>
-                Rs.
-                <?php echo $db_data['product_price']; ?>
+                Rs. <?php echo $db_data['product_price']; ?>
               </h2>
             </div>
           </div>

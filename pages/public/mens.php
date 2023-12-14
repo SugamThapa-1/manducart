@@ -2,6 +2,8 @@
 session_start();
 include("db_connection.php");
 
+$page = "mens.php";
+
 // for pagination
 $start = 0;
 $per_page = 12;
@@ -48,9 +50,8 @@ if (isset($_POST['add_to_cart'])) {
             }
         }
     } else {
-        $page = "mens.php";
         $_SESSION["product_id"] = $_GET['product_id'];
-        header("location: login.php? page = '$page'");
+        header("location: login.php?page='$page'");
     }
 }
 
@@ -66,8 +67,7 @@ if (isset($_POST['buy_now'])) {
 
     } else {
         $_SESSION["product_id"] = $_POST['product_id'];
-        $page = "mens.php";
-        header("location:login.php?page =$page");
+        header("location:login.php?page='$page'");
     }
 }
 
@@ -154,11 +154,14 @@ if (isset($_POST['buy_now'])) {
                         </div>
                         <div class="pro_info">
                             <p>MENS</p>
+                            <p style="text-transform:uppercase">
+                                SIZE: <?php echo $db_data_category['product_size']; ?>
+                            </p>
                             <h2>
                                 <?php echo $db_data_product['product_name']; ?>
                             </h2>
                             <h2>
-                                <?php echo $db_data_product['product_price']; ?>
+                            Rs. <?php echo $db_data_product['product_price']; ?>
                             </h2>
                         </div>
                     </div>

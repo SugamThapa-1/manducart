@@ -24,7 +24,7 @@
       </ul>
       <div class="icons">
       <a href="search.php"><i class="fa-solid fa-magnifying-glass"></i></a>
-        <i class="fa-solid fa-heart"></i>
+       <a href="wishlist.php"> <i class="fa-solid fa-heart"></i></a>
         <a href="cart.php"><i class="fa-solid fa-cart-shopping"
             id="nav-cart-icon"></i></a>
         <a href="customerdashboard.php"> <i class="fa-solid fa-user"></i></a>

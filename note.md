@@ -18,6 +18,7 @@ pending
 12. display proper conformation messages {using modal}
 13. add size options in product detail page
 14. When product is edited showing four photo adding option
+15. active in home pages
 
 <!-- user dashboard side panel -->
 update account✅
