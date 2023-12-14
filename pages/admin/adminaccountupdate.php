@@ -1,16 +1,18 @@
 <?php
-include("db_connection.php");
 session_start();
-$page = "customerdashboard.php";
-$customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : header("location: login.php?page=$page");
+include("db_connection.php");
 
 $account_updated = isset($_SESSION['account_updated']) ? $_SESSION['account_updated'] : false;
+
 if ($account_updated) {
   echo "<script>alert('Account Updated')</script>";
   unset($_SESSION['account_updated']);
 }
 
-$sql_select = "SELECT * FROM tbl_customers WHERE customer_id=$customer_id";
+$page='adminaccounupdate.php';
+$admin_id = isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : header("location: vendorlogin.php?page=$page");
+
+$sql_select = "SELECT * FROM tbl_admins WHERE admin_id=$admin_id";
 $sql_result = mysqli_query($connection, $sql_select);
 
 $fetch_data = mysqli_fetch_assoc($sql_result);
@@ -25,18 +27,18 @@ $full_name = $_POST['fname'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
 
-$sql = "UPDATE tbl_customers SET fullname = '$full_name', email = '$email',phone = '$phone' WHERE customer_id=$customer_id";
+$sql = "UPDATE tbl_admins SET fullname = '$full_name', email = '$email',phone = '$phone' WHERE admin_id=$admin_id";
 $result = mysqli_query($connection, $sql);
         
 if ($result) {
   $_SESSION['account_updated'] = true;
 }
 
-  header("location: customeraccountupdate.php?");
+  header("location: adminaccountupdate.php?");
 }
 
 if(isset($_POST['back'])){
-  header("location: customeraccountupdate.php");
+  header("location: adminprofile.php");
 }
 
 
@@ -48,7 +50,7 @@ if(isset($_POST['back'])){
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Account Update</title>
+  <title>Update Account</title>
   <link rel="stylesheet" href="../../assets/signup.css" />
 </head>
 
@@ -63,7 +65,7 @@ if(isset($_POST['back'])){
           <h1>Mandu Cart.</h1>
         </div>
         <div>
-          <h2 id="signup-text" >Update User Info</h2>
+          <h2 id="signup-text" >Update Admin Info</h2>
   
         </div>
         
@@ -91,6 +93,11 @@ if(isset($_POST['back'])){
     </div>
   </div>
   <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
+  <script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+    </script>
 </body>
 
 </html>

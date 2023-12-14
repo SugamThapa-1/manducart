@@ -1,9 +1,16 @@
 <?php
-include("db_connection.php");
 session_start();
+include("db_connection.php");
 
 
 $admin_id = isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : header("location: vendorlogin.php");
+
+$password_changed = isset($_SESSION['password_changed']) ? $_SESSION['password_changed'] : false;
+
+if ($password_changed) {
+  echo "<script>alert('Password Changed Sucessfully')</script>";
+  unset($_SESSION['password_changed']);
+}
 
 ?>
 <!DOCTYPE html>
@@ -37,12 +44,10 @@ $admin_id = isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : header("locat
                     </form>
                     <form action="../public/logout.php" method="post">
                         <button name="logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
-
                     </form>
-
-
-
-
+                    <form action="vendorsignup.php" method="post">
+                        <button name="logout"><i class="fa-solid fa-user-plus"></i>Add Account</button>
+                    </form>
 
                 </div>
             </div>
@@ -52,6 +57,7 @@ $admin_id = isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : header("locat
     <?php
     // include("footer.php");
     ?>
+    <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

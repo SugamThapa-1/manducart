@@ -1,6 +1,14 @@
 <?php
-include("db_connection.php");
 session_start();
+include("db_connection.php");
+
+
+$password_changed = isset($_SESSION['password_changed']) ? $_SESSION['password_changed'] : false;
+
+if ($password_changed) {
+  echo "<script>alert('Password Changed Sucessfully')</script>";
+  unset($_SESSION['password_changed']);
+}
 
 
 $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : header("location: login.php");

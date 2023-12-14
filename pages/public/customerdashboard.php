@@ -1,6 +1,7 @@
 <?php
-include("db_connection.php");
 session_start();
+include("db_connection.php");
+
 $page = "customerdashboard.php";
 if (!isset($_SESSION['logged_in'])) {
     header("location: login.php?page=$page");
