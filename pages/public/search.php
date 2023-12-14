@@ -2,14 +2,11 @@
 session_start();
 include("db_connection.php");
 
-$customer_id = $_SESSION['customer_id'];
-
 $i = 0;
-
-
 
 $result_search_product = false;
 $result_search_category = false;
+
 $filter_by_price_min = isset($_POST['filter_by_price_min']) ? $_POST['filter_by_price_min'] : 1;
 $filter_by_price_max = isset($_POST['filter_by_price_max']) ? $_POST['filter_by_price_max'] : 9999999999;
 
@@ -71,9 +68,6 @@ if (isset($_POST['buy_now'])) {
     }
 }
 
-    
-
-
 ?>
 
 <!DOCTYPE html>
@@ -108,12 +102,6 @@ if (isset($_POST['buy_now'])) {
 
     </div>
     <div class="container-search">
-        
-
-
-        
-
-
         <div class="sidebar-right">
             <div class="body">
 
@@ -133,16 +121,6 @@ if (isset($_POST['buy_now'])) {
                         <input type="hidden" name="filter_by_price_max" id="filter_by_price_max" value="1">
                         <button type="submit" method="post" name="price">Filter</button>
                     </div>
-                        <!-- <div class="filter">
-                            <h3>Filter By Size</h3>
-                            <label for="size-filter">Size</label>
-                            <select id="size-filter" name="size-filter">
-                                <option value="x">X</option>
-                                <option value="xl">XL</option>
-                                <option value="xxl">XXL</option>
-                            </select>
-                            <button type="submit" method="post" name="size">Filter</button>
-                        </div> -->
                     </form>
                     
                 </div>
