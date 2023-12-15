@@ -207,6 +207,7 @@ if (isset($_POST['add_product'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Product</title>
   <link rel="stylesheet" href="../../assets/addproduct.css">
+  <!-- <link rel="stylesheet" href="../../assets/adminpanel.css"> -->
 
 </head>
 
@@ -261,6 +262,7 @@ if (isset($_POST['add_product'])) {
         </div>
 
 
+
         <div class="right">
           <label for="product_price">Price</label>
           <input type="text" name="product_price" required>
@@ -279,9 +281,7 @@ if (isset($_POST['add_product'])) {
 
           <label for="product_image">Product Image 4 (Optional)</label>
           <input type="file" name="product_image4">
-          <!-- <button type="submit" name="add_product">Add Product</button> -->
-
-
+    
         </div>
 
       </div>

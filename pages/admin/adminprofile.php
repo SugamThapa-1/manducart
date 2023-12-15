@@ -21,11 +21,11 @@ if ($password_changed) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Profile</title>
     <link rel="stylesheet" href="../../assets/customeracc.css">
-    <link rel="stylesheet" href="../../assets/footer.css">
+    <!-- <link rel="stylesheet" href="../../assets/footer.css"> -->
 </head>
 
 <body>
-    <?php include("nav.php"); ?>
+    <?php include("adminnav.php"); ?>
     <div class="profile-wrapper">
         <div class="profile-heading">
             <!-- <h2>Welcome to Customer Profile</h2> -->
