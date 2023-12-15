@@ -55,6 +55,23 @@ if (isset($_POST['buy_now'])) {
 
     header("location:checkout.php?product_id=$product_id&customer_id=$customer_id&quantity=$product_quantity_buy&form_page=$form_page");
 }
+
+if (isset($_POST['wishlist'])) {
+    $product_id = $_POST['product_id'];
+    $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : '';
+
+    $sql = "DELETE FROM tbl_wishlists WHERE product_id=$product_id AND customer_id=$customer_id";
+
+    $result = mysqli_query($connection, $sql);
+
+    if ($result) {
+        echo "<script>alert('Product Removed from Wishlist')</script>";
+        header("location: wishlist.php");
+    } 
+
+   
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -82,6 +99,7 @@ if (isset($_POST['buy_now'])) {
                     $sql_product = "SELECT * FROM tbl_products WHERE product_id=$product_id";
                     $result_product = mysqli_query($connection, $sql_product);
                     $db_data = mysqli_fetch_assoc($result_product);
+                    $category_id = $db_data['category_id'];
 
                     $sql_category = "SELECT * FROM tbl_categories WHERE category_id = $category_id";
                     $result_category = mysqli_query($connection, $sql_category);
@@ -95,6 +113,12 @@ if (isset($_POST['buy_now'])) {
                             <div>
                                 <div class="product-image">
                                     <a href="productdetail.php?product_id=<?php echo $product_id; ?>" alt="product-image"></a>
+                                </div>
+                                <div class="wishlist-btn">
+                                    <form action="#" method="post">
+                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                                        <button type="submit" name="wishlist"><i class="fa-solid fa-trash"></i></button>
+                                    </form>
                                 </div>
                                 <div class="btn">
                                     <form action="#" method="post">

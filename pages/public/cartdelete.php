@@ -4,7 +4,7 @@ include "db_connection.php";
 
 $product_id = $_GET['product_id'];
 $customer_id = $_SESSION['customer_id'];
-// $sql = "DELETE FROM tbl_carts WHERE product_id=$product_id";
+
 $sql = "DELETE FROM tbl_carts WHERE product_id=$product_id AND customer_id=$customer_id";
 
 $result = mysqli_query($connection, $sql);

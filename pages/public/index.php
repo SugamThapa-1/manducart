@@ -106,6 +106,33 @@ if (isset($_POST['buy_now'])) {
   }
 }
 
+//for products to be added in wishlist
+
+if (isset($_POST['wishlist'])) {
+  if (isset($_SESSION['logged_in'])) {
+      $product_id = $_POST['product_id'];
+      $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : '';
+
+      $query = "SELECT * FROM tbl_wishlists WHERE product_id='$product_id' AND customer_id ='$customer_id'";
+      $data = mysqli_query($connection, $query);
+
+      if (mysqli_num_rows($data) >= 1) {
+          echo '<script>alert("Product is Already in Wishlist")</script>';
+      } else {
+          $sql_insert = "INSERT INTO tbl_wishlists (customer_id,product_id) VALUES ('$customer_id','$product_id')";
+          $result_insert = mysqli_query($connection, $sql_insert);
+
+          if($result_insert){
+              echo "<script>alert('Product added to Wishlist')</script>";
+          }
+      }
+
+  } else {
+      $_SESSION["product_id"] = $_POST['product_id'];
+      header("location:login.php?page='$page'");
+  }
+}
+
 ?>
 
 
