@@ -2,6 +2,13 @@
 session_start();
 include("db_connection.php");
 
+$product_updated = isset($_SESSION['product_updated']) ? $_SESSION['product_updated'] : false;
+
+if ($product_updated) {
+    echo '<script>alert("Product Updated Sucessfully")</script>';
+    unset($_SESSION['product_updated']);
+}
+
 $counter = 0;
 
 $sql = "SELECT * FROM tbl_products";

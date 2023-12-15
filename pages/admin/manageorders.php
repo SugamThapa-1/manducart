@@ -1,6 +1,7 @@
 <?php
-include("db_connection.php");
 session_start();
+include("db_connection.php");
+
 $counter = 0;
 
 $sql = "SELECT * FROM tbl_order_details";
