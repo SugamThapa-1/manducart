@@ -189,6 +189,9 @@ if (isset($_POST['update'])) {
 </head>
 
 <body>
+<?php
+  include("adminnav.php");
+  ?>
 
   <form action="adminpanel.php" method="post">
     <button type="submit" name="back" id="back-btn"> <i class="fa-solid fa-angle-left"></i> Back</button>

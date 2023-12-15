@@ -207,7 +207,6 @@ if (isset($_POST['add_product'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Product</title>
   <link rel="stylesheet" href="../../assets/addproduct.css">
-  <!-- <link rel="stylesheet" href="../../assets/adminpanel.css"> -->
 
 </head>
 
