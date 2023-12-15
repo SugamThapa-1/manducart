@@ -32,13 +32,13 @@ if (isset($_POST['add_product'])) {
   $sql_add_product = "INSERT INTO tbl_products (category_id, product_name, product_details,product_quantity,product_price,created_by) VALUES('$latest_id','$product_name', '$product_details','$product_quantity','$product_price','$admin_id')";
 
 
-    if ($connection->query($sql_add_product) === true) {
-      $product_id = $connection->insert_id;
-      echo '<script>alert("Product added Sucessfully")</script>';
-    } else {
-      // echo "Error: " . $sql1 . "<br>" . $connection->error;
-      echo "Error: " . $sql2 . "<br>" . $connection->error;
-    }
+  if ($connection->query($sql_add_product) === true) {
+    $product_id = $connection->insert_id;
+    echo '<script>alert("Product added Sucessfully")</script>';
+  } else {
+    // echo "Error: " . $sql1 . "<br>" . $connection->error;
+    echo "Error: " . $sql2 . "<br>" . $connection->error;
+  }
 
   if (isset($_FILES['product_image1'])) {
     $file = $_FILES['product_image1'];
@@ -67,18 +67,15 @@ if (isset($_POST['add_product'])) {
     } else {
       $confirmation_msg = 'Please choose your file to upload.';
     }
-    if(!isset($photo_name1)){
+    if (!isset($photo_name1)) {
       $photo_name1 = '';
-    
+
       $sql_photo = "UPDATE tbl_products SET product_image='$photo_name1' WHERE product_id =$product_id";
       $connection->query($sql_photo);
-    }else{
+    } else {
       $sql_photo = "UPDATE tbl_products SET product_image='$photo_name1' WHERE product_id =$product_id";
-    $connection->query($sql_photo);
+      $connection->query($sql_photo);
     }
-    
-    
-
   }
 
   // for 2nd image 
@@ -109,19 +106,14 @@ if (isset($_POST['add_product'])) {
     } else {
       $confirmation_msg = 'Please choose your file to upload.';
     }
-    if(!isset($photo_name2)){
+    if (!isset($photo_name2)) {
       $photo_name2 = '';
       $sql_photo2 = "UPDATE tbl_products SET product_image2='$photo_name2' WHERE product_id =$product_id";
       $connection->query($sql_photo2);
-
-    }else{
+    } else {
       $sql_photo2 = "UPDATE tbl_products SET product_image2='$photo_name2' WHERE product_id =$product_id";
       $connection->query($sql_photo2);
     }
-
-    
-
-
   }
 
   // for 3rd image 
@@ -153,11 +145,11 @@ if (isset($_POST['add_product'])) {
       $confirmation_msg = 'Please choose your file to upload.';
     }
 
-    if(!isset($photo_name3)){
+    if (!isset($photo_name3)) {
       $photo_name3 = '';
       $sql_photo3 = "UPDATE tbl_products SET product_image3='$photo_name3' WHERE product_id =$product_id";
       $connection->query($sql_photo3);
-    }else{
+    } else {
       $sql_photo3 = "UPDATE tbl_products SET product_image3='$photo_name3' WHERE product_id =$product_id";
       $connection->query($sql_photo3);
     }
@@ -191,19 +183,15 @@ if (isset($_POST['add_product'])) {
     } else {
       $confirmation_msg = 'Please choose your file to upload.';
     }
-    if(!isset($photo_name4)){
+    if (!isset($photo_name4)) {
       $photo_name4 = '';
       $sql_photo4 = "UPDATE tbl_products SET product_image4='$photo_name4' WHERE product_id =$product_id";
       $connection->query($sql_photo4);
-    }else{
+    } else {
       $sql_photo4 = "UPDATE tbl_products SET product_image4='$photo_name4' WHERE product_id =$product_id";
       $connection->query($sql_photo4);
     }
-
   }
-  
-
-  
 }
 
 
@@ -215,78 +203,109 @@ if (isset($_POST['add_product'])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product</title>
-    <link rel="stylesheet" href="../../assets/addproduct.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product</title>
+  <link rel="stylesheet" href="../../assets/addproduct.css">
 
 </head>
 
 <body>
+  <?php
+  include("adminnav.php");
+  ?>
 
 
-    <div class="container">
-        <form action="#" method="post" enctype="multipart/form-data">
-            <label for="product_name">Product Name</label>
-            <input type="text" name="product_name" required>
+  <form action="adminpanel.php" method="post">
+    <button type="submit" name="back" id="back-btn"> <i class="fa-solid fa-angle-left"></i> Back</button>
+  </form>
+  
+  <form action="#" method="post" enctype="multipart/form-data">
 
-            <label for="product_category">Product Category</label>
-            <select name="product_category" id="product_category">
-                <option value="Mens">Mens</option>
-                <option value="Womens">Womens</option>
-                <option value="Unisex">Unisex</option>
-            </select>
+    <div class="addprod-container">
 
-            <label for="product_details">Product Details</label>
-            <textarea type="text" name="product_details"></textarea>
 
-            <label for="product_color">Available Colors</label>
-            <select name="product_color" id="product_color">
-                <option value="Black">Black</option>
-                <option value="White">White</option>
-                <option value="Blue">Blue</option>
-                <option value="All of Above">All of Above</option>
+      <div id="inner-container">
 
-            </select>
-            <label for="product_size">Select Size</label>
-            <select name="product_size" id="product_size">
-                <option value="x">X</option>
-                <option value="xl">XL</option>
-                <option value="xxl">XXL</option>
-                <option value="All of Above">All of Above</option>
+        <div class="left">
 
-            </select>
+          <label for="product_name">Product Name</label>
+          <input type="text" name="product_name" required>
 
-            <label for="product_image">Choose Product Image</label>
-            <input type="file" name="product_image1" required>
+          <label for="product_category">Product Category</label>
+          <select name="product_category" id="product_category">
+            <option value="Mens">Mens</option>
+            <option value="Womens">Womens</option>
+            <option value="Unisex">Unisex</option>
+          </select>
 
-            <label for="product_image">Product Image 2 (Optional) </label>
-            <input type="file" name="product_image2">
+          <label for="product_details">Product Details</label>
+          <textarea type="text" name="product_details" rows="4" cols="200"></textarea>
 
-            <label for="product_image">Product Image 3 (Optional) </label>
-            <input type="file" name="product_image3">
+          <label for="product_color">Available Colors</label>
+          <select name="product_color" id="product_color">
+            <option value="Black">Black</option>
+            <option value="White">White</option>
+            <option value="Blue">Blue</option>
+            <option value="All of Above">All of Above</option>
 
-            <label for="product_image">Product Image 4 (Optional)</label>
-            <input type="file" name="product_image4">
+          </select>
+          <label for="product_size">Select Size</label>
+          <select name="product_size" id="product_size">
+            <option value="x">X</option>
+            <option value="xl">XL</option>
+            <option value="xxl">XXL</option>
+            <option value="All of Above">All of Above</option>
 
-            <label for="quantity">Quantity</label>
-            <input type="number" name="product_quantity" value="1" min="1" required>
+          </select>
+        </div>
 
-            <label for="product_price">Price</label>
-            <input type="text" name="product_price" required>
 
-            <button type="submit" name="add_product">Add Product</button>
+        <div class="right">
+          <label for="product_price">Price</label>
+          <input type="text" name="product_price" required>
 
-        </form>
-        <form action="adminpanel.php" method="post">
-            <button type="submit" name="back">Back</button>
-        </form>
+          <label for="quantity">Quantity</label>
+          <input type="number" name="product_quantity" value="1" min="1" required>
+
+          <label for="product_image">Choose Product Image</label>
+          <input type="file" name="product_image1" required>
+
+          <label for="product_image">Product Image 2 (Optional) </label>
+          <input type="file" name="product_image2">
+
+          <label for="product_image">Product Image 3 (Optional) </label>
+          <input type="file" name="product_image3">
+
+          <label for="product_image">Product Image 4 (Optional)</label>
+          <input type="file" name="product_image4">
+          <!-- <button type="submit" name="add_product">Add Product</button> -->
+
+
+        </div>
+
+      </div>
+
+      <div class="addprod-btn-div">
+        <button type="submit" name="add_product" id="addprod-btn">Add Product</button>
+      </div>
+      <br>
+      <br>
+
     </div>
-    <script>
+
+
+    <br>
+    <br>
+
+
+  </form>
+
+  <script>
     if (window.history.replaceState) {
-        window.history.replaceState(null, null, window.location.href);
+      window.history.replaceState(null, null, window.location.href);
     }
-    </script>
+  </script>
 </body>
 
 </html>

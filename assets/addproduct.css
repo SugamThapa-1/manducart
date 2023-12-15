@@ -6,43 +6,65 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
-body {
-  background-color: #f4f4f4;
-  display: flex;
-  flex: 2;
-  justify-content: center;
-  align-items: center;
-  margin-left: 40%;
-  width: 400px;
-  margin-top: 50px;
-  /* height: 500px; */
-  /* margin-top: 100px; */
-
-  /* height: 100vh; */
-}
-.logo i {
-  font-size: 30px;
-}
-
-.logo,
-i,
-h1 {
-  font-size: 25px;
-  display: inline-block;
-  /* margin-bottom: 20px; */
-}
-#login-text {
+#back-btn{
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
   margin-top: 15px;
-  margin-bottom: 30px;
+  /* margin-bott2m: 15px; */
+  margin-left: 150px;
+  width: 100px !important;
+  /* float: left; */
+  /* margin-left: 40px; */
+
+  color: #333;
+  border: 1.5px solid #ddd;
+  background: #fdfdfd;
+  transition: background-color 0.3s;
 }
-.container {
+
+#back-btn i {
+  font-size: 15px;
+  margin-left: 3px;
+}
+#back-btn:hover {
+  cursor: pointer;
+  color: red;
+  box-shadow: 0 2px 10px rgba(182, 92, 92, 0.4);
+  transition: all ease 0.5s;
+}
+.addprod-container {
+
+  margin: 20px 10% 0 10%;
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 400px;
-  padding: 30px;
+  box-shadow:  0px 1px 2px 1.5px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  /* height: 95vh; */
+}
+
+
+#inner-container {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
   text-align: center;
 }
+
+.left {
+  margin: 0 20px 0 100px;
+  width: 100%;
+}
+
+.right {
+  margin: 0 100px 0 20px;
+  width: 100%;
+}
+
 label {
   float: left;
 }
@@ -51,14 +73,14 @@ input {
   /* margin: 5px 0; */
   margin-top: 5px;
   margin-bottom: 20px;
-
   width: 100%;
   padding: 12px 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
 }
-button {
+
+#addprod-btn {
   background-color: #f13c3c;
   color: #fff;
   border: none;
@@ -67,12 +89,15 @@ button {
   font-size: 18px;
   cursor: pointer;
   transition: background-color 0.2s;
-
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
-button:hover {
+.addprod-btn-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#addprod-btn:hover {
   background-color: #555555;
   box-shadow: 5px 5px 0px;
   transition: all ease 0.5s;
@@ -112,12 +137,14 @@ button:hover {
   border-radius: 5px;
   font-size: 16px;
 }
+
 textarea {
   /* margin: 5px 0; */
   margin-top: 5px;
   margin-bottom: 20px;
 
   width: 100%;
+  height: 140px;
   padding: 12px 10px;
   border: 1px solid #ccc;
   border-radius: 5px;

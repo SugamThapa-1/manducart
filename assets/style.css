@@ -328,6 +328,7 @@ img {
   object-fit: contain;
   width: 280px;
   margin-bottom: 10px;
+  position: relative;
 }
 /* #cart-button:hover{
 width: 100px;
@@ -374,6 +375,34 @@ width: 100px;
 
 .product-info {
   margin: 10px;
+}
+.wishlist-btn{
+position: absolute;
+top: 0;
+right: 0;
+z-index: 1;
+}
+.wishlist-btn button {
+  border: none;
+  border-radius: 100%;
+  color: white;
+  font-size: 12px;
+  height: 40px;
+  width: 40px;
+  background-color: rgb(255, 255, 255);
+  color: white;
+  margin: 5px 8px 8px 0px;
+  transition: all ease 0.9s;
+}
+.wishlist-btn i {
+  padding: 3px;
+  font-size: 15px;
+  color: #000000;
+}
+.wishlist-btn button:hover {
+  cursor: pointer;
+  background-color: #ff0000;
+  color: rgb(255, 255, 255);
 }
 .btn {
   display: inline-flex;

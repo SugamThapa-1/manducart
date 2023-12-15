@@ -223,9 +223,17 @@ if (isset($_POST['buy_now'])) {
                   src="../../images/<?php echo $db_data['product_image']; ?>" alt=""></a>
               <div>
                 <div class="product-image">
-                  <a href="productdetail.html" style="width:100%; height: 100%;" alt="product-image"></a>
+                  <a href="#" style="width:100%; height: 100%;" alt="product-image"></a>
                 </div>
+                <div class="wishlist-btn">
+                <form action="#" method="post">
+                    <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                    <button type="submit" name="wishlist"><i class="fa-regular fa-heart"></i></button>
+                  </form>
+                </div>
+           
                 <div class="btn">
+             
                   <form action="#" method="post">
                     <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                     <button type="submit" name="buy_now"><i class="fa-solid fa-bag-shopping" id="cart-button"></i></button>
@@ -241,7 +249,7 @@ if (isset($_POST['buy_now'])) {
               </div>
             </div>
             <div class="pro_info">
-              <p>
+              <p style="text-transform: uppercase;">
                 <?php echo $db_data_category['product_category']; ?>
               </p>
               <p style="text-transform:uppercase">
