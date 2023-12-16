@@ -46,7 +46,9 @@ if (isset($_POST['payment'])) {
         echo "Error: " . $sql4 . "<br>" . $connection->error;
     }
 
-    $sql_order_details = "INSERT INTO tbl_order_details (order_id,product_id,order_quantity,payment_method) VALUES ('$latest_id','$product_id','$product_buy_quantity','$payment_method')";
+    $status = 'Processing';
+
+    $sql_order_details = "INSERT INTO tbl_order_details (order_id,status,product_id,order_quantity,payment_method) VALUES ('$latest_id','$status','$product_id','$product_buy_quantity','$payment_method')";
     $result = mysqli_query($connection, $sql_order_details);
     if (!$result) {
         echo "Data not inserted";

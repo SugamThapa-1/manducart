@@ -62,7 +62,7 @@ if (!isset($_SESSION['logged_in'])) {
             <div class="card">
                 <div class="items">
                     <h2>History</h2>
-                    <a href="#" class="link">See More</a>
+                    <a href="history.php" class="link">See More</a>
                 </div>
             </div>
             <div class="card">

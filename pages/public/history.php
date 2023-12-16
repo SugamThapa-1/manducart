@@ -5,11 +5,9 @@ include "db_connection.php";
 
 $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : header("location: login.php");
 
-
-
-//getting the order id of orders related to the customer id 
-$select_sql = "SELECT * FROM tbl_orders WHERE customer_id=$customer_id ORDER BY id DESC";
+$select_sql = "SELECT * FROM tbl_history WHERE customer_id=$customer_id ORDER BY id DESC";
 $select_res = mysqli_query($connection, $select_sql);
+ 
 
 ?>
 
@@ -20,7 +18,7 @@ $select_res = mysqli_query($connection, $select_sql);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Track Order</title>
+  <title>History</title>
   <link rel="stylesheet" href="../../assets/cart.css" />
 
 </head>
@@ -41,22 +39,12 @@ $select_res = mysqli_query($connection, $select_sql);
         </thead>
         <tbody>
           <?php $counter =0;?>
-          <?php while ($db_data = mysqli_fetch_assoc($select_res)): 
-            
-            $order_id = $db_data['id'];
-            //using the order id to get product id 
-            $select_sql_order = "SELECT * FROM tbl_order_details WHERE order_id = $order_id";
-            $select_res_order = mysqli_query($connection, $select_sql_order);
-            $db_data_order = mysqli_fetch_assoc($select_res_order) ;
-            
-            $product_id = $db_data_order['product_id'];
-            $status = $db_data_order['status'];
+          <?php while ($db_data1 = mysqli_fetch_assoc($select_res)): 
+            $product_id = $db_data1['product_id'];
 
             $select_res_product = "SELECT * FROM tbl_products WHERE product_id = $product_id";
             $select_res_product = mysqli_query($connection, $select_res_product);
             $db_data_product = mysqli_fetch_assoc($select_res_product) ;
-            
-
 
             ?>
             <tr>
@@ -69,7 +57,7 @@ $select_res = mysqli_query($connection, $select_sql);
               </td>
               
               
-              <td><?php echo $status;?></td>
+              <td><?php echo $db_data1['status']; ?></td>
           
 
             </tr>
