@@ -78,7 +78,6 @@ if (isset($_POST['buy_now'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search</title>
     <link rel="stylesheet" href="../../assets/search.css" />
-    <link rel="stylesheet" href="../../assets/footer.css" />
     <script src="../../assets/jquery-3.7.1.min.js"></script>
 </head>
 

@@ -1,5 +1,16 @@
+completed work
+<!-- user dashboard side panel -->
+update account✅
+change password✅
+delete account✅
+logout out✅
+
+
+
 1. search dynamic=> working 7th Dec✅
 2. search UI=> working 7th Dec✅
+
+3. search page UI=> ui need to be updated❌
 
 pending 
 
@@ -20,8 +31,14 @@ pending
 14. When product is edited showing four photo adding option-------------------------------------->✅
 15. active in home pages 
 
-<!-- user dashboard side panel -->
-update account✅
-change password✅
-delete account✅
-logout out✅
+
+
+
+
+remaining work
+search page UI=> ui need to be updated❌
+active pages hover in all pages
+automatic carasouel
+add star for rating in product detail
+place to fill review
+

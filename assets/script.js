@@ -15,3 +15,15 @@ modalButton.onclick = function () {
 if (window.history.replaceState) {
   window.history.replaceState(null, null, window.location.href);
 }
+
+
+
+// for active link 
+const currentUrl = window.location.href;
+const links = document.querySelectorAll('.link');
+
+links.forEach(link => {
+  if (link.href === currentUrl) {
+    link.classList.add('active-link');
+  }
+});

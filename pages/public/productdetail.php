@@ -108,6 +108,14 @@ if (isset($_POST['buy_now'])) {
           <h4 style="margin-bottom: 10px;"> Rs.
             <?php echo $db_data['product_price']; ?><span> & Free Shipping</span>
           </h4>
+          <p style="margin:10px auto; color:beige;">
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+  
+          </p>
           <p style="margin-bottom: 15px;">
             <?php echo $db_data['product_details']; ?>
           </p>
@@ -143,6 +151,17 @@ if (isset($_POST['buy_now'])) {
               <input type="hidden" name="updated_prod_qty" id="updated_prod_qty" value="1">
               <button type="submit" class="cart" name="add_to_cart">Add to Cart</button>
             </form>
+          </div>
+          <div class="reviews">
+            <br>
+            <br>
+            <p>
+
+            </p>
+            <p>
+              <!-- <label for="reviews">Reviews</label> -->
+              <textarea name="reviews" id="reviews" cols="30" rows="10" placeholder="write reviews about product"></textarea>
+            </p>
           </div>
 
 

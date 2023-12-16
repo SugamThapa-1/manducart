@@ -64,6 +64,11 @@ h1 {
   cursor: pointer;
   color: red;
 }
+/* for active link  */
+.active-link{
+  color: red;
+}
+
 #nav-cart-icon {
   cursor: pointer;
   color: red;
@@ -255,7 +260,9 @@ img {
   scale: 1.03;
 } */
 .items img {
-  width: 100%;
+  object-fit: contain;
+  /* height: 100px; */
+  /* width: 100%; */
   border-radius: 10px;
   display: block;
   transition: transform 0.7s;
@@ -376,11 +383,11 @@ width: 100px;
 .product-info {
   margin: 10px;
 }
-.wishlist-btn{
-position: absolute;
-top: 0;
-right: 0;
-z-index: 1;
+.wishlist-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
 }
 .wishlist-btn button {
   border: none;
