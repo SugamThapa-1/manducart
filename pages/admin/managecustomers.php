@@ -3,7 +3,7 @@ session_start();
 include("db_connection.php");
 
 
-$sql_select = "SELECT * FROM tbl_customers";
+$sql_select = "SELECT * FROM tbl_customers ORDER BY customer_id DESC";
 $result_select = mysqli_query($connection, $sql_select);
 
 $i = 1;

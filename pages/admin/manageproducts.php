@@ -9,11 +9,6 @@ if ($product_updated) {
     unset($_SESSION['product_updated']);
 }
 
-$counter = 0;
-
-$sql = "SELECT * FROM tbl_products";
-$result = mysqli_query($connection, $sql);
-
 $updated_message = isset($_SESSION['updated_message']) ? $_SESSION['updated_message'] : false;
 
 if ($updated_message) {
@@ -25,6 +20,13 @@ if ($delete_message) {
     echo "<script>alert('Product deleted Sucessfully')</script>";
     unset($_SESSION['delete_message']);
 }
+
+
+$counter = 0;
+
+$sql = "SELECT * FROM tbl_products ORDER BY product_id DESC";
+$result = mysqli_query($connection, $sql);
+
 
 ?>
 <!DOCTYPE html>

@@ -14,14 +14,14 @@ logout out✅
 
 pending 
 
-0. automatic carasouel
+0. automatic carasouel--------------------------------------------------------------------------->✅
 1. pagination ----------------------------------------------------------------------------------->✅
 2. rating and reviews
 3. cupons and discount
 4. add product multiple images ------------------------------------------------------------------>✅
 5. size in product details ---------------------------------------------------------------------->✅
 6. userdashboard [cancelorder => increase no of product in stock]-------------------------------->✅
-7. admin panel refining
+7. admin panel refining--------------------------------------
 8. wishlist => image haru ma whishlist lai icon add garne + database ma table add garne --------->✅
 9. cart icon ma no. dekhune
 10. cart page refining--------------------------------------------------------------------------->✅
@@ -36,9 +36,12 @@ pending
 
 
 remaining work
+changing static contact page to dynamic page✅
 search page UI=> ui need to be updated❌
-active pages hover in all pages
-automatic carasouel
+active pages hover in all pages✅
 add star for rating in product detail
 place to fill review
+refining -> thank you page, user dashboard, payment page and checkout page
+creating static pages- about us page, terms and conditions page
+
 
