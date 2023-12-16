@@ -110,26 +110,26 @@ if (isset($_POST['buy_now'])) {
 
 if (isset($_POST['wishlist'])) {
   if (isset($_SESSION['logged_in'])) {
-      $product_id = $_POST['product_id'];
-      $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : '';
+    $product_id = $_POST['product_id'];
+    $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : '';
 
-      $query = "SELECT * FROM tbl_wishlists WHERE product_id='$product_id' AND customer_id ='$customer_id'";
-      $data = mysqli_query($connection, $query);
+    $query = "SELECT * FROM tbl_wishlists WHERE product_id='$product_id' AND customer_id ='$customer_id'";
+    $data = mysqli_query($connection, $query);
 
-      if (mysqli_num_rows($data) >= 1) {
-          echo '<script>alert("Product is Already in Wishlist")</script>';
-      } else {
-          $sql_insert = "INSERT INTO tbl_wishlists (customer_id,product_id) VALUES ('$customer_id','$product_id')";
-          $result_insert = mysqli_query($connection, $sql_insert);
+    if (mysqli_num_rows($data) >= 1) {
+      echo '<script>alert("Product is Already in Wishlist")</script>';
+    } else {
+      $sql_insert = "INSERT INTO tbl_wishlists (customer_id,product_id) VALUES ('$customer_id','$product_id')";
+      $result_insert = mysqli_query($connection, $sql_insert);
 
-          if($result_insert){
-              echo "<script>alert('Product added to Wishlist')</script>";
-          }
+      if ($result_insert) {
+        echo "<script>alert('Product added to Wishlist')</script>";
       }
+    }
 
   } else {
-      $_SESSION["product_id"] = $_POST['product_id'];
-      header("location:login.php?page='$page'");
+    $_SESSION["product_id"] = $_POST['product_id'];
+    header("location:login.php?page='$page'");
   }
 }
 
@@ -145,30 +145,14 @@ if (isset($_POST['wishlist'])) {
   <title>Mandu Cart Home Page</title>
   <link rel="stylesheet" href="../../assets/style.css" />
   <link rel="stylesheet" href="../../assets/footer.css" />
+  <script src="../../assets/script.js"></script>
+
 
 </head>
 
 <body>
-<?php include("nav.php")?>
-
-  <div class="carasouel">
-    <ul class="gallery">
-      <li><img src="../../images/image3.jpg" alt=""></li>
-      <li><img src="../../images/image4.jpg" alt=""></li>
-      <li><img src="../../images/image5.jpg" alt=""></li>
-      <li><img src="../../images/image6.jpg" alt=""></li>
-      <li><img src="../../images/image7.jpg" alt=""></li>
-    </ul>
-    <div class="gallrey-text">
-      <p>MENS | WOMENS</p>
-      <h1>New Arrival</h1>
-      <a href="shop.php">
-        <p
-          style="background-color: red; padding: 10px; width: 108px; color: white; border-radius: 7px; margin: 20px; font-size: 15px;">
-          Order Now</p>
-      </a>
-    </div>
-  </div>
+  <?php include("nav.php") ?>
+  <?php include("cara.php") ?>
   <div class="feature-text">
     <h1>Featured Products</h1>
   </div>
@@ -253,14 +237,14 @@ if (isset($_POST['wishlist'])) {
                   <a href="#" style="width:100%; height: 100%;" alt="product-image"></a>
                 </div>
                 <div class="wishlist-btn">
-                <form action="#" method="post">
+                  <form action="#" method="post">
                     <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                     <button type="submit" name="wishlist"><i class="fa-regular fa-heart"></i></button>
                   </form>
                 </div>
-           
+
                 <div class="btn">
-             
+
                   <form action="#" method="post">
                     <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                     <button type="submit" name="buy_now"><i class="fa-solid fa-bag-shopping" id="cart-button"></i></button>
@@ -276,17 +260,25 @@ if (isset($_POST['wishlist'])) {
               </div>
             </div>
             <div class="pro_info">
-              <p style="text-transform: uppercase;">
-                <?php echo $db_data_category['product_category']; ?>
-              </p>
-              <p style="text-transform:uppercase">
-                  SIZE: <?php echo $db_data_category['product_size']; ?>
-              </p>
+              <div class="pro_cata_size">
+                <p style="text-transform: uppercase;">
+
+                  CATEGORY:
+                  <?php echo $db_data_category['product_category']; ?>
+                </p>
+                <br>
+                <p style="text-transform:uppercase">
+                  SIZE:
+                  <?php echo $db_data_category['product_size']; ?>
+                </p>
+              </div>
+
               <h2>
                 <?php echo $db_data['product_name']; ?>
               </h2>
-              <h2>
-                Rs. <?php echo $db_data['product_price']; ?>
+              <h2 style="color: red;">
+                Rs.
+                <?php echo $db_data['product_price']; ?>
               </h2>
             </div>
           </div>
@@ -295,6 +287,14 @@ if (isset($_POST['wishlist'])) {
         <?php endwhile; ?>
       <?php endif; ?>
     </div>
+
+  </div>
+  <div id="more-prod-btn-div">
+    <form action="shop.php" method="post">
+      <button id="more-prod-btn">
+        See More
+      </button>
+    </form>
   </div>
   <div class="bottom-carasouel">
     <div class="bottom-cara-text">
@@ -308,66 +308,13 @@ if (isset($_POST['wishlist'])) {
     </div>
   </div>
 
-  <?php include("footer.php")?>
+  <?php include("footer.php") ?>
 
-  <script>
-    const slider = document.querySelector('.gallery');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-    let autoScrollInterval;
-
-    slider.addEventListener('mousedown', e => {
-      isDown = true;
-      slider.classList.add('active');
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    });
-
-    slider.addEventListener('mouseleave', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
-
-    slider.addEventListener('mouseup', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
-
-    slider.addEventListener('mousemove', e => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const SCROLL_SPEED = 3;
-      const walk = (x - startX) * SCROLL_SPEED;
-      slider.scrollLeft = scrollLeft - walk;
-    });
-
-    function startAutoScroll() {
-      autoScrollInterval = requestAnimationFrame(scroll);
-    }
-
-    function scroll() {
-      const SCROLL_AMOUNT = 2;
-      slider.scrollLeft += SCROLL_AMOUNT;
-      requestAnimationFrame(scroll);
-    }
-
-    function stopAutoScroll() {
-      cancelAnimationFrame(autoScrollInterval);
-    }
-    startAutoScroll();
-
-    slider.addEventListener('mouseenter', stopAutoScroll);
-
-    slider.addEventListener('mouseleave', startAutoScroll);
-  </script>
   <script>
     if (window.history.replaceState) {
       window.history.replaceState(null, null, window.location.href);
     }
   </script>
-  <script src="../../assets/script.js"></script>
   <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>
 

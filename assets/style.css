@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
 * {
   margin: 0;
   padding: 0;
@@ -33,20 +32,28 @@ a:hover {
 }
 .logo i {
   font-size: 30px;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .logo,
 i,
 h1 {
   display: inline;
+  -webkit-user-select: none;
+  user-select: none;
 }
 #logo-text {
   position: relative;
+  -webkit-user-select: none;
+  user-select: none;
 }
 #last-word {
   position: absolute;
   top: 0;
   bottom: 100%;
   color: red;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .logo i:hover {
   color: red;
@@ -54,18 +61,20 @@ h1 {
 .nav-links {
   margin-left: 100px;
   padding-left: 250px;
+  transition: all ease 0.9s;
 }
 .nav-links li {
   display: inline-block;
   padding: 0px 15px;
   font-weight: 50px;
+  transition: all ease 0.9s;
 }
 .nav-links li:hover {
   cursor: pointer;
   color: red;
 }
 /* for active link  */
-.active-link{
+.active-link {
   color: red;
 }
 
@@ -73,10 +82,30 @@ h1 {
   cursor: pointer;
   color: red;
   transition: all ease 0.9s;
+  position: relative;
+  margin-right: 8px;
+  transition: all ease 0.5s;
 }
 #nav-cart-icon:hover {
   scale: 1.2;
   /* color: #ef7777; */
+}
+#cart-no {
+  /* display: inline-flex; */
+  position: absolute;
+  top: 0;
+  background-color: red;
+  color: #fff;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  font-size: 10px;
+  font-family: "Montserrat", sans-serif;
+
+  padding: 4px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  align-items: center;
 }
 .icons i {
   transition: all ease 0.2ms;
@@ -125,7 +154,7 @@ h1 {
 .gallrey-text {
   padding: 10px;
   margin-left: 100px;
-  margin-top: 160px;
+  margin-top: 120px;
   bottom: 0;
   top: 0;
   position: absolute;
@@ -189,10 +218,18 @@ img {
   width: 100%;
 }
 .feature-text {
-  font-size: 12px;
-  margin-bottom: 0px;
-  margin-left: 10px;
-  padding-left: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+
+  margin-bottom: 10px;
+  margin-top: 20px;
+  padding: 10px;
+}
+.feature-text h1 {
+  /* font-style: oblique; */
+  color: rgba(56, 55, 55, 0.801);
 }
 .main-container-div {
   margin-top: 30px;
@@ -239,7 +276,7 @@ img {
 } */
 
 .items:hover .layer {
-  height: 50%;
+  height: 35%;
   /* padding: 20px; */
 }
 
@@ -270,7 +307,6 @@ img {
 .layer {
   width: 100%;
   height: 0;
-  /* background: #4c8bd3c6; */
   border-radius: 10px;
   position: absolute;
   left: 0;
@@ -283,21 +319,22 @@ img {
   padding: 0 40px;
   text-align: center;
   font-size: 14px;
-
-  transition: 0.5s;
+  overflow: hidden;
+  transition: all ease-in-out 0.3s;
 }
 #see-more {
   width: 100%;
 }
 .see-more-btn {
   overflow: hidden;
-  width: 50%;
+  width: 100%;
   padding: 10px;
   color: rgb(255, 255, 255);
-  background-color: rgb(229, 74, 74);
+  background-color: rgba(37, 37, 37, 0.884);
   font-size: 15px;
   border: none;
   border-radius: 3px;
+  animation: slide-up 1.3s ease-out forwards;
 }
 
 /* for 2nd product line */
@@ -345,6 +382,12 @@ width: 100px;
   /* padding: 7px; */
   display: inline;
   font-size: 10px;
+}
+.pro_cata_size {
+  display: inline-flex;
+}
+.pro_cata_size p {
+  margin-right: 4px;
 }
 .card img {
   width: 100%;
@@ -430,6 +473,28 @@ width: 100px;
   margin: 18px 8px 8px 0px;
   transition: all ease 0.9s;
 }
+#more-prod-btn-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#more-prod-btn {
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+  height: 40px;
+  width: 100px;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  margin: 18px 8px 8px 0px;
+  transition: all ease 0.9s;
+}
+
+#more-prod-btn:hover {
+  background-color: rgb(71, 71, 71) !important;
+}
+
 #button {
   border: none;
   border-radius: 100%;
@@ -480,13 +545,12 @@ button:hover {
 
 /* for bottom carasouel */
 .bottom-carasouel {
-  background-color: rgb(227, 227, 227);
   background-image: url("../images/image12.jpg");
   opacity: 95%;
+  background-blend-mode: multiply;
   background-position-x: center;
   background-attachment: fixed;
   background-position-y: 12%;
-  background-size: contain;
   background-size: cover;
   background-size: 120%;
   width: 90%;
@@ -497,8 +561,9 @@ button:hover {
   padding: 20px;
   justify-content: space-between;
   position: relative;
-  background-repeat: repeat;
+  background-repeat: no-repeat;
 }
+
 .bottom-cara-text {
   flex-direction: column;
   margin-top: 80px;

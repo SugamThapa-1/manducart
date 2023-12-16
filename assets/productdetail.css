@@ -72,6 +72,31 @@ h4 {
 h5 {
   font-size: 15px;
 }
+.size-cont{
+  width: 80px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+}
+.size-cont h5{
+  padding: 5px 0 5px 0;
+}
+
+.size-disp p{
+  font-weight: 500;
+  color: rgb(39, 39, 39);
+}
+.size-disp{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  height: 30px;
+  width: 40px;
+  border: 2px solid rgb(131, 131, 131);
+}
 
 label,
 .add span,
@@ -110,7 +135,7 @@ label,
   width: 100px;
   height: 40px;
   padding: 12px;
-  border: 2px solid rgb(70, 70, 70);
+  border: 2px solid rgb(131, 131, 131);
   border-radius: 4px;
   font-size: 15px;
 }
@@ -123,6 +148,7 @@ button {
   background: #222222;
   color: white;
   margin-top: 30px;
+  border-radius: 4px;
   border-radius: 4px;
   margin-right: 20px;
 }

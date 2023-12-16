@@ -13,7 +13,9 @@
     <div class="nav">
       <div class="logo">
         <i class="fa-brands fa-opencart"></i>
-        <h1 id="logo-text">Mandu Cart <span id="last-word">.</span> </h1>
+        <a href="index.php">
+          <h1 id="logo-text">Mandu Cart <span id="last-word">.</span> </h1>
+        </a>
       </div>
 
       <div class="nav-links" id="nav-links">
@@ -37,8 +39,10 @@
       <div class="icons">
         <a href="search.php"><i class="fa-solid fa-magnifying-glass"></i></a>
         <a href="wishlist.php"> <i class="fa-solid fa-heart"></i></a>
-        <a href="cart.php"><i class="fa-solid fa-cart-shopping" id="nav-cart-icon"></i>
-          <span>1</span>
+        <a href="cart.php"><i class="fa-solid fa-cart-shopping" id="nav-cart-icon">
+            <span id="cart-no">9</span>
+          </i>
+
         </a>
         <a href="customerdashboard.php"> <i class="fa-solid fa-user"></i></a>
       </div>

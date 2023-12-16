@@ -72,7 +72,7 @@ if (isset($_POST['buy_now'])) {
 </head>
 
 <body>
-<?php include("nav.php")?>
+  <?php include("nav.php") ?>
 
   <section>
     <?php while ($db_data = mysqli_fetch_assoc($result)): ?>
@@ -100,6 +100,35 @@ if (isset($_POST['buy_now'])) {
               onclick="img('../../images/<?php echo $db_data['product_image4']; ?>')">
 
           </div>
+          <br>
+          <br>
+          <div class="review-cont">
+
+          <p>Review 1</p>
+          <p>Review 2</p>
+          <p>Review 3</p>
+          <br>
+<h1>Add Review</h1>
+            <input type="checkbox">
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+
+            <input type="checkbox">
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+
+            <input type="checkbox">
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+
+            <input type="checkbox">
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+
+            <input type="checkbox">
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+
+
+            <!-- <textarea name="reviews" id="reviews" cols="30" rows="10"
+                placeholder="write reviews about product"></textarea> -->
+            </p>
+          </div>
         </div>
         <div class="right">
           <h3 style="margin-bottom: 10px;">
@@ -108,13 +137,13 @@ if (isset($_POST['buy_now'])) {
           <h4 style="margin-bottom: 10px;"> Rs.
             <?php echo $db_data['product_price']; ?><span> & Free Shipping</span>
           </h4>
-          <p style="margin:10px auto; color:beige;">
+          <p style="margin:10px auto;">
             <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
             <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
             <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
             <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
             <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
-  
+
           </p>
           <p style="margin-bottom: 15px;">
             <?php echo $db_data['product_details']; ?>
@@ -126,12 +155,21 @@ if (isset($_POST['buy_now'])) {
             <span></span>
           </div>
 
+          <div class="size-cont">
+            <h5>Size</h5>
+            <div class="size-disp">
+
+              <p>X</p>
+
+            </div>
+          </div>
           <h5 style="margin-bottom: 10px;">Quantity</h5>
           <div class="add flex1">
             <form action="#" method="post">
               <input name="product_quantity" class="counter" id="quantity" type="number" value="1" min="1" required>
             </form>
           </div>
+
 
           <p style="margin-top: 10px;">SKU:
             <?php echo $db_data['product_quantity']; ?> Category:
@@ -152,17 +190,7 @@ if (isset($_POST['buy_now'])) {
               <button type="submit" class="cart" name="add_to_cart">Add to Cart</button>
             </form>
           </div>
-          <div class="reviews">
-            <br>
-            <br>
-            <p>
 
-            </p>
-            <p>
-              <!-- <label for="reviews">Reviews</label> -->
-              <textarea name="reviews" id="reviews" cols="30" rows="10" placeholder="write reviews about product"></textarea>
-            </p>
-          </div>
 
 
         </div>
@@ -171,7 +199,7 @@ if (isset($_POST['buy_now'])) {
   </section>
 
 
-  <?php include("footer.php")?>
+  <?php include("footer.php") ?>
 
 
 

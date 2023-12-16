@@ -64,7 +64,7 @@ if(isset($_POST['status_update'])){
                         <td>SN</td>
                         <td>Customer Name</td>
                         <td>Product Image</td>
-                        <td>Name</td>
+                        <td>Product Name</td>
                         <td>Quantity</td>
                         <td>Total Price</td>
                         <td>Payment Method</td>
