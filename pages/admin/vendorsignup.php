@@ -70,12 +70,7 @@ if (isset($_POST['submit'])) {
           </div>
 
           <button type="submit" name="submit">Signup</button>
-          <p>Already Have an Account?</p>
-          <a
-            href="vendorlogin.php"
-            style="text-decoration: none; color: rgb(255, 0, 0)"
-            >Login</a
-          >
+          
         </form>
       </div>
     </div>
@@ -83,5 +78,10 @@ if (isset($_POST['submit'])) {
       src="https://kit.fontawesome.com/acc534193e.js"
       crossorigin="anonymous"
     ></script>
+    <script>
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
   </body>
 </html>

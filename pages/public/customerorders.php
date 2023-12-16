@@ -8,6 +8,7 @@ $delete_message = isset($_SESSION['delete_message']) ? $_SESSION['delete_message
 if($delete_message){
   echo "<script>alert('Order deleted Sucessfully')</script>";
   unset($_SESSION['delete_message']);
+  header("location:customerorders.php");
 }
 
 
@@ -61,10 +62,6 @@ $select_res = mysqli_query($connection, $select_sql)
             $select_res_product = "SELECT * FROM tbl_products WHERE product_id = $product_id";
             $select_res_product = mysqli_query($connection, $select_res_product);
             $db_data_product = mysqli_fetch_assoc($select_res_product);
-
-
-
-
             ?>
             <tr>
               <td>
@@ -113,6 +110,11 @@ $select_res = mysqli_query($connection, $select_sql)
     <button type="submit">Back</button>
   </form>
   <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
+  <script>
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
 </body>
 
 </html>

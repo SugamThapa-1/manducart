@@ -1,44 +1,68 @@
 <?php
-include("db_connection.php");
 session_start();
+include("db_connection.php");
+
 $product_id = $_GET['product_id'];
-// echo"product id is $product_id";
-$order_id = $_GET['order_id'];
+$fullname = $_GET['fullname'];
 $form_page = $_GET['form_page'];
-
-if ($form_page === 'cart') {
-    $sql_select = "SELECT * FROM tbl_orders WHERE id = $order_id";
-    $result_selc = mysqli_query($connection, $sql_select);
-    $order_data = mysqli_fetch_assoc($result_selc);
-    $customer_id = $order_data['customer_id'];
+$email = $_GET['email'];
+$phone = $_GET['phone'];
+$address = $_GET['address'];
+$customer_id = $_SESSION['customer_id'];
 
 
-    $sql_select2 = "SELECT * FROM tbl_carts WHERE customer_id = $customer_id AND product_id = $product_id ";
-    $result_selc2 = mysqli_query($connection, $sql_select2);
-    $fetch_data = mysqli_fetch_assoc($result_selc2);
+if ($form_page === "cart") {
 
-    $order_quantity = $fetch_data['quantity'];
+    $select_sql = "SELECT * FROM tbl_carts WHERE product_id=$product_id AND customer_id=$customer_id";
+
+    $select_res = mysqli_query($connection, $select_sql);
+
+    if (!$select_res) {
+        echo "query not send";
+    }
+    $data = mysqli_fetch_assoc($select_res);
+    $product_buy_quantity = isset($data['quantity']) ? $data['quantity'] : 1;
+} else {
+    $product_buy_quantity = isset($_GET['product_buy_quantity']) ? $_GET['product_buy_quantity'] : 1;
 }
-if ($form_page === 'buy_now') {
-    $order_quantity = $_GET['order_quantity'];
-}
+
+$sql_select_product = "SELECT * FROM tbl_products WHERE product_id = $product_id";
+$result_selc = mysqli_query($connection, $sql_select_product);
+$fetch_data_select = mysqli_fetch_assoc($result_selc);
+$in_stock = $fetch_data_select["product_quantity"];
+$product_price = $fetch_data_select['product_price'];
+
+$total_amount = $product_buy_quantity * $product_price;
+
 
 
 if (isset($_POST['payment'])) {
     $payment_method = $_POST['payment-method'];
 
-    $sql = "INSERT INTO tbl_order_details (order_id,product_id,order_quantity,payment_method) VALUES ('$order_id','$product_id','$order_quantity','$payment_method')";
-    $result = mysqli_query($connection, $sql);
+    $sql_order = "INSERT INTO tbl_orders(customer_id) VALUES ('$customer_id')";
+    if ($connection->query($sql_order) === TRUE) {
+        $latest_id = $connection->insert_id;
+    } else {
+        echo "Error: " . $sql4 . "<br>" . $connection->error;
+    }
+
+    $sql_order_details = "INSERT INTO tbl_order_details (order_id,product_id,order_quantity,payment_method) VALUES ('$latest_id','$product_id','$product_buy_quantity','$payment_method')";
+    $result = mysqli_query($connection, $sql_order_details);
     if (!$result) {
         echo "Data not inserted";
     }
-    $sql_select = "SELECT * FROM tbl_products WHERE product_id = $product_id";
-    $result_selc = mysqli_query($connection, $sql_select);
 
-    $fetch_data_select = mysqli_fetch_assoc($result_selc);
-    $in_stock = $fetch_data_select["product_quantity"];
 
-    $stock_after_purchase = $in_stock - $order_quantity;
+    $sql_shippings = "INSERT INTO tbl_shippings (order_id,customer_name, email, phone, address)VALUES($latest_id,'$fullname', '$email', '$phone','$address')";
+
+    $select_res5 = mysqli_query($connection, $sql_shippings);
+
+    if (!$select_res5) {
+        echo "Query not sent" . mysqli_error($connection);
+    }
+
+
+    $stock_after_purchase = $in_stock - $product_buy_quantity;
 
     $update_sql = "UPDATE tbl_products SET product_quantity = $stock_after_purchase WHERE product_id=$product_id";
     $update_result = mysqli_query($connection, $update_sql);
@@ -76,7 +100,7 @@ if (isset($_POST['payment_option'])) {
         <div class="container">
             <div>
                 <form action="#" method="post">
-
+                <h4 style="margin-bottom: 20px;">Total amount = Rs. <?php echo $total_amount; ?></h4>
                     <h3 style="margin-bottom: 30px;">Payment Option</h3>
                     <button type="submit" name="payment_option">Esewa</button>
                     <p style="display: inline; font-size:20px">or</p>
@@ -90,6 +114,11 @@ if (isset($_POST['payment_option'])) {
         </div>
     </div>
     <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
+    <script>
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
 </body>
 
 </html>

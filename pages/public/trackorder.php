@@ -26,7 +26,7 @@ $select_res = mysqli_query($connection, $select_sql);
 </head>
 
 <body>
-  <?php include "nav.php"; ?>
+  <?php include "nav.php" ?>
 
   <div class="cart-container">
     <div id="cart-items">
@@ -35,7 +35,7 @@ $select_res = mysqli_query($connection, $select_sql);
           <tr>
             <td>SN</td>
             <td>Image</td>
-            <td>Products</td>>
+            <td>Products</td>
             <td>Status</td></td>
           </tr>
         </thead>
@@ -90,6 +90,11 @@ $select_res = mysqli_query($connection, $select_sql);
     <button type="submit" >Back</button>
   </form>
   <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
+  <script>
+    if (window.history.replaceState) {
+      window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
 </body>
 
 </html>

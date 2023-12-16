@@ -6,41 +6,7 @@ $form_page = $_GET['form_page'];
 
 $customer_id = $_SESSION['customer_id'];
 $product_id = $_GET['product_id'];
-$cart = "cart";
-if ($form_page === "cart") {
-
-    $select_sql = "SELECT * FROM tbl_carts WHERE product_id=$product_id AND customer_id=$customer_id";
-
-    $select_res = mysqli_query($connection, $select_sql);
-
-    if (!$select_res) {
-        echo "query not send";
-    }
-    $data = mysqli_fetch_assoc($select_res);
-    $product_quantity = isset($data['quantity']) ? $data['quantity'] : 1;
-} else {
-
-    $product_quantity = $_GET['quantity'];
-    $form_page = 'buy_now';
-
-}
-$select_sql1 = "SELECT * FROM tbl_customers WHERE customer_id = $customer_id";
-$select_res1 = mysqli_query($connection, $select_sql1);
-$db_data = mysqli_fetch_assoc($select_res1);
-
-$fullname = isset($db_data['fullname']) ? $db_data['fullname'] : '';
-$email = isset($db_data['email']) ? $db_data['email'] : '';
-$phone = isset($db_data['phone']) ? $db_data['phone'] : '';
-
-
-$select_sql2 = "SELECT * FROM tbl_products WHERE product_id = $product_id";
-$select_res2 = mysqli_query($connection, $select_sql2);
-$db_data2 = mysqli_fetch_assoc($select_res2);
-
-$product_name = isset($db_data2['product_name']) ? $db_data2['product_name'] : '';
-$product_price = isset($db_data2['product_price']) ? $db_data2['product_price'] : '';
-
-$total_price = $product_price * $product_quantity;
+$product_buy_quantity = isset($_GET['quantity']) ? $_GET['quantity'] : 1;
 
 
 
@@ -49,28 +15,16 @@ if (isset($_POST['checkout'])) {
     $phone = isset($_POST['phone']) ? $_POST['phone'] : $db_data['phone'];
     $email = isset($_POST['email']) ? $_POST['email'] : $db_data['email'];
     $address = $_POST['address'];
-
-    $sql4 = "INSERT INTO tbl_orders(customer_id) VALUES ('$customer_id')";
-
-    if ($connection->query($sql4) === TRUE) {
-        $latest_id = $connection->insert_id;
-    } else {
-        echo "Error: " . $sql4 . "<br>" . $connection->error;
-    }
-
-
-    $sql5 = "INSERT INTO tbl_shippings (order_id,customer_name, email, phone, address)VALUES($latest_id,'$fullname', '$email', '$phone','$address')";
-
-    $select_res5 = mysqli_query($connection, $sql5);
-
-    // print_r($sql3);
-    if (!$select_res5) {
-        echo "Query not sent" . mysqli_error($connection);
-    }
-
-    // header("location:payment.php?order_id=$latest_id&product_id = $id ");
-    header("location:payment.php?order_id=$latest_id&form_page=$form_page&order_quantity=$product_quantity&product_id=$product_id");
+    header("location:payment.php?form_page=$form_page&product_id=$product_id&fullname=$fullname&email=$email&phone=$phone&address=$address&product_buy_quantity=$product_buy_quantity");
 }
+
+$select_sql1 = "SELECT * FROM tbl_customers WHERE customer_id = $customer_id";
+$select_res1 = mysqli_query($connection, $select_sql1);
+$db_data = mysqli_fetch_assoc($select_res1);
+
+$fullname = isset($db_data['fullname']) ? $db_data['fullname'] : '';
+$email = isset($db_data['email']) ? $db_data['email'] : '';
+$phone = isset($db_data['phone']) ? $db_data['phone'] : '';
 
 
 
