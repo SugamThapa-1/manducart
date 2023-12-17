@@ -1,3 +1,15 @@
+<?php 
+$customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : 0;
+if($customer_id > 0){
+  $sql_select_cart = "SELECT * FROM tbl_carts WHERE customer_id=$customer_id";
+  $result_select_cart = mysqli_query($connection, $sql_select_cart);
+  $no_of_product_in_cart = mysqli_num_rows($result_select_cart);
+}else{
+  $no_of_product_in_cart = 0;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +52,7 @@
         <a href="search.php"><i class="fa-solid fa-magnifying-glass"></i></a>
         <a href="wishlist.php"> <i class="fa-solid fa-heart"></i></a>
         <a href="cart.php"><i class="fa-solid fa-cart-shopping" id="nav-cart-icon">
-            <span id="cart-no">9</span>
+            <span id="cart-no"><?php echo"$no_of_product_in_cart";?></span>
           </i>
 
         </a>

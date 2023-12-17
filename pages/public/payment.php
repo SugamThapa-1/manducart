@@ -108,7 +108,7 @@ if (isset($_POST['payment_option'])) {
                     <p style="display: inline; font-size:20px">or</p>
                     <button type="submit" name="payment_option">Khalti</button>
                     <select name="payment-method" required>
-                        <option value="cash-on-delivery">Cash On Delivery</option>
+                        <option value="C-O-D">Cash On Delivery</option>
                     </select>
                     <button type="submit" name="payment">Confirm Payment</button>
                 </form>

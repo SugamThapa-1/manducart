@@ -71,7 +71,8 @@ if(isset($_POST['status_update'])){
                         <td>Address</td>
                         <td>Manage</td>
                         <td>Status</td>
-                        <td></td>
+                        <td>Update</td>
+                    <td>Ordered at</td>
                     </tr>
                 </div>
                 <tbody>
@@ -133,6 +134,7 @@ if(isset($_POST['status_update'])){
                                 <input type="hidden" name="order_id" value="<?php echo $order_id; ?>">
                                 <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                                 <td><button type="submit" name="status_update">update</button></td>
+                                <td><?php echo $db_data['created_at'];?></td>
                             </form>
                         </tr>
                     <?php endwhile; ?>

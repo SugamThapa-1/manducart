@@ -62,11 +62,11 @@ if (isset($_POST['login_admin'])) {
         <label for="password">Password</label>
         <input type="password" name="pwd" required />
         <h5>
-          <a style="color: red; margin-left: 200px; font-size: 12px" href="forgotpassword.php">Forgot Password?</a>
+          <a style="color: red; margin-left: 200px; font-size: 12px" href="adminforgotpassword.php">Forgot Password?</a>
         </h5>
       </div>
       <button type="submit" name="login_admin">Login</button>
-      <p>Don't have an Account?</p>
+      <p></p>
       <a href="../public/login.php" style="text-decoration: none; color: rgb(255, 2, 2)">Login as Customer</a>
     </form>
   </div>

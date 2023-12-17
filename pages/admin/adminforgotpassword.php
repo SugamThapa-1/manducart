@@ -30,6 +30,7 @@ if (isset($_POST['reset'])) {
                 // if (!$result) {
                 //     echo "Data insertion failed.";
                 // }
+                echo'<script>alert("Password changed")</script>';
             }
         } else {
             echo "data not matched";
