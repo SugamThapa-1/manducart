@@ -163,16 +163,23 @@ if (isset($_POST['buy_now'])) {
                             </div>
                         </div>
                         <div class="pro_info">
-                            <p style="text-transform:uppercase">
-                                <?php echo $db_data_category['product_category']; ?>
-                            </p>
+                            <div class="pro_cata_size">
+                                <p style="text-transform: uppercase;">CATEGORY: MENS</p>
+                                <br>
+                                <p style="text-transform:uppercase">
+                                SIZE:
+                                <?php echo $db_data_category['product_size']; ?>
+                                </p>
+                            </div>
+
                             <h2>
                                 <?php echo $db_data_product['product_name']; ?>
                             </h2>
-                            <h2>
+                            <h2 style="color: red;">
+                                Rs.
                                 <?php echo $db_data_product['product_price']; ?>
                             </h2>
-                        </div>
+                            </div>
                     </div>
                 <?php endwhile; ?>
                 <?php endif; ?>

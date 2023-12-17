@@ -163,16 +163,23 @@ if (isset($_POST['wishlist'])) {
                             </div>
                         </div>
                         <div class="pro_info">
-                            <p>WOMENS</p>
-                            <p style="text-transform:uppercase">
-                                SIZE: <?php echo $db_data_category['product_size']; ?>
-                            </p>
+                            <div class="pro_cata_size">
+                                <p style="text-transform: uppercase;">CATEGORY: WOMENS</p>
+                                <br>
+                                <p style="text-transform:uppercase">
+                                SIZE:
+                                <?php echo $db_data_category['product_size']; ?>
+                                </p>
+                            </div>
+
                             <h2>
                                 <?php echo $db_data_product['product_name']; ?>
                             </h2>
-                            <h2>
-                            Rs. <?php echo $db_data_product['product_price']; ?>
+                            <h2 style="color: red;">
+                                Rs.
+                                <?php echo $db_data_product['product_price']; ?>
                             </h2>
+                            </div>
                         </div>
                     </div>
                 <?php endwhile; ?>
