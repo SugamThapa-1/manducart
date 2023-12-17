@@ -84,7 +84,7 @@ if (isset($_POST['add_to_cart'])) {
   } else {
     $page = "index.php";
     $_SESSION["product_id"] = $_GET['product_id'];
-    header("location: login.php? page = '$page'");
+    header("location: login.php? page = $page");
   }
 }
 
@@ -128,8 +128,9 @@ if (isset($_POST['wishlist'])) {
     }
 
   } else {
+    $page = "index.php";
     $_SESSION["product_id"] = $_POST['product_id'];
-    header("location:login.php?page='$page'");
+    header("location:login.php?page=$page");
   }
 }
 

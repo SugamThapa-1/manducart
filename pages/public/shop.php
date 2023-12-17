@@ -92,7 +92,7 @@ if (isset($_POST['wishlist'])) {
 
     } else {
         $_SESSION["product_id"] = $_POST['product_id'];
-        header("location:login.php?page='$page'");
+        header("location:login.php?page=$page");
     }
 }
 

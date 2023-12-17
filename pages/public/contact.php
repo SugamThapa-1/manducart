@@ -5,7 +5,7 @@ include("db_connection.php");
 
 if(!isset($_SESSION['logged_in'])){
     $page = "contact.php";
-    header("location: login.php?page='$page'");
+    header("location: login.php?page=$page");
 }
 
 $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : header("location: login.php");

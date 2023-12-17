@@ -51,7 +51,7 @@ if (isset($_POST['add_to_cart'])) {
         }
     } else {
         $_SESSION["product_id"] = $_GET['product_id'];
-        header("location: login.php?page='$page'");
+        header("location: login.php?page=$page");
     }
 }
 
@@ -67,7 +67,7 @@ if (isset($_POST['buy_now'])) {
 
     } else {
         $_SESSION["product_id"] = $_POST['product_id'];
-        header("location:login.php?page='$page'");
+        header("location:login.php?page=$page");
     }
 }
 
@@ -92,7 +92,7 @@ if (isset($_POST['wishlist'])) {
 
     } else {
         $_SESSION["product_id"] = $_POST['product_id'];
-        header("location:login.php?page='$page'");
+        header("location:login.php?page=$page");
     }
 }
 

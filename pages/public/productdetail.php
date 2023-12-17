@@ -32,7 +32,7 @@ if (isset($_POST['add_to_cart'])) {
   } else {
     $page = "productdetail.php";
     $_SESSION["product_id"] = $_GET['product_id'];
-    header("location: login.php?page = '$page'");
+    header("location: login.php?page = $page");
   }
 }
 
