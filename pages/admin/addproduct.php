@@ -20,6 +20,7 @@ if (isset($_POST['add_product'])) {
   $product_category = $_POST['product_category'];
   $product_color = $_POST['product_color'];
   $product_size = $_POST['product_size'];
+  $rating = 0;
 
 
   $sql1 = "INSERT INTO tbl_categories (product_category, product_color, product_size,created_by) VALUES ('$product_category','$product_color', '$product_size', '$admin_id')";
@@ -29,7 +30,7 @@ if (isset($_POST['add_product'])) {
   } else {
     echo "Error: " . $sql1 . "<br>" . $connection->error;
   }
-  $sql_add_product = "INSERT INTO tbl_products (category_id, product_name, product_details,product_quantity,product_price,created_by) VALUES('$latest_id','$product_name', '$product_details','$product_quantity','$product_price','$admin_id')";
+  $sql_add_product = "INSERT INTO tbl_products (category_id, product_name, product_details,product_quantity,product_price,created_by,rating) VALUES('$latest_id','$product_name', '$product_details','$product_quantity','$product_price','$admin_id',$rating)";
 
 
   if ($connection->query($sql_add_product) === true) {
@@ -247,14 +248,23 @@ if (isset($_POST['add_product'])) {
             <option value="Black">Black</option>
             <option value="White">White</option>
             <option value="Blue">Blue</option>
+            <option value="Grey">Grey</option>
+            <option value="Blue">Blue</option>
+            <option value="Blue">Blue</option>
+            <option value="Blue">Blue</option>
             <option value="All of Above">All of Above</option>
 
           </select>
           <label for="product_size">Select Size</label>
           <select name="product_size" id="product_size">
+            <option value="xs">XS</option>
+            <option value="s">S</option>
+            <option value="m">M</option>
+            <option value="l">L</option>
             <option value="x">X</option>
             <option value="xl">XL</option>
             <option value="xxl">XXL</option>
+            <option value="xxxl">XXXL</option>
             <option value="All of Above">All of Above</option>
 
           </select>

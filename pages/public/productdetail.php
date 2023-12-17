@@ -32,7 +32,7 @@ if (isset($_POST['add_to_cart'])) {
   } else {
     $page = "productdetail.php";
     $_SESSION["product_id"] = $_GET['product_id'];
-    header("location: login.php?page = $page");
+    header("location: login.php?page=$page");
   }
 }
 
@@ -48,12 +48,10 @@ if (isset($_POST['buy_now'])) {
   } else {
     $_SESSION["product_id"] = $_POST['product_id'];
     $page = "productdetail.php";
-    header("location:login.php?page =$page");
+    header("location:login.php?page=$page");
   }
 }
 
-
-// session_destroy();
 ?>
 
 
@@ -79,10 +77,12 @@ if (isset($_POST['buy_now'])) {
 
 
       <?php
+      $rating_id = isset($db_data['rating_id'])?$db_data['rating_id'] : 0;
       $category_id = $db_data['category_id'];
       $sql_cat = "SELECT * FROM tbl_categories WHERE category_id=$category_id";
       $result_cat = mysqli_query($connection, $sql_cat);
       $db_data_cat = mysqli_fetch_assoc($result_cat);
+      $rating = $db_data['rating'];
       ?>
       <div class="product-detail-container flex">
         <div class="left">
@@ -138,11 +138,22 @@ if (isset($_POST['buy_now'])) {
             <?php echo $db_data['product_price']; ?><span> & Free Shipping</span>
           </h4>
           <p style="margin:10px auto;">
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+            <?php $start=0;
+              while($start < 5){
+                if($rating > $start){
+                  ?>
+                    <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+                  <?php
+                }else{
+                    ?>
+                      <i class="fa-regular fa-star " style="color:rgb(248, 203, 0);"></i>
+                    <?php
+                }
+                $start++;
+              }
+            
+            ?>
+            
 
           </p>
           <p style="margin-bottom: 15px;">

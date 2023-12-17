@@ -252,9 +252,14 @@ if (isset($_POST['update'])) {
           <label for="product_size">Select Size</label>
           <select name="product_size" id="product_size">
           <option><?php echo $old_cat['product_size']; ?> </option>
+            <option value="xs">XS</option>
+            <option value="s">S</option>
+            <option value="m">M</option>
+            <option value="l">L</option>
             <option value="x">X</option>
             <option value="xl">XL</option>
             <option value="xxl">XXL</option>
+            <option value="xxxl">XXXL</option>
             <option value="All of Above">All of Above</option>
 
           </select>
