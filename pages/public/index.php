@@ -163,23 +163,28 @@ if (isset($_POST['wishlist'])) {
     <div class="products">
       <div class="items">
         <h5
-          style="position: absolute; color: white; background-color: #84a59d; margin: 10px; padding: 10px; border-radius: 2px;">
+          style="position: absolute; color: white;  margin: 10px; padding: 10px; border-radius: 2px;
+            background: linear-gradient(to right, #2980b9, #2ecc71);
+          ">
           Men</h5>
         <img src="../../images/<?php echo $db_data_product_mens['product_image']; ?>" alt="">
         <div class="layer">
           <form action="#" method="post" id="see-more">
-            <button class="see-more-btn" name="see_more_mens">See More</button>
+            <button class="see-more-btn" name="see_more_mens"> <i class="fa-solid fa-circle-chevron-down"></i> See
+              More</button>
           </form>
         </div>
       </div>
       <div class="items">
         <h5
-          style="position: absolute; color: white; background-color: #84a59d; margin: 10px; padding: 10px; border-radius: 2px;">
+          style="position: absolute; color: white; background-color: #84a59d; margin: 10px; padding: 10px; border-radius: 2px;
+           background: linear-gradient(to right, #2980b9, #2ecc71);">
           Women</h5>
         <img src="../../images/<?php echo $db_data_product_womens['product_image']; ?>" alt="">
         <div class="layer">
           <form action="#" method="post" id="see-more">
-            <button class="see-more-btn" name="see_more_womens">See More</button>
+            <button class="see-more-btn" name="see_more_womens"> <i class="fa-solid fa-circle-chevron-down"></i> See
+              More</button>
           </form>
 
 
@@ -187,12 +192,13 @@ if (isset($_POST['wishlist'])) {
       </div>
       <div class="items">
         <h5
-          style="position: absolute; color: white; background-color: #84a59d; margin: 10px; padding: 10px; border-radius: 2px;">
+          style="position: absolute; color: white; background-color: #84a59d; margin: 10px; padding: 10px; border-radius: 2px;  background: linear-gradient(to right, #2980b9, #2ecc71);">
           Unisex</h5>
         <img src="../../images/<?php echo $db_data_product_shop['product_image']; ?>" alt="">
         <div class="layer">
           <form action="#" method="post" id="see-more">
-            <button class="see-more-btn" name="see_more_unisex">See More</button>
+            <button class="see-more-btn" name="see_more_unisex"> <i class="fa-solid fa-circle-chevron-down"></i> See
+              More</button>
           </form>
 
 
@@ -200,12 +206,13 @@ if (isset($_POST['wishlist'])) {
       </div>
       <div class="items">
         <h5
-          style="position: absolute; color: white; background-color: #84a59d; margin: 10px; padding: 10px; border-radius: 2px;">
+          style="position: absolute; color: white; background-color: #84a59d; margin: 10px; padding: 10px; border-radius: 2px;  background: linear-gradient(to right, #2980b9, #2ecc71);">
           New Arrival</h5>
         <img src="../../images/<?php echo $db_data_product_new_arrival['product_image']; ?>" alt="">
         <div class="layer">
           <form action="#" method="post" id="see-more">
-            <button class="see-more-btn" name="see_more_new_arrival">See More</button>
+            <button class="see-more-btn" name="see_more_new_arrival"> <i class="fa-solid fa-circle-chevron-down"></i>
+              See More</button>
           </form>
 
 

@@ -89,7 +89,7 @@ $result = mysqli_query($connection, $sql);
                             <td>
                                 <?php echo $db_data_cat['product_size']; ?>
                             </td>
-                            <td>
+                            <td style="text-overflow: ellipsis; height: 10px;">
                                 <?php echo $db_data['product_details']; ?>
                             </td>
                             <td>

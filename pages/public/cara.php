@@ -36,6 +36,7 @@
         }
 
         .carousel-item {
+            object-fit: contain;
             min-width: 100%;
             box-sizing: border-box;
         }

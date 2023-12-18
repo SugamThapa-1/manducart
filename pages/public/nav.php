@@ -19,7 +19,7 @@ if ($customer_id > 0) {
   <title>Nav</title>
   <link rel="stylesheet" href="../../assets/style.css">
   <link rel="stylesheet" href="../../assets/css/all.min.css">
-  <link rel="stylesheet" href="../../assets//icons/css/fontawesome.min.css">
+  <link rel="stylesheet" href="../../assets/icons/css/all.css">
 
 
 </head>

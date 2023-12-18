@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - ManduCart</title>
+    <title>Terms and Conditions - ManduCart</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -50,23 +50,30 @@
 </head>
 
 <body>
-    <?php include("nav.php")?>
-    <br>
+    <?php include("nav.php") ?>
+
     <!-- <header>
         <h1>ManduCart</h1>
     </header> -->
 
     <section>
-        <h2>About Us</h2>
-        <p>Welcome to ManduCart – Where Style Meets Convenience!</p>
-        <p>At ManduCart, we believe that shopping is not just a transaction; it's an experience...</p>
+        <h2>Terms and Conditions</h2>
+        <p>By using ManduCart, you agree to the following terms and conditions:</p>
+        <ol>
+            <li><strong>Use of the Website:</strong> You agree to use this website in accordance with all applicable
+                laws...</li>
+            <li><strong>Intellectual Property:</strong> The content on this website is protected by intellectual
+                property laws...</li>
+            <li><strong>Privacy Policy:</strong> Your use of ManduCart is also governed by our Privacy Policy...</li>
+            <!-- Add more terms and conditions as needed -->
+        </ol>
 
         <!-- Add the rest of your content here -->
 
-        <p>Thank you for choosing ManduCart. Your journey to style, innovation, and convenience starts here!</p>
+        <p>These terms and conditions are subject to change without notice. Please review them regularly for updates.
+        </p>
     </section>
-    <br>
-    <?php include("footer.php")?>
+    <?php include("footer.php") ?>
 
 </body>
 

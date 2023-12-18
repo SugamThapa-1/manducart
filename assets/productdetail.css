@@ -17,7 +17,7 @@
 .right {
   padding: 30px;
 }
-.right{
+.right {
   margin-top: 30px;
 }
 
@@ -46,7 +46,7 @@
   height: 90px;
   object-fit: contain;
 }
-.option:hover{
+.option:hover {
   cursor: pointer;
 }
 .option img {
@@ -72,23 +72,22 @@ h4 {
 h5 {
   font-size: 15px;
 }
-.size-cont{
+.size-cont {
   width: 80px;
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
   margin-bottom: 20px;
-
 }
-.size-cont h5{
+.size-cont h5 {
   padding: 5px 0 5px 0;
 }
 
-.size-disp p{
+.size-disp p {
   font-weight: 500;
   color: rgb(39, 39, 39);
 }
-.size-disp{
+.size-disp {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,7 +97,6 @@ h5 {
   border: 2px solid rgb(131, 131, 131);
 }
 
-label,
 .add span,
 .color span {
   width: 25px;
@@ -152,11 +150,10 @@ button {
   border-radius: 4px;
   margin-right: 20px;
 }
-.button{
+.button {
   width: auto;
   display: flex;
-  justify-content:space-between;
-
+  justify-content: space-between;
 }
 
 /* @media only screen and (max-width: 768px) {
@@ -198,3 +195,53 @@ button {
     flex-wrap: wrap;
   }
 } */
+
+/* for review  */
+#reviewForm {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* input[type="checkbox"] {
+  display: none;
+} */
+
+label i {
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label i {
+  color: rgb(248, 203, 0);
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+#submit-review {
+  background-color: rgb(248, 203, 0);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#submit-review:hover {
+  background-color: rgb(218, 183, 0);
+}

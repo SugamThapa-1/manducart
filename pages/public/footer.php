@@ -48,9 +48,9 @@
                 </div>
                 <div class="footer-center">
                     <ul>
-                        <li><a href="aboutus.php" target="/">About Us</a></li>
-                        <li><a href="#" target="_blank">Terms & Conditions</a></li>
-                        <li><a href="#" target="_blank">Customer Service</a></li>
+                        <li><a href="aboutus.php">About Us</a></li>
+                        <li><a href="terms&conditions.php">Terms & Conditions</a></li>
+                        <li><a href="contact.php">Customer Service</a></li>
                     </ul>
                 </div>
                 <div class="footer-right">

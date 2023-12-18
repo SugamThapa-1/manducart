@@ -81,7 +81,7 @@
 
 /* for redirect pages from dasboard  */
 
-.table-wrapper {
+#table-wrapper {
   align-items: center;
   text-align: center;
   margin: 30px;

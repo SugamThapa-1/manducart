@@ -293,7 +293,7 @@ img {
   transform-origin: 20%;
 }
 .items {
-  object-fit: contain;
+  object-fit: cover;
   transition: all ease 0.2s;
 
   position: relative;
@@ -303,7 +303,7 @@ img {
   scale: 1.03;
 } */
 .items img {
-  object-fit: contain;
+  object-fit: cover;
   /* height: 100px; */
   /* width: 100%; */
   border-radius: 10px;
@@ -342,6 +342,10 @@ img {
   border-radius: 3px;
   animation: slide-up 1.3s ease-out forwards;
 }
+.see-more-btn i{
+  margin-right: 3px;
+  color: #fff;
+}
 
 /* for 2nd product line */
 .main_container {
@@ -373,7 +377,7 @@ img {
   /* padding: 20px; */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: all ease 0.2s;
+  transition: all ease 0.9s;
   /* background-image: url("../images/img1.jpg"); */
   object-fit: contain;
   width: 280px;
@@ -559,7 +563,7 @@ button:hover {
   background-position-y: 12%;
   background-size: cover;
   background-size: 150%;
-  width: 100%;
+  width: 90%;
   height: 40vh;
   display: flex;
   flex-direction: column;

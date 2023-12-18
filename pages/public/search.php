@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include("db_connection.php");
 
@@ -11,16 +11,16 @@ $filter_by_price_min = isset($_POST['filter_by_price_min']) ? $_POST['filter_by_
 $filter_by_price_max = isset($_POST['filter_by_price_max']) ? $_POST['filter_by_price_max'] : 9999999999;
 
 // echo "The min value is $filter_by_price_min and The max price is $filter_by_price_max";
-if(isset($_GET['search'])){
+if (isset($_GET['search'])) {
     $from_search = $_GET['search'];
     $sql_search_product = "SELECT * FROM tbl_products WHERE CONCAT(product_name, product_details) LIKE '%$from_search%'";
     $result_search_product = mysqli_query($connection, $sql_search_product);
 }
 
-if(isset($_POST['price'])){
+if (isset($_POST['price'])) {
     $from_search = $_GET['search'];
     $sql_search_product = "SELECT * FROM tbl_products WHERE CONCAT(product_name, product_details) LIKE '%$from_search%' AND product_price BETWEEN $filter_by_price_min AND $filter_by_price_max";
-    $result_search_product = mysqli_query($connection, $sql_search_product);  
+    $result_search_product = mysqli_query($connection, $sql_search_product);
 }
 
 
@@ -82,9 +82,9 @@ if (isset($_POST['buy_now'])) {
 </head>
 
 <body>
-   <?php 
-        include("nav.php");
-   ?>
+    <?php
+    include("nav.php");
+    ?>
     <div class="text">
         <h3>Search Clothes from ManduCart</h3>
     </div>
@@ -93,58 +93,60 @@ if (isset($_POST['buy_now'])) {
         <form action="" method="get" class="search-bar">
             <div class="input-group">
                 <input type="text" name="search" placeholder="Search..." value="<?php if (isset($_GET['search'])) {
-                    echo $_GET['search'];} ?>" class="form-control" placeholder="Search data">
+                    echo $_GET['search'];
+                } ?>" class="form-control" placeholder="Search data">
                 <button type="submit" class="fa-solid fa-magnifying-glass"></button>
             </div>
 
         </form>
 
     </div>
+
     <div class="container-search">
-        <div class="sidebar-right">
+        <?php if ($result_search_product): ?>
+            <div class="sidebar">
+                <div class="sidebar-left">
+                    <form action="#" method="post">
+                        <div class="filter">
+                            <h3>Filter By Price </h3>
+                            <label for="">Lowest Price</label>
+                            <input type="number" value="1" name="min_value" id="quantity1" min="1">
+                            <input type="hidden" name="filter_by_price_min" id="filter_by_price_min" value="1">
+                            <label for="">Highest Price</label>
+                            <input type="number" value="1" name="max_value" id="quantity2" min="1">
+            
+                            <input type="hidden" name="filter_by_price_max" id="filter_by_price_max" value="1">
+                            <button id="filter-btn" type="submit" method="post" name="price"><i class="fa-solid fa-filter"></i> Filter</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
             <div class="body">
 
-                <?php if ($result_search_product):?>
-                    <div class="sidebar">
 
-                <div class="sidebar-left">
-                <form action="#" method="post">
-                    <div class="filter">
-                        <h3>Filter By Price </h3>
-                        <label for="">Lowest Price</label>
-                        <input type="number" value="1" name="min_value" id="quantity1" min="1">
-                        <input type="hidden" name="filter_by_price_min" id="filter_by_price_min" value="1">
-                        <label for="">Highest Price</label>
-                        <input type="number" value="1" name="max_value" id="quantity2" min="1">
 
-                        <input type="hidden" name="filter_by_price_max" id="filter_by_price_max" value="1">
-                        <button type="submit" method="post" name="price">Filter</button>
-                    </div>
-                    </form>
-                    
-                </div>
 
-            </div>
                 <?php while ($db_data_product = mysqli_fetch_assoc($result_search_product)):
-                        $product_id = $db_data_product['product_id'];
-                        $category_id = $db_data_product['category_id'];
+                    $product_id = $db_data_product['product_id'];
+                    $category_id = $db_data_product['category_id'];
 
-                        $sql_search_category = "SELECT * FROM tbl_categories WHERE category_id = $category_id ";
-                        $result_search_category = mysqli_query($connection, $sql_search_category);
-                        $db_data_category = mysqli_fetch_assoc($result_search_category);
-                    
+                    $sql_search_category = "SELECT * FROM tbl_categories WHERE category_id = $category_id ";
+                    $result_search_category = mysqli_query($connection, $sql_search_category);
+                    $db_data_category = mysqli_fetch_assoc($result_search_category);
 
-                    
+
+
                     ?>
-                
+
                     <div class="card-wrapper">
                         <div class="card">
                             <a href="productdetail.php?product_id=<?php echo $product_id; ?>"><img
                                     src="../../images/<?php echo $db_data_product['product_image']; ?>" alt=""></a>
                             <div>
                                 <div class="product-image">
-                                    <a href="productdetail.php?product_id=<?php echo $product_id; ?>"
-                                        alt="product-image"></a>
+                                    <a href="productdetail.php?product_id=<?php echo $product_id; ?>" alt="product-image"></a>
                                 </div>
                                 <div class="btn">
                                     <form action="#" method="post">
@@ -167,8 +169,8 @@ if (isset($_POST['buy_now'])) {
                                 <p style="text-transform: uppercase;">CATEGORY: MENS</p>
                                 <br>
                                 <p style="text-transform:uppercase">
-                                SIZE:
-                                <?php echo $db_data_category['product_size']; ?>
+                                    SIZE:
+                                    <?php echo $db_data_category['product_size']; ?>
                                 </p>
                             </div>
 
@@ -179,53 +181,56 @@ if (isset($_POST['buy_now'])) {
                                 Rs.
                                 <?php echo $db_data_product['product_price']; ?>
                             </h2>
-                            </div>
+                        </div>
                     </div>
                 <?php endwhile; ?>
-                <?php endif; ?>
-                
-            </div>
+            <?php endif; ?>
         </div>
     </div>
-    <?php include("footer.php")?>
+
+    <?php include("footer.php") ?>
     <script>
         jQuery("#quantity1").on("change", function () {
-      $.ajax({
-        url: "http://localhost/finalexp/pages/public/quantity.php",
-        type: "POST",
-        data: { id: quantity1.value },
-        dataType: "TEXT",
-        success: function (resp) {
-          $("#filter_by_price_min").val(resp);
+            $.ajax({
+                url: "http://localhost/finalexp/pages/public/quantity.php",
+                type: "POST",
+                data: {
+                    id: quantity1.value
+                },
+                dataType: "TEXT",
+                success: function (resp) {
+                    $("#filter_by_price_min").val(resp);
 
-        }
-      }).done(function () {
-        console.log($("#filter_by_price_min").val());
+                }
+            }).done(function () {
+                console.log($("#filter_by_price_min").val());
 
-      });
-    })
-  </script>
-  <script>
-    jQuery("#quantity2").on("change", function () {
-      $.ajax({
-        url: "http://localhost/finalexp/pages/public/quantity.php",
-        type: "POST",
-        data: { id: quantity2.value },
-        dataType: "TEXT",
-        success: function (resp) {
-          $("#filter_by_price_max").val(resp);
+            });
+        })
+    </script>
+    <script>
+        jQuery("#quantity2").on("change", function () {
+            $.ajax({
+                url: "http://localhost/finalexp/pages/public/quantity.php",
+                type: "POST",
+                data: {
+                    id: quantity2.value
+                },
+                dataType: "TEXT",
+                success: function (resp) {
+                    $("#filter_by_price_max").val(resp);
+                }
+            }).done(function () {
+                console.log($("#filter_by_price_max").val());
+            });
+        })
+    </script>
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
         }
-      }).done(function () {
-        console.log($("#filter_by_price_max").val());
-      });
-    })
-  </script>
-  <script>
-    if (window.history.replaceState) {
-      window.history.replaceState(null, null, window.location.href);
-    }
-  </script>
-    
+    </script>
+
 </body>
 
 </html>

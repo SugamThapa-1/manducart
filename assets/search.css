@@ -49,6 +49,7 @@
   cursor: pointer;
 }
 
+/* for search display  */
 .container-search {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -118,8 +119,10 @@
   border-radius: 5px;
   font-size: 16px;
 }
-.filter button {
-  background-color: #f13c3c;
+#filter-btn {
+  width:100% ;
+  align-items: center;
+  background-color: #000000;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -129,10 +132,12 @@
   transition: background-color 0.2s;
   margin-top: 5px;
   margin-bottom: 20px;
-  margin-left: 150px;
+}
+#filter-btn i{
+  color: #fff;
 }
 
-.filter button:hover {
+#filter-btn:hover {
   background-color: #555555;
   box-shadow: 5px 5px 0px;
   transition: all ease 0.5s;
