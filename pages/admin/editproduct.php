@@ -246,7 +246,7 @@ if (isset($_POST['update'])) {
             <option value="Black">Black</option>
             <option value="White">White</option>
             <option value="Blue">Blue</option>
-            <option value="All of Above">All of Above</option>
+            
 
           </select>
           <label for="product_size">Select Size</label>
@@ -260,7 +260,7 @@ if (isset($_POST['update'])) {
             <option value="xl">XL</option>
             <option value="xxl">XXL</option>
             <option value="xxxl">XXXL</option>
-            <option value="All of Above">All of Above</option>
+            
 
           </select>
         </div>

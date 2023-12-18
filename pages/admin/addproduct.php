@@ -252,7 +252,7 @@ if (isset($_POST['add_product'])) {
             <option value="Blue">Blue</option>
             <option value="Blue">Blue</option>
             <option value="Blue">Blue</option>
-            <option value="All of Above">All of Above</option>
+            
 
           </select>
           <label for="product_size">Select Size</label>
@@ -265,7 +265,6 @@ if (isset($_POST['add_product'])) {
             <option value="xl">XL</option>
             <option value="xxl">XXL</option>
             <option value="xxxl">XXXL</option>
-            <option value="All of Above">All of Above</option>
 
           </select>
         </div>

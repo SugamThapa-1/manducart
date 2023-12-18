@@ -52,17 +52,23 @@ if (isset($_POST['buy_now'])) {
 
 // to add review
 if(isset($_POST['add_rating'])){
-  if(isset($_SESSION['logged_in'])){
+  if(!isset($_SESSION['logged_in'])){
+    $page = "productdetail.php";
+    header("location: login.php?page=$page&product_id=$product_id");
+  }
     $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : "";
     $sql_select_history = "SELECT * FROM tbl_history WHERE product_id=$product_id AND customer_id=$customer_id";
     $result_select_history = mysqli_query($connection, $sql_select_history);
     $db_data_history = mysqli_fetch_assoc($result_select_history);
     $status_db = isset($db_data_history['status'])? $db_data_history['status'] : '';
     
-    if($status_db === 'Delivered'){
+    if($status_db !== 'Delivered'){
+      echo'<script>alert("You need to buy this proudct.")</script>';
+    }else{
+      $reviews = $_POST['review'];
       $rating_form = $_POST['rating_value'];
       $rating_db = $_POST['rating_db'];
-      if($rating_db === 0){
+      if($rating_db == 0){
         $sql_insert_rating = "UPDATE tbl_products SET rating=$rating_form WHERE product_id=$product_id";
       }else{
         $final_rating = ceil(($rating_db + $rating_form)/2);
@@ -71,15 +77,10 @@ if(isset($_POST['add_rating'])){
        $sql_insert_rating = "UPDATE tbl_products SET rating=$final_rating WHERE product_id=$product_id";
       }
       $result_update_rating = mysqli_query($connection, $sql_insert_rating);
-      
 
-    }else{
-      echo'<script>alert("You need to buy this proudct.")</script>';
+      $sql_insert_rating_review = "INSERT INTO tbl_ratings_and_reviews (customer_id,product_id,rating,reviews) VALUES ($customer_id, $product_id, $rating_form,'$reviews";
+      $result_insert_rating_review = mysqli_query($connection,$sql_insert_rating_review);
     }
-  }else {
-    $page = "productdetail.php";
-    header("location: login.php?page=$page&product_id=$product_id");
-  }
 }
 ?>
 
@@ -166,6 +167,10 @@ if(isset($_POST['add_rating'])){
               <label> 4</label>
             <input type="checkbox" name="rating_value" value="5">
               <label> 5</label>
+
+              <label for="review">Add Your review</label>
+          <textarea type="text" name="review" required></textarea>
+
               <input type="hidden" name="rating_db" id="" value="<?php echo $rating_db; ?>">
               <button type="submit" name="add_rating">Submit Review</button>
             </form>
@@ -223,7 +228,7 @@ if(isset($_POST['add_rating'])){
             <h5>Size</h5>
             <div class="size-disp">
 
-              <p>X</p>
+              <p> <?php echo $db_data_cat['product_size']; ?></p>
 
             </div>
           </div>
@@ -299,18 +304,14 @@ if(isset($_POST['add_rating'])){
   <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
   <script>
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const submitButton = document.getElementById('submitButton');
 
-      checkboxes.forEach((checkbox) => {
-          checkbox.addEventListener('change', () => {
-              if (checkbox.checked) {
-                  checkboxes.forEach((otherCheckbox) => {
-                      if (otherCheckbox !== checkbox) {
-                          otherCheckbox.checked = false;
-                      }
-                  });
-              }
-          });
-      });
+checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', () => {
+        submitButton.disabled = !Array.from(checkboxes).some(checkbox => checkbox.checked);
+    });
+});
+
 
   </script>
 </body>
