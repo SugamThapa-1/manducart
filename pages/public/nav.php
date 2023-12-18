@@ -1,10 +1,10 @@
-<?php 
+<?php
 $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : 0;
-if($customer_id > 0){
+if ($customer_id > 0) {
   $sql_select_cart = "SELECT * FROM tbl_carts WHERE customer_id=$customer_id";
   $result_select_cart = mysqli_query($connection, $sql_select_cart);
   $no_of_product_in_cart = mysqli_num_rows($result_select_cart);
-}else{
+} else {
   $no_of_product_in_cart = 0;
 }
 
@@ -18,6 +18,10 @@ if($customer_id > 0){
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nav</title>
   <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="stylesheet" href="../../assets/css/all.min.css">
+  <link rel="stylesheet" href="../../assets//icons/css/fontawesome.min.css">
+
+
 </head>
 
 <body>
@@ -52,7 +56,9 @@ if($customer_id > 0){
         <a href="search.php"><i class="fa-solid fa-magnifying-glass"></i></a>
         <a href="wishlist.php"> <i class="fa-solid fa-heart"></i></a>
         <a href="cart.php"><i class="fa-solid fa-cart-shopping" id="nav-cart-icon">
-            <span id="cart-no"><?php echo"$no_of_product_in_cart";?></span>
+            <span id="cart-no">
+              <?php echo "$no_of_product_in_cart"; ?>
+            </span>
           </i>
 
         </a>
@@ -72,7 +78,6 @@ if($customer_id > 0){
     });
   </script>
 
-  <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

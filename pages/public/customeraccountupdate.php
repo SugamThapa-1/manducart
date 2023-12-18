@@ -90,7 +90,6 @@ if(isset($_POST['back'])){
       </form>
     </div>
   </div>
-  <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

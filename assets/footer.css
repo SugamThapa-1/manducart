@@ -8,12 +8,14 @@
   color: #000000;
 }
 .contain {
+  width: 100%;
   margin-top: 30px;
   background-color: rgba(240, 240, 240, 0.658);
   height: 250px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+
 }
 .contain-item {
   display: flex;

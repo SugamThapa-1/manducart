@@ -9,7 +9,7 @@ $result = mysqli_query($connection, $sql);
 $admin_id = isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : header("location: vendorlogin.php");
 
 
-if(isset($_POST['status_update'])){
+if (isset($_POST['status_update'])) {
     $status = $_POST['status'];
     $order_id = $_POST['order_id'];
     $product_id = $_POST['product_id'];
@@ -22,17 +22,17 @@ if(isset($_POST['status_update'])){
     $db_data_id = mysqli_fetch_assoc($result);
     $customer_id = $db_data_id['customer_id'];
 
-    if($status === 'Delivered'){
+    if ($status === 'Delivered') {
         $sql_history = "INSERT INTO tbl_history (customer_id,product_id,status,ordered_quantity,created_by) VALUES ($customer_id,$product_id,'$status',$ordered_quantity,$admin_id)";
         $result_history = mysqli_query($connection, $sql_history);
 
         $sql_remove_orders = "DELETE FROM tbl_orders WHERE id=$order_id";
         $result_remove = mysqli_query($connection, $sql_remove_orders);
-        
+
     }
     header("location:manageorders.php");
 
-    
+
 }
 
 ?>
@@ -72,7 +72,7 @@ if(isset($_POST['status_update'])){
                         <td>Manage</td>
                         <td>Status</td>
                         <td>Update</td>
-                    <td>Ordered at</td>
+                        <td>Ordered at</td>
                     </tr>
                 </div>
                 <tbody>
@@ -124,17 +124,21 @@ if(isset($_POST['status_update'])){
                             <form action="#" method="post">
                                 <td>
                                     <select name="status" id="status">
-                                    <option value="<?php echo $db_data['status']; ?>"><?php echo $db_data['status']; ?></option>
-                                    <option value="Processing">Processing</option>
-                                    <option value="Shipped">Shipped</option>
-                                    <option value="Delivered">Delivered</option>
+                                        <option value="<?php echo $db_data['status']; ?>">
+                                            <?php echo $db_data['status']; ?>
+                                        </option>
+                                        <option value="Processing">Processing</option>
+                                        <option value="Shipped">Shipped</option>
+                                        <option value="Delivered">Delivered</option>
                                     </select>
                                 </td>
                                 <input type="hidden" name="order_quantity" value="<?php echo $db_data['order_quantity']; ?>">
                                 <input type="hidden" name="order_id" value="<?php echo $order_id; ?>">
                                 <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                                 <td><button type="submit" name="status_update">update</button></td>
-                                <td><?php echo $db_data['created_at'];?></td>
+                                <td>
+                                    <?php echo $db_data['created_at']; ?>
+                                </td>
                             </form>
                         </tr>
                     <?php endwhile; ?>

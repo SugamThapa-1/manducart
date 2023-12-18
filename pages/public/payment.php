@@ -115,7 +115,6 @@ if (isset($_POST['payment_option'])) {
             </div>
         </div>
     </div>
-    <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
     <script>
     if (window.history.replaceState) {
       window.history.replaceState(null, null, window.location.href);

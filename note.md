@@ -11,6 +11,10 @@ login signup validation with js
 admin panel refining(only work left on view order page)
 
 
+empty cart => no product in cart
+
+
+
 
 
 

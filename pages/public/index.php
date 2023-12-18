@@ -146,6 +146,8 @@ if (isset($_POST['wishlist'])) {
   <title>Mandu Cart Home Page</title>
   <link rel="stylesheet" href="../../assets/style.css" />
   <link rel="stylesheet" href="../../assets/footer.css" />
+  <link rel="stylesheet" href="../../assets/icons/css/all.css">
+
   <script src="../../assets/script.js"></script>
 
 
@@ -316,7 +318,6 @@ if (isset($_POST['wishlist'])) {
       window.history.replaceState(null, null, window.location.href);
     }
   </script>
-  <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
