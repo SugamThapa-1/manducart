@@ -17,18 +17,24 @@
       font-family: "Montserrat", sans-serif;
     }
 
-    .image {
-      height: 300px;
-      padding: 0%;
-      margin: 40px 40px 0px 40px;
-      text-align: center;
-
+    #image {
+      margin-top: 40px;
+      margin-left: 5%;
+      margin-right: 5%;
+      background-image: url("../../images/thankyou.jpg");
+      opacity: 95%;
+      background-position-x: center;
+      background-position-y:center;
+      background-size: contain;
+      background-size: 100%;
+      border-radius: 5px;
+      width: 90%;
+      height: 40vh;
     }
 
     .wrapper {
       align-items: center;
       text-align: center;
-      /* margin: 30px; */
     }
 
     .cont {
@@ -45,6 +51,7 @@
       background-color: black;
       font-size: 15px;
       transition: all ease 0.2s;
+      border-radius: 3px;
       margin-top: 40px;
       margin-left: 100px;
       margin-bottom: 20px;
@@ -54,7 +61,6 @@
     .return:hover {
       color: white;
       background-color: rgb(56, 56, 56);
-    scale: 1.03;
     }
   </style>
 </head>
@@ -64,8 +70,8 @@
   include("nav.php");
   ?>
 
-  <div class="image">
-    <img src="../../images/thankyou.jpg" title="" alt="" height="261px" width="1174px">
+  <div id="image">
+    <!-- <img src="../../images/thankyou.jpg" alt="thankyou"> -->
   </div>
 
   <div class="wrapper">
@@ -86,7 +92,7 @@
     </div>
 
   </div>
-  <?php include("footer.php")?>
+  <?php include("footer.php") ?>
 </body>
 
 </html>
