@@ -250,8 +250,8 @@ if (isset($_POST['add_product'])) {
             <option value="Blue">Blue</option>
             <option value="Green">Green</option>
             <option value="Blue">Orange</option>
-            <option value="Blue">Blue</option>
-            <option value="Blue">Blue</option>
+            <option value="Blue">Purple</option>
+            <option value="Blue">Brown</option>
             
 
           </select>

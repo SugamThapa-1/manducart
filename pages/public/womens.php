@@ -22,7 +22,7 @@ if(isset($_GET['page-nr'])){
 }
 
 
-$sql = "SELECT * FROM tbl_categories WHERE product_category = 'Womens' ORDER BY RAND()";
+$sql = "SELECT * FROM tbl_categories WHERE product_category = 'Womens' ORDER BY RAND() LIMIT $start, $per_page";
 $result = mysqli_query($connection, $sql);
 
 $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : '';
@@ -105,7 +105,7 @@ if (isset($_POST['wishlist'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mens</title>
+    <title>Womens</title>
     <link rel="stylesheet" href="../../assets/style.css">
     <link rel="stylesheet" href="../../assets/footer.css">
 </head>

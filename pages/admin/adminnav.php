@@ -32,8 +32,9 @@
 
       </div>
       <div class="icons">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <i class="fa-solid fa-bell"></i>
+      <a href="adminpanel.php"><i class="fa-solid fa-house"></i></a>
+        
+        <a href="viewissues.php"><i class="fa-solid fa-bell"></i></a>
         <a href="adminprofile.php"> <i class="fa-solid fa-user-gear"></i></a>
       </div>
     </div>

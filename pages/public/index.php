@@ -7,7 +7,7 @@ $result = mysqli_query($connection, $sql_select);
 
 
 // to display last added image featured products for mens 
-$sql_selc_mens = "SELECT * FROM tbl_categories  WHERE product_category = 'Mens' ORDER BY product_category DESC";
+$sql_selc_mens = "SELECT * FROM tbl_categories  WHERE product_category = 'Mens' ORDER BY RAND()";
 $result_selc_mens = mysqli_query($connection, $sql_selc_mens);
 $db_data_mens = mysqli_fetch_assoc($result_selc_mens);
 $category_id_mens = $db_data_mens['category_id'];
@@ -18,7 +18,7 @@ $product_id_mens = $db_data_product_mens['product_id'];
 
 
 // to display last added image featured products for womens 
-$sql_selc_womens = "SELECT * FROM tbl_categories  WHERE product_category = 'Womens' ORDER BY product_category DESC";
+$sql_selc_womens = "SELECT * FROM tbl_categories  WHERE product_category = 'Womens' ORDER BY RAND()";
 $result_selc_womens = mysqli_query($connection, $sql_selc_womens);
 $db_data_womens = mysqli_fetch_assoc($result_selc_womens);
 $category_id_womens = $db_data_womens['category_id'];
@@ -166,7 +166,7 @@ if (isset($_POST['wishlist'])) {
           style="position: absolute; color: white;  margin: 10px; padding: 10px; border-radius: 2px;
             background: linear-gradient(to right, #2980b9, #2ecc71);
           ">
-          Men</h5>
+          Men's</h5>
         <img src="../../images/<?php echo $db_data_product_mens['product_image']; ?>" alt="">
         <div class="layer">
           <form action="#" method="post" id="see-more">
@@ -179,7 +179,7 @@ if (isset($_POST['wishlist'])) {
         <h5
           style="position: absolute; color: white; background-color: #84a59d; margin: 10px; padding: 10px; border-radius: 2px;
            background: linear-gradient(to right, #2980b9, #2ecc71);">
-          Women</h5>
+          Women's</h5>
         <img src="../../images/<?php echo $db_data_product_womens['product_image']; ?>" alt="">
         <div class="layer">
           <form action="#" method="post" id="see-more">

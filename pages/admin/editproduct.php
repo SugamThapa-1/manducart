@@ -243,9 +243,13 @@ if (isset($_POST['update'])) {
           <label for="product_color">Available Colors</label>
           <select name="product_color" id="product_color">
           <option><?php echo $old_cat['product_color']; ?> </option>
-            <option value="Black">Black</option>
+          <option value="Black">Black</option>
             <option value="White">White</option>
             <option value="Blue">Blue</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Orange</option>
+            <option value="Blue">Purple</option>
+            <option value="Blue">Brown</option>
             
 
           </select>

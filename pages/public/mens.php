@@ -8,7 +8,7 @@ $page = "mens.php";
 $start = 0;
 $per_page = 12;
 
-$sql0 = "SELECT * FROM tbl_categories WHERE product_category = 'Mens'";
+$sql0 = "SELECT * FROM tbl_categories WHERE product_category = 'Mens' ";
 $result0 = mysqli_query($connection, $sql0);
 $nr_of_rows = $result0->num_rows;
 $pages = ceil($nr_of_rows/$per_page);
@@ -22,7 +22,7 @@ if(isset($_GET['page-nr'])){
 }
 
 
-$sql = "SELECT * FROM tbl_categories WHERE product_category = 'Mens' ORDER BY RAND()";
+$sql = "SELECT * FROM tbl_categories WHERE product_category = 'Mens' ORDER BY RAND() LIMIT $start, $per_page";
 $result = mysqli_query($connection, $sql);
 
 $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : '';
