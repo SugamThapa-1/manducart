@@ -2,6 +2,7 @@
 session_start();
 include "db_connection.php";
 $page = isset($_GET['page']) ? $_GET['page'] : "index.php";
+$product_id = isset($_GET['product_id']) ? $_GET['product_id'] : 0;
 
 if(isset($_POST['login'])) {
   $email = $_POST['email'];
@@ -30,7 +31,13 @@ if(isset($_POST['login'])) {
   if($email == $dbemail && $pwd == $dbpass) {
     $_SESSION['logged_in'] = true;
     $_SESSION['customer_id'] = $customer_id;
-    header("location: $page");
+    // $_SESSION['product_id'] = 
+    if($page === 'productdetail.php'){
+      header("location: $page?product_id=$product_id");
+    }else{
+      header("location: $page");
+    }
+    
     // header("location: $page?customer_id=$customer_id");
   }
 }

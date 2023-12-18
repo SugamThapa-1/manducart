@@ -31,8 +31,7 @@ if (isset($_POST['add_to_cart'])) {
     }
   } else {
     $page = "productdetail.php";
-    $_SESSION["product_id"] = $_GET['product_id'];
-    header("location: login.php?page=$page");
+    header("location: login.php?page=$page&product_id=$product_id");
   }
 }
 
@@ -46,12 +45,42 @@ if (isset($_POST['buy_now'])) {
     header("location:checkout.php?product_id=$product_id&customer_id=$customer_id&quantity=$product_quantity_buy&form_page=$form_page");
 
   } else {
-    $_SESSION["product_id"] = $_POST['product_id'];
     $page = "productdetail.php";
-    header("location:login.php?page=$page");
+    header("location: login.php?page=$page&product_id=$product_id");
   }
 }
 
+// to add review
+if(isset($_POST['add_rating'])){
+  if(isset($_SESSION['logged_in'])){
+    $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : "";
+    $sql_select_history = "SELECT * FROM tbl_history WHERE product_id=$product_id AND customer_id=$customer_id";
+    $result_select_history = mysqli_query($connection, $sql_select_history);
+    $db_data_history = mysqli_fetch_assoc($result_select_history);
+    $status_db = isset($db_data_history['status'])? $db_data_history['status'] : '';
+    
+    if($status_db === 'Delivered'){
+      $rating_form = $_POST['rating_value'];
+      $rating_db = $_POST['rating_db'];
+      if($rating_db === 0){
+        $sql_insert_rating = "UPDATE tbl_products SET rating=$rating_form WHERE product_id=$product_id";
+      }else{
+        $final_rating = ceil(($rating_db + $rating_form)/2);
+
+        //adding the rating to tbl_products of the product_id
+       $sql_insert_rating = "UPDATE tbl_products SET rating=$final_rating WHERE product_id=$product_id";
+      }
+      $result_update_rating = mysqli_query($connection, $sql_insert_rating);
+      
+
+    }else{
+      echo'<script>alert("You need to buy this proudct.")</script>';
+    }
+  }else {
+    $page = "productdetail.php";
+    header("location: login.php?page=$page&product_id=$product_id");
+  }
+}
 ?>
 
 
@@ -75,14 +104,16 @@ if (isset($_POST['buy_now'])) {
   <section>
     <?php while ($db_data = mysqli_fetch_assoc($result)): ?>
 
-
       <?php
-      $rating_id = isset($db_data['rating_id'])?$db_data['rating_id'] : 0;
       $category_id = $db_data['category_id'];
       $sql_cat = "SELECT * FROM tbl_categories WHERE category_id=$category_id";
       $result_cat = mysqli_query($connection, $sql_cat);
       $db_data_cat = mysqli_fetch_assoc($result_cat);
-      $rating = $db_data['rating'];
+      $rating_db = $db_data['rating'];
+
+      // for calculating the review
+      // $new_rating = $old_rating + $rating;
+      // $final_rating = ceil($new_rating/2);
       ?>
       <div class="product-detail-container flex">
         <div class="left">
@@ -108,8 +139,8 @@ if (isset($_POST['buy_now'])) {
           <p>Review 2</p>
           <p>Review 3</p>
           <br>
-<h1>Add Review</h1>
-            <input type="checkbox">
+          <h1>Add Review</h1>
+            <!-- <input type="checkbox">
             <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
 
             <input type="checkbox">
@@ -122,7 +153,22 @@ if (isset($_POST['buy_now'])) {
             <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
 
             <input type="checkbox">
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i> -->
+
+            <form id="reviewForm" action="#" method="post">
+            <input type="checkbox" name="rating_value" value="1">
+              <label>1</label>
+            <input type="checkbox" name="rating_value" value="2">
+              <label> 2</label>
+            <input type="checkbox" name="rating_value" value="3">
+              <label> 3</label>
+            <input type="checkbox" name="rating_value" value="4">
+              <label> 4</label>
+            <input type="checkbox" name="rating_value" value="5">
+              <label> 5</label>
+              <input type="hidden" name="rating_db" id="" value="<?php echo $rating_db; ?>">
+              <button type="submit" name="add_rating">Submit Review</button>
+            </form>
 
 
             <!-- <textarea name="reviews" id="reviews" cols="30" rows="10"
@@ -140,7 +186,7 @@ if (isset($_POST['buy_now'])) {
           <p style="margin:10px auto;">
             <?php $start=0;
               while($start < 5){
-                if($rating > $start){
+                if($rating_db > $start){
                   ?>
                     <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
                   <?php
@@ -161,9 +207,16 @@ if (isset($_POST['buy_now'])) {
           </p>
           <h5>Color</h5>
           <div class="color flex1">
+            <?php if($db_data_cat['product_color'] === 'Black'){?>
             <span></span>
+            <?php }elseif($db_data_cat['product_color'] === 'White'){?>
             <span></span>
+            <?php }elseif($db_data_cat['product_color'] === 'Blue'){?>
             <span></span>
+            <?php } if($db_data_cat['product_color'] === 'Grey'){?>
+            <span></span>
+            <?php }?>
+            
           </div>
 
           <div class="size-cont">
@@ -244,6 +297,22 @@ if (isset($_POST['buy_now'])) {
     }
   </script>
   <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
+  <script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+      checkboxes.forEach((checkbox) => {
+          checkbox.addEventListener('change', () => {
+              if (checkbox.checked) {
+                  checkboxes.forEach((otherCheckbox) => {
+                      if (otherCheckbox !== checkbox) {
+                          otherCheckbox.checked = false;
+                      }
+                  });
+              }
+          });
+      });
+
+  </script>
 </body>
 
 </html>
