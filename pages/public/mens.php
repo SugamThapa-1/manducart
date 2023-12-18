@@ -248,7 +248,6 @@ if (isset($_POST['wishlist'])) {
     <?php include("footer.php")?>
 
     <script src="../../assets/script.js"></script>
-    <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

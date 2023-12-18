@@ -243,7 +243,6 @@ if (isset($_POST['buy_now'])) {
       line.style.background = change;
     }
   </script>
-  <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

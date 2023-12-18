@@ -89,7 +89,6 @@ $select_res = mysqli_query($connection, $select_sql);
   <form action="customerdashboard.php" method="post" >
     <button type="submit" >Back</button>
   </form>
-  <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
   <script>
     if (window.history.replaceState) {
       window.history.replaceState(null, null, window.location.href);

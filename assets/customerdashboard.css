@@ -7,117 +7,19 @@
   font-family: "Montserrat", sans-serif;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
-
-a:hover {
-  cursor: pointer;
-  color: red;
-}
-
-.nav {
-  padding: 30px 10%;
-  background: #fffbfb;
-  width: 100%;
-  height: 91px;
-  display: flex;
-  overflow: hidden;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo i {
-  font-size: 30px;
-}
-
-.logo,
-i,
-h1 {
-  display: inline-block;
-  justify-content: space-between;
-}
-
-#logo-text {
-  position: relative;
-}
-
-#last-word {
-  position: absolute;
-  top: 0;
-  bottom: 100%;
-  color: red;
-}
-
-.admin_txt {
-  position: absolute;
-}
-
-.logo i:hover {
-  color: red;
-}
-
-.nav-links {
-  margin-left: 100px;
-  padding-left: 250px;
-}
-
-.nav-links li {
-  display: inline-block;
-  padding: 0px 15px;
-  font-weight: 50px;
-}
-
-.nav-links li:hover {
-  cursor: pointer;
-  color: red;
-}
-
-#nav-cart-icon {
-  cursor: pointer;
-  color: red;
-  transition: all ease 0.9s;
-}
-
-#nav-cart-icon:hover {
-  scale: 1.2;
-}
-
-.icons i {
-  transition: all ease 0.3s;
-  padding: 10px;
-}
-
-.icons i:nth-child(1):hover {
-  cursor: pointer;
-  color: red;
-}
-
-.icons i:nth-child(2):hover {
-  cursor: pointer;
-  color: red;
-}
-
-.icons i:nth-child(3):hover {
-  cursor: pointer;
-  scale: 1.01;
-  color: red;
-}
-
-.wrapper {
+.dash-wrapper {
   align-items: center;
   text-align: center;
   margin-top: 5%;
   margin-bottom: 5%;
 }
 
-.heading {
+.dash-heading {
   margin-top: 30px;
   margin-bottom: 40px;
 }
 
-.container {
+.dash-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
@@ -128,7 +30,7 @@ h1 {
   /* margin-left: 20%; */
 }
 
-.card {
+.dash-card {
   display: flex;
   align-items: center;
   position: relative;
@@ -142,24 +44,24 @@ h1 {
   text-align: center;
 }
 
-.card:hover {
+.dash-card:hover {
   cursor: pointer;
   background-color: #fff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
   scale: 1.05;
 }
 
-.items {
+.dash-items {
   margin: 0 auto;
   text-align: center;
   padding: 10px;
 }
 
-.items h2 {
+.dash-items h2 {
   margin-bottom: 20px;
 }
 
-.link {
+.dash-link {
   background-color: red;
   border: none;
   border-radius: 8px;
@@ -170,9 +72,102 @@ h1 {
   width: 80px;
 }
 
-.link:hover {
+.dash-link:hover {
   cursor: pointer;
   background-color: #555555;
   box-shadow: 5px 5px 0px;
+  transition: all ease 0.5s;
+}
+
+/* for redirect pages from dasboard  */
+
+.table-wrapper {
+  align-items: center;
+  text-align: center;
+  margin: 30px;
+  padding: 30px;
+}
+
+#table {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(193, 144, 241);
+  width: 100%;
+  height: auto;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 1px 0px 3px 1.5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.table-head {
+  border-radius: 100px;
+  font-weight: 700;
+  width: 10%;
+  font-size: 18px;
+  color: white;
+  text-align: center;
+}
+#table-titles {
+  padding: 20px;
+  margin: 5px;
+}
+#table-titles td {
+  color: rgb(92, 63, 63);
+  font-weight: bold;
+  font-size: 18px;
+}
+#table-titles td:hover {
+  cursor: no-drop;
+  color: rgb(248, 57, 57);
+}
+
+input {
+  font-weight: 600;
+  padding: 7px;
+  width: 80px;
+}
+
+tbody td {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+tbody td :hover {
+  background-color: #555555;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 60px;
+  width: 100px !important;
+  float: left;
+  margin-right: 10px;
+
+  color: #333;
+  border: 1.5px solid #ddd;
+  background: #fdfdfd;
+  transition: background-color 0.3s;
+}
+button i {
+  font-size: 15px;
+  margin-left: 3px;
+}
+button:hover {
+  cursor: pointer;
+  color: red;
+  box-shadow: 0 2px 10px rgba(182, 92, 92, 0.4);
   transition: all ease 0.5s;
 }

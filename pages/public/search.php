@@ -225,7 +225,6 @@ if (isset($_POST['buy_now'])) {
       window.history.replaceState(null, null, window.location.href);
     }
   </script>
-    <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
     
 </body>
 

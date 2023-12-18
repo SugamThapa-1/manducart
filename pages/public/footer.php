@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Footer</title>
     <link rel="stylesheet" href="../../assets/footer.css" />
+    
 
 </head>
 
@@ -68,7 +69,6 @@
             <p>Copyright &copy; 2023 | Mandu Cart | This is Assignment Work</p>
         </div>
     </footer>
-    <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 
 </body>
 

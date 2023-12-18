@@ -33,8 +33,8 @@ $select_res = mysqli_query($connection, $select_sql)
 <body>
   <?php include "nav.php"; ?>
 
-  <div class="cart-container">
-    <div id="cart-items">
+  <div class="parent-container">
+    <div id="container-items">
       <table>
         <thead>
           <tr>
@@ -109,7 +109,6 @@ $select_res = mysqli_query($connection, $select_sql)
   <form action="customerdashboard.php" method="post">
     <button type="submit">Back</button>
   </form>
-  <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
   <script>
     if (window.history.replaceState) {
       window.history.replaceState(null, null, window.location.href);
