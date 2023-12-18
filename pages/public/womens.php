@@ -2,7 +2,7 @@
 session_start();
 include("db_connection.php");
 
-$page = "womens.php";
+$page = "mens.php";
 
 // for pagination
 $start = 0;
@@ -22,20 +22,16 @@ if(isset($_GET['page-nr'])){
 }
 
 
-
-$sql = "SELECT * FROM tbl_categories WHERE product_category = 'Womens' ORDER BY RAND() LIMIT $start, $per_page";
+$sql = "SELECT * FROM tbl_categories WHERE product_category = 'Womens' ORDER BY RAND()";
 $result = mysqli_query($connection, $sql);
 
-
 $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : '';
-
 
 
 if (isset($_POST['add_to_cart'])) {
     if (isset($_SESSION['logged_in'])) {
         $product_id = $_POST['product_id'];
         $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : '';
-
 
         $query = "SELECT * FROM tbl_carts WHERE product_id='$product_id' AND customer_id ='$customer_id'";
         $data = mysqli_query($connection, $query);
@@ -49,6 +45,8 @@ if (isset($_POST['add_to_cart'])) {
 
             if ($result1) {
                 echo '<script>alert("Product Added to Cart")</script>';
+                // header("location: alert.php");
+
             }
         }
     } else {
@@ -98,6 +96,7 @@ if (isset($_POST['wishlist'])) {
     }
 }
 
+
 ?>
 
 <!DOCTYPE html>
@@ -106,13 +105,13 @@ if (isset($_POST['wishlist'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Womens</title>
+    <title>Mens</title>
     <link rel="stylesheet" href="../../assets/style.css">
     <link rel="stylesheet" href="../../assets/footer.css">
 </head>
 
 <body>
-<?php include("nav.php")?>
+    <?php include("nav.php")?>
 
     <div class="main_container">
         <div class="product-container">
@@ -124,7 +123,7 @@ if (isset($_POST['wishlist'])) {
 
                     $category_id = $db_data_category['category_id'];
 
-                    $sql_product = "SELECT * FROM tbl_products WHERE category_id = $category_id";
+                    $sql_product = "SELECT * FROM tbl_products WHERE category_id = $category_id ";
                     $result_product = mysqli_query($connection, $sql_product);
                     $db_data_product = mysqli_fetch_assoc($result_product);
 
@@ -137,9 +136,9 @@ if (isset($_POST['wishlist'])) {
                                     src="../../images/<?php echo $db_data_product['product_image']; ?>" alt=""></a>
                             <div>
                                 <div class="product-image">
-                                    <a href="productdetail.php?product_id=<?php echo $product_id; ?>"
-                                        alt="product-image"></a>
+                                    <a href="productdetail.php?product_id=<?php echo $product_id; ?>" alt="product-image"></a>
                                 </div>
+                                
                                 <div class="wishlist-btn">
                                     <form action="#" method="post">
                                         <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
@@ -153,11 +152,13 @@ if (isset($_POST['wishlist'])) {
                                                 id="cart-button"></i></button>
                                     </form>
 
-
-                                    <form action="#" method="post">
-                                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-                                        <button type="submit" name="add_to_cart"><i class="fa-solid fa-cart-plus"></i></button>
-                                    </form>
+                                    <div class="modal-button">
+                                        <form action="#" method="post">
+                                            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                                            <button type="submit" name="add_to_cart" id="modal-button"><i
+                                                    class="fa-solid fa-cart-plus"></i></button>
+                                        </form>
+                                    </div>
 
                                 </div>
                             </div>
@@ -181,14 +182,13 @@ if (isset($_POST['wishlist'])) {
                             </h2>
                             </div>
                         </div>
-                    </div>
                 <?php endwhile; ?>
             <?php endif; ?>
 
 
         </div>
     </div>
-
+   
     <!-- for pagination  -->
     <div class="pagination">
         <?php
@@ -244,6 +244,7 @@ if (isset($_POST['wishlist'])) {
 
         ?>
     </div>
+
     <?php include("footer.php")?>
 
     <script src="../../assets/script.js"></script>
