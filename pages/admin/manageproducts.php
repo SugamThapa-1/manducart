@@ -86,7 +86,7 @@ $result = mysqli_query($connection, $sql);
                             <td>
                                 <?php echo $db_data_cat['product_color']; ?>
                             </td>
-                            <td>
+                            <td style="text-transform: uppercase;">
                                 <?php echo $db_data_cat['product_size']; ?>
                             </td>
                             <td style="text-overflow: ellipsis; height: 10px;">

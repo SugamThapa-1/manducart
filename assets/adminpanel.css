@@ -138,6 +138,10 @@ input {
 }
 
 tbody td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  
   margin-top: 20px;
   margin-bottom: 10px;
   padding-top: 30px;

@@ -95,31 +95,41 @@ if (isset($_POST['payment_option'])) {
 
 <body>
 
-<?php include("nav.php")?>
+    <?php include("nav.php") ?>
     <!-- for payment page  -->
 
     <div class="main">
         <div class="container">
             <div>
                 <form action="#" method="post">
-                <h4 style="margin-bottom: 20px;">Total amount = Rs. <?php echo $total_amount; ?></h4>
-                    <h3 style="margin-bottom: 30px;">Payment Option</h3>
-                    <button type="submit" name="payment_option">Esewa</button>
-                    <p style="display: inline; font-size:20px">or</p>
-                    <button type="submit" name="payment_option">Khalti</button>
+                   <div id="total_amt">
+                   <h3>Total Amount To Pay</h3>
+                    <p>Rs.
+                        <?php echo $total_amount; ?>
+                    </p>
+                   </div>
+                    <h3 style="margin-bottom: 10px;">Payment Option</h3>
                     <select name="payment-method" required>
                         <option value="C-O-D">Cash On Delivery</option>
                     </select>
-                    <button type="submit" name="payment">Confirm Payment</button>
+                    <button type="submit" name="payment_option1" id="payment_option1">Esewa</button>
+                    <p style="display: inline; font-size:20px">or</p>
+                    <button type="submit" name="payment_option2" id="payment_option2">Khalti</button>
+
+                    <button type="submit" name="payment" id="payment"> <i class="fa-solid fa-circle-check"
+                            style="margin-right: 1px; padding:3px;"></i> Confirm
+                        Payment</button>
                 </form>
             </div>
         </div>
     </div>
+    <br>
+    <br>
     <script>
-    if (window.history.replaceState) {
-      window.history.replaceState(null, null, window.location.href);
-    }
-  </script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
 </body>
 
 </html>

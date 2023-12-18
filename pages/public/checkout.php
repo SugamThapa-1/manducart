@@ -47,66 +47,48 @@ $phone = isset($db_data['phone']) ? $db_data['phone'] : '';
 </head>
 
 <body>
-    <?php include "nav.php";
-
-    ?>
-    <div class="wrapper">
-
-        <form action="#" method="post">
-            <h2 class="title">Checkout Details</h2>
-            <div class="container">
-                <div class="row1" id="row1">
-                    <div class="col">
-
-                    </div>
+    <?php include "nav.php"; ?>
+    <div class="main-wrapper">
+        <div class="checkout-wrapper">
+            <form action="#" method="post">
+                <h2 class="title">Checkout Details</h2>
+                <div>
+                    <i class="fa-solid fa-user"></i>
+                    <label for="">Fullname</label>
                 </div>
-                <div class="row2">
-                    <div class="left">
-                        <div class="margin">
-                            <i class="fa-solid fa-user"></i>
-                            <label for="">Fullname</label>
-                        </div>
-                        <div class="margin">
-                            <input class="input-field" type="text" name="fullname" value="<?php echo $fullname; ?>"
-                                required>
-                        </div>
-                        <div class="margin">
-                            <i class="fa-solid fa-envelope"></i>
-                            <label for="">Email</label>
-                        </div>
-                        <div class="margin">
-                            <input class="input-field" type="text" name="email" value="<?php echo $email; ?>" required>
-                        </div>
-                        <div class="margin">
-                            <i class="fa-solid fa-phone"></i>
-                            <label for="">Phone</label>
-                        </div>
-                        <div class="margin">
-                            <input class="input-field" type="text" name="phone" value="<?php echo $phone; ?>" required>
-                        </div>
-                    </div class="margin">
-
-                    <div class="right">
-                        <div class="margin">
-                            <i class="fa-solid fa-address-book"></i>
-                            <label for="">Address</label>
-                        </div>
-                        <div class="margin">
-                            <input class="input-field" type="text" name="address" required>
-                        </div>
-
-                        <button type="submit" value="submit" class="button" name="checkout">Proceed to Checkout</button>
-
-
-                    </div>
-
-
-
-
+                <div>
+                    <input class="input-field" type="text" name="fullname" value="<?php echo $fullname; ?>" required>
                 </div>
-        </form>
+                <div>
+                    <i class="fa-solid fa-envelope"></i>
+                    <label for="">Email</label>
+                </div>
+                <div>
+                    <input class="input-field" type="text" name="email" value="<?php echo $email; ?>" required>
+                </div>
+                <div>
+                    <i class="fa-solid fa-phone"></i>
+                    <label for="">Phone</label>
+                </div>
+                <div>
+                    <input class="input-field" type="text" name="phone" value="<?php echo $phone; ?>" required>
+                </div>
+                <div>
+                    <i class="fa-solid fa-address-book"></i>
+                    <label for="">Address</label>
+                </div>
+                <div>
+                    <input class="input-field" type="text" name="address" required>
+                </div>
+                <button type="submit" value="submit" class="button" name="checkout"> <i
+                        class="fa-solid fa-circle-check"></i> Proceed to Checkout</button>
+
+
+            </form>
+        </div>
     </div>
-
+    <br>
+    <br>
 </body>
 
 </html>
