@@ -65,21 +65,29 @@ if (isset($_POST['add_rating'])) {
   if ($status_db !== 'Delivered') {
     echo '<script>alert("You need to buy this proudct.")</script>';
   } else {
-    $reviews = $_POST['review'];
-    $rating_form = $_POST['rating_value'];
-    $rating_db = $_POST['rating_db'];
-    if ($rating_db == 0) {
-      $sql_insert_rating = "UPDATE tbl_products SET rating=$rating_form WHERE product_id=$product_id";
-    } else {
-      $final_rating = ceil(($rating_db + $rating_form) / 2);
 
-      //adding the rating to tbl_products of the product_id
-      $sql_insert_rating = "UPDATE tbl_products SET rating=$final_rating WHERE product_id=$product_id";
+    if(mysqli_num_rows($result_select_history) >= 1){
+      echo"<script>alert('You have already given the reviews');</script>";
+    }else{
+      $reviews = $_POST['review'];
+      $rating_form = $_POST['rating_value'];
+      $rating_db = $_POST['rating_db'];
+      if ($rating_db == 0) {
+        $sql_insert_rating = "UPDATE tbl_products SET rating=$rating_form WHERE product_id=$product_id";
+      } else {
+        $final_rating = ceil(($rating_db + $rating_form) / 2);
+
+        //adding the rating to tbl_products of the product_id
+        $sql_insert_rating = "UPDATE tbl_products SET rating=$final_rating WHERE product_id=$product_id";
+      }
+      $result_update_rating = mysqli_query($connection, $sql_insert_rating);
+
+      $sql_insert_rating_review = "INSERT INTO tbl_ratings_and_reviews (customers_id,product_id,ratings,reviews) VALUES ($customer_id, $product_id, $rating_form,'$reviews')";
+      $result_insert_rating_review = mysqli_query($connection, $sql_insert_rating_review);
+      if($result_insert_rating_review){
+        echo"<script>alert('Review added successfully successfully');</script>";
+      }
     }
-    $result_update_rating = mysqli_query($connection, $sql_insert_rating);
-
-    $sql_insert_rating_review = "INSERT INTO tbl_ratings_and_reviews (customer_id,product_id,rating,reviews) VALUES ($customer_id, $product_id, $rating_form,'$reviews')";
-    $result_insert_rating_review = mysqli_query($connection, $sql_insert_rating_review);
   }
 }
 ?>
@@ -133,74 +141,7 @@ if (isset($_POST['add_rating'])) {
           <br>
           <br>
           <div class="review-cont">
-            <!-- 
-            <p>Review 1</p>
-            <p>Review 2</p>
-            <p>Review 3</p>
-            <br> -->
-
-            <!-- <input type="checkbox">
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
-
-            <input type="checkbox">
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
-
-            <input type="checkbox">
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
-
-            <input type="checkbox">
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
-
-            <input type="checkbox">
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i> -->
-            <div class="review-container">
-              <div class="user-review">
-                <div class="user-icon">
-                  <i class="fa-solid fa-user"></i>
-                  <!-- <img src="user1.jpg" alt="User 1"> -->
-                </div>
-                <div class="review-content">
-                  <div class="user-name">John Doe</div>
-                  <div class="star-rating">
-                    <span class="star-icon">&#9733;</span>
-                    <span class="star-icon">&#9733;</span>
-                    <span class="star-icon">&#9733;</span>
-                    <span class="star-icon">&#9733;</span>
-                    <span class="star-icon">&#9734;</span>
-                  </div>
-                  <div class="review-text">
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                  </div>
-                </div>
-              </div>
-
-              <!-- Add more user reviews as needed -->
-
-            </div>
-            <div class="review-container">
-              <div class="user-review">
-                <div class="user-icon">
-                  <i class="fa-solid fa-user"></i>
-                  <!-- <img src="user1.jpg" alt="User 1"> -->
-                </div>
-                <div class="review-content">
-                  <div class="user-name">John Doe</div>
-                  <div class="star-rating">
-                    <span class="star-icon">&#9733;</span>
-                    <span class="star-icon">&#9733;</span>
-                    <span class="star-icon">&#9733;</span>
-                    <span class="star-icon">&#9733;</span>
-                    <span class="star-icon">&#9734;</span>
-                  </div>
-                  <div class="review-text">
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                  </div>
-                </div>
-              </div>
-
-              <!-- Add more user reviews as needed -->
-
-            </div>
+            
             <h1 style="margin-top: 10px;">Add Review</h1>
 
             <form id="reviewForm" action="#" method="post">
