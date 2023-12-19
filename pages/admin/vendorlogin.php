@@ -40,6 +40,8 @@ if (isset($_POST['login_admin'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vendor Login</title>
   <link rel="stylesheet" href="../../assets/login.css" />
+  <link rel="stylesheet" href="../../assets/icons/css/all.css">
+
 </head>
 
 <body>

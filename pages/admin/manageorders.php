@@ -147,6 +147,7 @@ if (isset($_POST['status_update'])) {
                                         </option>
                                         <option value="Processing">Processing</option>
                                         <option value="Shipped">Shipped</option>
+                                        <option value="Dishpatched">Dishpatched</option>
                                         <option value="Delivered">Delivered</option>
                                     </select>
 

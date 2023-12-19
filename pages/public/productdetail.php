@@ -90,8 +90,6 @@ if (isset($_POST['add_rating'])) {
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <link rel="stylesheet" href="../../assets/productdetail.css">
   <link rel="stylesheet" href="../../assets/style.css">
   <link rel="stylesheet" href="../../assets/footer.css">
@@ -112,7 +110,7 @@ if (isset($_POST['add_rating'])) {
       $db_data_cat = mysqli_fetch_assoc($result_cat);
       $rating_db = $db_data['rating'];
 
-  
+
       ?>
       <div class="product-detail-container flex">
         <div class="left">
@@ -253,11 +251,12 @@ if (isset($_POST['add_rating'])) {
           <p style="margin-bottom: 15px;">
             <?php echo $db_data['product_details']; ?>
           </p>
-          <h5>Color</h5>
-          <div class="color flex1">
-            <?php echo $db_data_cat['product_color'];;?>
-
-          </div>
+          <h5>Color :
+            <p style="display: inline-block;">
+              <?php echo $db_data_cat['product_color'];
+              ; ?>
+            </p>
+          </h5>
 
           <div class="size-cont">
             <h5>Size</h5>
@@ -343,15 +342,15 @@ if (isset($_POST['add_rating'])) {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
     checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener('change', () => {
-            if (checkbox.checked) {
-                checkboxes.forEach((otherCheckbox) => {
-                    if (otherCheckbox !== checkbox) {
-                        otherCheckbox.checked = false;
-                    }
-                });
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          checkboxes.forEach((otherCheckbox) => {
+            if (otherCheckbox !== checkbox) {
+              otherCheckbox.checked = false;
             }
-        });
+          });
+        }
+      });
     });
   </script>
   <script>

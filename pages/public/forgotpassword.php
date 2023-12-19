@@ -74,6 +74,8 @@ if (isset($_POST['send_otp'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Forgot Password</title>
     <link rel="stylesheet" href="../../assets/signup.css" />
+  <link rel="stylesheet" href="../../assets/icons/css/all.css">
+
 </head>
 
 <body>

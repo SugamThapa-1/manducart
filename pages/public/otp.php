@@ -42,6 +42,8 @@ if (isset($_POST['reset'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Send OTP</title>
     <link rel="stylesheet" href="../../assets/signup.css" />
+  <link rel="stylesheet" href="../../assets/icons/css/all.css">
+
 </head>
 
 <body>
