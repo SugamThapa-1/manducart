@@ -14,8 +14,8 @@ admin panel refining(only work left on view order page)
 empty cart => no product in cart
 
 
-
-
+displaying no products in empty tables
+if the user add text in number field then he/she cannot press the button
 
 
 

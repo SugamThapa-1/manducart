@@ -44,32 +44,32 @@ if (isset($_POST['submit'])) {
           <div class="input-grp">
             <i class="fa-solid fa-user"></i>
             <label for="fullname">Full Name</label>
-            <input type="text" name="fname" />
+            <input type="text" name="fname" id="fullname" />
           </div>
 
           <div class="input-grp">
             <i class="fa-solid fa-envelope"></i>
             <label for="email">Email</label>
-            <input type="email" name="email" id="" />
+            <input type="email" name="email" id="email" />
           </div>
           <div class="input-grp">
             <i class="fa-solid fa-square-phone"></i>
             <label for="phone">Phone</label>
-            <input type="text" name="phone" />
+            <input type="text" name="phone" id="phone" />
           </div>
 
           <div class="input-grp">
             <i class="fa-solid fa-unlock"></i>
             <label for="password">Create Password</label>
-            <input type="password" name="pwd" id="" />
+            <input type="password" name="pwd" id="password" />
           </div>
           <div class="input-grp">
             <i class="fa-solid fa-unlock"></i>
             <label for="password">Confirm Password</label>
-            <input type="password" name="cpwd" id="" />
+            <input type="password" name="cpwd" id="confirmPassword" />
           </div>
 
-          <button type="submit" name="submit">Signup</button>
+          <button type="submit" name="submit" onclick="validateForm()">Signup</button>
           
         </form>
       </div>
@@ -80,5 +80,25 @@ if (isset($_POST['submit'])) {
       window.history.replaceState(null, null, window.location.href);
     }
   </script>
+  <script>
+        function validateForm() {
+            var fullName = document.getElementById("fullname").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (fullName.trim() === "" || email.trim() === "" || phone.trim() === "" || password.trim() === "" || confirmPassword.trim() === "") {
+                alert("Please fill in all fields");
+                return false;
+            }
+            if (password !== confirmPassword) {
+                alert("Password and Confirm Password do not match");
+                return false;
+            }
+
+            return true; 
+        }
+    </script>
   </body>
 </html>

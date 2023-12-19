@@ -221,7 +221,7 @@ if (isset($_POST['add_product'])) {
     <button type="submit" name="back" id="back-btn"> <i class="fa-solid fa-angle-left"></i> Back</button>
   </form>
   
-  <form action="#" method="post" enctype="multipart/form-data">
+  <form action="#" method="post" enctype="multipart/form-data" novalidate>
 
     <div class="addprod-container">
 
@@ -231,7 +231,7 @@ if (isset($_POST['add_product'])) {
         <div class="left">
 
           <label for="product_name">Product Name</label>
-          <input type="text" name="product_name" required>
+          <input type="text" name="product_name" id="product_name" required>
 
           <label for="product_category">Product Category</label>
           <select name="product_category" id="product_category">
@@ -241,7 +241,7 @@ if (isset($_POST['add_product'])) {
           </select>
 
           <label for="product_details">Product Details</label>
-          <textarea type="text" name="product_details" rows="4" cols="200"></textarea>
+          <textarea type="text" name="product_details" id="product_details" rows="4" cols="200"></textarea>
 
           <label for="product_color">Available Colors</label>
           <select name="product_color" id="product_color">
@@ -276,7 +276,7 @@ if (isset($_POST['add_product'])) {
           <input type="text" name="product_price" required>
 
           <label for="quantity">Quantity</label>
-          <input type="number" name="product_quantity" value="1" min="1" required>
+          <input type="number" name="product_quantity" id="product_quantity" value="1" min="1" required>
 
           <label for="product_image">Choose Product Image</label>
           <input type="file" name="product_image1" required>
@@ -295,7 +295,7 @@ if (isset($_POST['add_product'])) {
       </div>
 
       <div class="addprod-btn-div">
-        <button type="submit" name="add_product" id="addprod-btn">Add Product</button>
+        <button type="submit" name="add_product" id="addprod-btn" onclick="validateForm()" >Add Product</button>
       </div>
       <br>
       <br>
@@ -312,6 +312,25 @@ if (isset($_POST['add_product'])) {
   <script>
     if (window.history.replaceState) {
       window.history.replaceState(null, null, window.location.href);
+    }
+  </script>
+  <script>
+    function validateForm() {
+      var product_name = document.getElementById("product_name").value;
+      var product_category = document.getElementById("product_category").value;
+      var product_details = document.getElementById("product_details").value;
+      var product_size = document.getElementById("product_size").value;
+      var product_color = document.getElementById("product_color").value;
+      var product_quantity = document.getElementById("product_quantity").value;
+      var product_price = document.getElementById("product_price").value;
+
+
+      if (product_name.trim() === "" || product_category.trim() === "" || product_size.trim() === ""|| product_color.trim() === "" || product_price.trim() === "" || product_details.trim() === "" || product_quantity.trim() === "" ) {
+        alert("Please enter the fields");
+        return false;
+      }
+
+      return true;
     }
   </script>
 </body>

@@ -55,21 +55,34 @@ if (isset($_POST['login_admin'])) {
       <div class="input-grp">
         <i class="fa-solid fa-user"></i>
         <label for="email">Email/Username</label>
-        <input type="email" name="email" required />
+        <input type="email" name="email" id="email" required />
       </div>
       <div class="input-grp">
         <i class="fa-solid fa-unlock"></i>
         <label for="password">Password</label>
-        <input type="password" name="pwd" required />
+        <input type="password" name="pwd" id="password" required />
         <h5>
           <a style="color: red; margin-left: 200px; font-size: 12px" href="adminforgotpassword.php">Forgot Password?</a>
         </h5>
       </div>
-      <button type="submit" name="login_admin">Login</button>
+      <button type="submit" name="login_admin" onclick="validateForm()" >Login</button>
       <p></p>
       <a href="../public/login.php" style="text-decoration: none; color: rgb(255, 2, 2)">Login as Customer</a>
     </form>
   </div>
+  <script>
+    function validateForm() {
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      if (email.trim() === "" || password.trim() === "") {
+        alert("Please enter both email and password");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
 </body>
 
 </html>
