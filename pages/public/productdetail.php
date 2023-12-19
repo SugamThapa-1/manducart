@@ -133,28 +133,94 @@ if (isset($_POST['add_rating'])) {
           <br>
           <br>
           <div class="review-cont">
-          
-            
-            <br>
-            <h1>Add Review</h1>
-    
+            <!-- 
+            <p>Review 1</p>
+            <p>Review 2</p>
+            <p>Review 3</p>
+            <br> -->
+
+            <!-- <input type="checkbox">
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+
+            <input type="checkbox">
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+
+            <input type="checkbox">
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+
+            <input type="checkbox">
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
+
+            <input type="checkbox">
+            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i> -->
+            <div class="review-container">
+              <div class="user-review">
+                <div class="user-icon">
+                  <i class="fa-solid fa-user"></i>
+                  <!-- <img src="user1.jpg" alt="User 1"> -->
+                </div>
+                <div class="review-content">
+                  <div class="user-name">John Doe</div>
+                  <div class="star-rating">
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9734;</span>
+                  </div>
+                  <div class="review-text">
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                  </div>
+                </div>
+              </div>
+
+              <!-- Add more user reviews as needed -->
+
+            </div>
+            <div class="review-container">
+              <div class="user-review">
+                <div class="user-icon">
+                  <i class="fa-solid fa-user"></i>
+                  <!-- <img src="user1.jpg" alt="User 1"> -->
+                </div>
+                <div class="review-content">
+                  <div class="user-name">John Doe</div>
+                  <div class="star-rating">
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9733;</span>
+                    <span class="star-icon">&#9734;</span>
+                  </div>
+                  <div class="review-text">
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                  </div>
+                </div>
+              </div>
+
+              <!-- Add more user reviews as needed -->
+
+            </div>
+            <h1 style="margin-top: 10px;">Add Review</h1>
 
             <form id="reviewForm" action="#" method="post">
               <input type="checkbox" name="rating_value" value="1" id="star1">
-              <label>1 <i class="fa-solid fa-star"  style="color:rgb(248, 203, 0);"></i></label>
+              <label>1 <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i></label>
               <input type="checkbox" name="rating_value" value="2" id="star2">
-              <label> 2 <i class="fa-solid fa-star"  style="color:rgb(248, 203, 0);"></i></label>
+              <label> 2 <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i></label>
               <input type="checkbox" name="rating_value" value="3" id="star3">
-              <label> 3 <i class="fa-solid fa-star"  style="color:rgb(248, 203, 0);"></i></label>
+              <label> 3 <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i></label>
               <input type="checkbox" name="rating_value" value="4" id="star4">
-              <label> 4 <i class="fa-solid fa-star"  style="color:rgb(248, 203, 0);"></i></label>
+              <label> 4 <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i></label>
               <input type="checkbox" name="rating_value" value="5" id="star5">
-              <label> 5 <i class="fa-solid fa-star"  style="color:rgb(248, 203, 0);"></i></label>
+              <label> 5 <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i></label>
 
+              <!-- <label for="review">Add Your review</label> -->
               <textarea type="text" name="review" required></textarea>
 
               <input type="hidden" name="rating_db" id="" value="<?php echo $rating_db; ?>">
-              <button type="submit" name="add_rating" id="submit-review">Submit Review</button>
+              <button type="submit" name="add_rating" id="submit-review"> <i class="fa-solid fa-list-check"
+                  style="color: white;margin-right:3px;"></i> Submit Review</button>
             </form>
           </div>
         </div>
@@ -293,6 +359,7 @@ if (isset($_POST['add_rating'])) {
       window.history.replaceState(null, null, window.location.href);
     }
   </script>
+
 </body>
 
 </html>

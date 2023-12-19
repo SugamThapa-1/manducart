@@ -85,7 +85,6 @@ if ($delete_message) {
         <?php endif; ?>
     </div>
 
-    <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

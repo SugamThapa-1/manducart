@@ -153,7 +153,6 @@ if (isset($_POST['status_update'])) {
         session_destroy();
     } ?>
 
-    <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

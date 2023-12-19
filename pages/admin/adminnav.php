@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nav</title>
   <link rel="stylesheet" href="../../assets/adminnav.css">
+  <link rel="stylesheet" href="../../assets/icons/css/all.css">
+
 </head>
 
 <body>
@@ -51,7 +53,6 @@
       }
     });
   </script>
-  <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -70,7 +70,6 @@ if (isset($_POST['login_admin'])) {
       <a href="../public/login.php" style="text-decoration: none; color: rgb(255, 2, 2)">Login as Customer</a>
     </form>
   </div>
-  <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
