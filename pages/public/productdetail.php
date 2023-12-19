@@ -112,9 +112,7 @@ if (isset($_POST['add_rating'])) {
       $db_data_cat = mysqli_fetch_assoc($result_cat);
       $rating_db = $db_data['rating'];
 
-      // for calculating the review
-      // $new_rating = $old_rating + $rating;
-      // $final_rating = ceil($new_rating/2);
+  
       ?>
       <div class="product-detail-container flex">
         <div class="left">
@@ -135,26 +133,11 @@ if (isset($_POST['add_rating'])) {
           <br>
           <br>
           <div class="review-cont">
-
-            <p>Review 1</p>
-            <p>Review 2</p>
-            <p>Review 3</p>
+          
+            
             <br>
             <h1>Add Review</h1>
-            <!-- <input type="checkbox">
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
-
-            <input type="checkbox">
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
-
-            <input type="checkbox">
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
-
-            <input type="checkbox">
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i>
-
-            <input type="checkbox">
-            <i class="fa-solid fa-star" style="color:rgb(248, 203, 0);"></i> -->
+    
 
             <form id="reviewForm" action="#" method="post">
               <input type="checkbox" name="rating_value" value="1" id="star1">
@@ -168,16 +151,11 @@ if (isset($_POST['add_rating'])) {
               <input type="checkbox" name="rating_value" value="5" id="star5">
               <label> 5 <i class="fa-solid fa-star"  style="color:rgb(248, 203, 0);"></i></label>
 
-              <!-- <label for="review">Add Your review</label> -->
               <textarea type="text" name="review" required></textarea>
 
               <input type="hidden" name="rating_db" id="" value="<?php echo $rating_db; ?>">
               <button type="submit" name="add_rating" id="submit-review">Submit Review</button>
             </form>
-
-
-            <!-- <textarea name="reviews" id="reviews" cols="30" rows="10"
-                placeholder="write reviews about product"></textarea> -->
           </div>
         </div>
         <div class="right">
@@ -211,16 +189,7 @@ if (isset($_POST['add_rating'])) {
           </p>
           <h5>Color</h5>
           <div class="color flex1">
-            <?php if ($db_data_cat['product_color'] === 'Black') { ?>
-              <span></span>
-            <?php } elseif ($db_data_cat['product_color'] === 'White') { ?>
-              <span></span>
-            <?php } elseif ($db_data_cat['product_color'] === 'Blue') { ?>
-              <span></span>
-            <?php }
-            if ($db_data_cat['product_color'] === 'Grey') { ?>
-              <span></span>
-            <?php } ?>
+            <?php echo $db_data_cat['product_color'];;?>
 
           </div>
 
@@ -306,15 +275,18 @@ if (isset($_POST['add_rating'])) {
   <script src="https://kit.fontawesome.com/acc534193e.js" crossorigin="anonymous"></script>
   <script>
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    const submitButton = document.getElementById('submitButton');
 
     checkboxes.forEach((checkbox) => {
-      checkbox.addEventListener('change', () => {
-        submitButton.disabled = !Array.from(checkboxes).some(checkbox => checkbox.checked);
-      });
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                checkboxes.forEach((otherCheckbox) => {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                    }
+                });
+            }
+        });
     });
-
-
   </script>
   <script>
     if (window.history.replaceState) {

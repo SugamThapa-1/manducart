@@ -66,9 +66,23 @@
                 property laws...</li>
             <li><strong>Privacy Policy:</strong> Your use of ManduCart is also governed by our Privacy Policy...</li>
             <!-- Add more terms and conditions as needed -->
-        </ol>
+        </ol><br>
+        <p><b>Acceptance of Terms:</b>
+
+By using our website, you're agreeing to follow these rules. Please take a moment to read them carefully.</p>
 
         <!-- Add the rest of your content here -->
+        <p><b>Account Registration:</b>
+
+Sign up for an account if you want to unlock special features. Make sure your details are accurate.</p>
+
+<p><b>Product Information:</b>
+
+We try our best with product info, but it might not be perfect. Let us know if you spot any hiccups.</p>
+
+<p><b>Shipping and Delivery:</b>
+
+Delivery times are our best estimates. If there's a delay, it's not our fault, but we'll do our best to help.</p>
 
         <p>These terms and conditions are subject to change without notice. Please review them regularly for updates.
         </p>

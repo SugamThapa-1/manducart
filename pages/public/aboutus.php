@@ -60,10 +60,21 @@
         <h2>About Us</h2>
         <p>Welcome to ManduCart – Where Style Meets Convenience!</p>
         <p>At ManduCart, we believe that shopping is not just a transaction; it's an experience...</p>
-
+        <br>
         <!-- Add the rest of your content here -->
 
         <p>Thank you for choosing ManduCart. Your journey to style, innovation, and convenience starts here!</p>
+        <p>Mandu Cart is an online store selling casual apparel, including t-shirts, jeans, and shoes, to customers
+                across Nepal. Operating on a B2C ecommerce model, our objective was to develop an exceptional shopping
+                website allowing people to conveniently browse, purchase, and track orders through an aesthetically
+                pleasing and intuitively designed interface. Maintaining visual appeal and accessibility were paramount,
+                along with robust and responsive functionality across devices.
+        </p><br>
+        <p>The platform aims to provide a smooth user experience with seamless site navigation. Shoppers can freely
+                explore product listings before registering accounts to unlock key features like persistent carts,
+                streamlined checkout, order tracking through personal dashboards, and order confirmations with real-time
+                delivery status updates. Consistent branding and delighting customers underpin the experience.
+</p>
     </section>
     <br>
     <?php include("footer.php")?>
