@@ -221,7 +221,7 @@ if (isset($_POST['add_product'])) {
     <button type="submit" name="back" id="back-btn"> <i class="fa-solid fa-angle-left"></i> Back</button>
   </form>
   
-  <form action="#" method="post" enctype="multipart/form-data" novalidate>
+  <form action="#" method="post" enctype="multipart/form-data" validate>
 
     <div class="addprod-container">
 
@@ -252,7 +252,7 @@ if (isset($_POST['add_product'])) {
             <option value="Blue">Orange</option>
             <option value="Blue">Purple</option>
             <option value="Blue">Brown</option>
-            
+
 
           </select>
           <label for="product_size">Select Size</label>
@@ -289,7 +289,7 @@ if (isset($_POST['add_product'])) {
 
           <label for="product_image">Product Image 4 (Optional)</label>
           <input type="file" name="product_image4">
-    
+
         </div>
 
       </div>

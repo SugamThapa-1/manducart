@@ -29,7 +29,7 @@ if ($customer_id > 0) {
     <div class="nav">
       <div class="logo">
         <i class="fa-brands fa-opencart"></i>
-        <a href="index.php">
+        <a href="index.php" id="logo-link">
           <h1 id="logo-text">Mandu Cart <span id="last-word">.</span> </h1>
         </a>
       </div>

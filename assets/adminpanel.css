@@ -7,8 +7,6 @@
   font-family: "Montserrat", sans-serif;
 }
 
-
-
 .wrapper {
   align-items: center;
   text-align: center;
@@ -125,6 +123,7 @@ table {
   color: rgb(92, 63, 63);
   font-weight: bold;
   font-size: 18px;
+  transition: all color 0.4s;
 }
 #table-titles td:hover {
   cursor: no-drop;
@@ -141,18 +140,18 @@ tbody td {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  
+
   margin-top: 20px;
   margin-bottom: 10px;
   padding-top: 30px;
   padding-bottom: 10px;
   text-align: center;
 }
-tbody td :hover{
- background-color: #555555;
-}
+/* tbody td :hover {
+  background-color: #555555;
+} */
 
-button {
+#back_btn {
   border: none;
   border-radius: 8px;
   padding: 12px;
@@ -171,11 +170,11 @@ button {
   background: #fdfdfd;
   transition: background-color 0.3s;
 }
-button i {
+#back_btn i {
   font-size: 15px;
   margin-left: 3px;
 }
-button:hover {
+#back_btn:hover {
   cursor: pointer;
   color: red;
   box-shadow: 0 2px 10px rgba(182, 92, 92, 0.4);
@@ -183,4 +182,37 @@ button:hover {
 }
 #cust-delete-btn :hover {
   color: red !important;
+}
+
+#status {
+  /* margin-top: 5px; */
+  /* margin-bottom: 20px; */
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+#status_update_btn {
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  width: 100px !important;
+  /* float: left; */
+  margin-right: 10px;
+
+  color: #333;
+  background: transparent !important;
+  transition: background-color 0.3s;
+}
+#status_update_btn i {
+  padding: 5px 8px;
+  font-size: 18px;
+}
+#status_update_btn i:hover {
+  cursor: pointer;
+  color: red;
 }

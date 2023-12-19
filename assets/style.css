@@ -16,7 +16,7 @@ a {
   color: black;
 }
 
-a:hover {
+logo-link:hover {
   cursor: pointer;
   color: red;
 }
@@ -342,7 +342,7 @@ img {
   border-radius: 3px;
   animation: slide-up 1.3s ease-out forwards;
 }
-.see-more-btn i{
+.see-more-btn i {
   margin-right: 3px;
   color: #fff;
 }
@@ -384,9 +384,7 @@ img {
   margin-bottom: 10px;
   position: relative;
 }
-/* #cart-button:hover{
-width: 100px;
-} */
+
 .pro_info {
   /* margin: 5px; */
   /* padding: 7px; */

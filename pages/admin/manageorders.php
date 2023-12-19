@@ -8,14 +8,14 @@ $per_page = 10;
 $sql0 = "SELECT * FROM tbl_order_details";
 $result0 = mysqli_query($connection, $sql0);
 $nr_of_rows = $result0->num_rows;
-$pages = ceil($nr_of_rows/$per_page);
+$pages = ceil($nr_of_rows / $per_page);
 
 $current_page = isset($_GET['page-nr']) ? $_GET['page-nr'] : 1;
 
-if(isset($_GET['page-nr'])){
+if (isset($_GET['page-nr'])) {
     $current_page = $_GET['page-nr'];
     $page = $current_page - 1;
-    $start= $page * $per_page;
+    $start = $page * $per_page;
 }
 
 $counter = 0;
@@ -60,7 +60,9 @@ if (isset($_POST['status_update'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orders</title>
     <link rel="stylesheet" href="../../assets/adminpanel.css">
+    <!-- for pagination -->
     <link rel="stylesheet" href="../../assets/style.css">
+
 
 </head>
 
@@ -69,12 +71,12 @@ if (isset($_POST['status_update'])) {
     include("adminnav.php");
     ?>
     <form action="adminpanel.php" method="post">
-        <button type="submit" name="back"><i class="fa-solid fa-angle-left"></i> Back</button>
+        <button type="submit" name="back" id="back_btn"><i class="fa-solid fa-angle-left"></i> Back</button>
     </form>
 
     <?php if ($result): ?>
         <div class="table-wrapper">
-            <table id="table" style="table-layout: unset;">
+            <table id="table">
                 <div class="table-head">
                     <tr id="table-titles">
                         <td>SN</td>
@@ -87,7 +89,7 @@ if (isset($_POST['status_update'])) {
                         <td>Address</td>
                         <td>Manage</td>
                         <td>Status</td>
-                        <td>Update</td>
+                        <td>Update Status</td>
                         <td>Ordered at</td>
                     </tr>
                 </div>
@@ -119,7 +121,7 @@ if (isset($_POST['status_update'])) {
                                 <?php echo $db_data4['customer_name']; ?>
                             </td>
                             <td> <img src="../../images/<?php echo $db_data3['product_image']; ?>" alt=""
-                                    style="width:50px; height: 100%; margin-left:25px;"></td>
+                                    style="width:50px; height: 100%;  border-radius: 3px;" ></td>
                             <td>
                                 <?php echo $db_data3['product_name']; ?>
                             </td>
@@ -147,85 +149,91 @@ if (isset($_POST['status_update'])) {
                                         <option value="Shipped">Shipped</option>
                                         <option value="Delivered">Delivered</option>
                                     </select>
+
                                 </td>
                                 <input type="hidden" name="order_quantity" value="<?php echo $db_data['order_quantity']; ?>">
                                 <input type="hidden" name="order_id" value="<?php echo $order_id; ?>">
                                 <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-                                <td><button type="submit" name="status_update">update</button></td>
                                 <td>
-                                    <?php echo $db_data['created_at']; ?>
+                                    <button type="submit" name="status_update" id="status_update_btn"><i
+                                            class="fa-solid fa-circle-check"></i></button>
+                                </td>
+                                <td>
+                                    <?php
+                                    $databaseDate = $db_data['created_at'];
+                                    $formattedDate = date('Y/m/d', strtotime($databaseDate));
+                                    echo $formattedDate;
+                                    ?>
                                 </td>
                             </form>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
             </table>
-        
-    <?php else: ?>
-        <p>Data not found!</p>
-    <?php endif;
 
-    
+        <?php else: ?>
+            <p>Data not found!</p>
+        <?php endif;
+
+
 
     if (isset($_SESSION['order_delete_message'])) {
         session_destroy();
     } ?>
 
-    <!-- for pagination  -->
-    <div class="pagination">
-        <?php
-        if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) {
-
-            ?>
-            <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>" class="page-link"><i
-                    class="fa-solid fa-angles-left"></i></a>
+        <!-- for pagination  -->
+        <div class="pagination">
             <?php
-        } else {
-            ?>
-            <a href="" class="page-link"><i class="fa-solid fa-angles-left"></i></a>
-            <?php
-        }
-        ?>
+            if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) {
 
-        <?php
-        for ($counter = 1; $counter <= $pages; $counter++) {
-            $class = '';
-            if ($current_page == $counter) {
-                $class = 'active';
-            }
-            ?>
-            <a href="?page-nr=<?php echo $counter ?> " class="page-link <?php echo $class ?>">
-                <?php echo $counter ?>
-            </a>
-
-            <?php
-        }
-
-        ?>
-
-
-
-        <?php
-        if (!isset($_GET['page-nr'])) {
-            ?>
-            <a href="?page-nr=2" class="page-link"><i class="fa-solid fa-angles-right"></i></a>
-            <?php
-        } else {
-            if ($_GET['page-nr'] >= $pages) {
                 ?>
-                <a class="page-link"><i class="fa-solid fa-angles-right"></i></a>
+                <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>" class="page-link"><i
+                        class="fa-solid fa-angles-left"></i></a>
                 <?php
             } else {
                 ?>
-                <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>" class="page-link"><i
-                        class="fa-solid fa-angles-right"></i></a>
+                <a href="" class="page-link"><i class="fa-solid fa-angles-left"></i></a>
+                <?php
+            }
+            ?>
+
+            <?php
+            for ($counter = 1; $counter <= $pages; $counter++) {
+                $class = '';
+                if ($current_page == $counter) {
+                    $class = 'active';
+                }
+                ?>
+                <a href="?page-nr=<?php echo $counter ?> " class="page-link <?php echo $class ?>">
+                    <?php echo $counter ?>
+                </a>
+
                 <?php
             }
 
-        }
+            ?>
 
-        ?>
-    </div>
+            <?php
+            if (!isset($_GET['page-nr'])) {
+                ?>
+                <a href="?page-nr=2" class="page-link"><i class="fa-solid fa-angles-right"></i></a>
+                <?php
+            } else {
+                if ($_GET['page-nr'] >= $pages) {
+                    ?>
+                    <a class="page-link"><i class="fa-solid fa-angles-right"></i></a>
+                    <?php
+                } else {
+                    ?>
+                    <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>" class="page-link"><i
+                            class="fa-solid fa-angles-right"></i></a>
+                    <?php
+                }
+
+            }
+
+            ?>
+        </div>
     </div>
 
 </body>

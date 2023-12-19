@@ -15,7 +15,7 @@
 
   background: #fff;
   border-radius: 8px;
-  box-shadow:1px 0px 3px 1.5px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 0px 3px 1.5px rgba(0, 0, 0, 0.1);
   text-align: center;
   height: auto;
 }
@@ -36,6 +36,11 @@ thead td {
   border: none;
   padding: 6px 0px;
   text-align: center;
+  transition: all ease 0.4s;
+}
+thead td:hover {
+  color: red;
+  cursor: pointer;
 }
 input {
   font-weight: 600;
@@ -44,6 +49,9 @@ input {
 }
 
 #cart-items table tbody td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   margin-top: 20px;
   padding-top: 30px;
   padding-bottom: 10px;
@@ -63,8 +71,6 @@ button {
   width: 160px !important;
   float: right;
   margin-right: 10px;
-
-
 }
 button:hover {
   cursor: pointer;

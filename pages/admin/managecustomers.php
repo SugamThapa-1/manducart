@@ -8,14 +8,14 @@ $per_page = 10;
 $sql0 = "SELECT * FROM tbl_customers";
 $result0 = mysqli_query($connection, $sql0);
 $nr_of_rows = $result0->num_rows;
-$pages = ceil($nr_of_rows/$per_page);
+$pages = ceil($nr_of_rows / $per_page);
 
 $current_page = isset($_GET['page-nr']) ? $_GET['page-nr'] : 1;
 
-if(isset($_GET['page-nr'])){
+if (isset($_GET['page-nr'])) {
     $current_page = $_GET['page-nr'];
     $page = $current_page - 1;
-    $start= $page * $per_page;
+    $start = $page * $per_page;
 }
 
 $sql_select = "SELECT * FROM tbl_customers ORDER BY customer_id DESC";
@@ -48,7 +48,7 @@ if ($delete_message) {
     include("adminnav.php");
     ?>
     <form action="adminpanel.php" method="post" class="">
-        <button type="submit" name="back"><i class="fa-solid fa-angle-left"></i> Back</button>
+        <button type="submit" name="back" id="back_btn"><i class="fa-solid fa-angle-left"></i> Back</button>
     </form>
     <div class="table-wrapper">
         <table id="table">
@@ -99,61 +99,61 @@ if ($delete_message) {
         <?php else: ?>
             <p>Data not found!</p>
         <?php endif; ?>
-    <!-- for pagination  -->
-    <div class="pagination">
-        <?php
-        if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) {
-
-            ?>
-            <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>" class="page-link"><i
-                    class="fa-solid fa-angles-left"></i></a>
+        <!-- for pagination  -->
+        <div class="pagination">
             <?php
-        } else {
-            ?>
-            <a href="" class="page-link"><i class="fa-solid fa-angles-left"></i></a>
-            <?php
-        }
-        ?>
+            if (isset($_GET['page-nr']) && $_GET['page-nr'] > 1) {
 
-        <?php
-        for ($counter = 1; $counter <= $pages; $counter++) {
-            $class = '';
-            if ($current_page == $counter) {
-                $class = 'active';
-            }
-            ?>
-            <a href="?page-nr=<?php echo $counter ?> " class="page-link <?php echo $class ?>">
-                <?php echo $counter ?>
-            </a>
-
-            <?php
-        }
-
-        ?>
-
-
-
-        <?php
-        if (!isset($_GET['page-nr'])) {
-            ?>
-            <a href="?page-nr=2" class="page-link"><i class="fa-solid fa-angles-right"></i></a>
-            <?php
-        } else {
-            if ($_GET['page-nr'] >= $pages) {
                 ?>
-                <a class="page-link"><i class="fa-solid fa-angles-right"></i></a>
+                <a href="?page-nr=<?php echo $_GET['page-nr'] - 1 ?>" class="page-link"><i
+                        class="fa-solid fa-angles-left"></i></a>
                 <?php
             } else {
                 ?>
-                <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>" class="page-link"><i
-                        class="fa-solid fa-angles-right"></i></a>
+                <a href="" class="page-link"><i class="fa-solid fa-angles-left"></i></a>
+                <?php
+            }
+            ?>
+
+            <?php
+            for ($counter = 1; $counter <= $pages; $counter++) {
+                $class = '';
+                if ($current_page == $counter) {
+                    $class = 'active';
+                }
+                ?>
+                <a href="?page-nr=<?php echo $counter ?> " class="page-link <?php echo $class ?>">
+                    <?php echo $counter ?>
+                </a>
+
                 <?php
             }
 
-        }
+            ?>
 
-        ?>
-    </div>
+
+
+            <?php
+            if (!isset($_GET['page-nr'])) {
+                ?>
+                <a href="?page-nr=2" class="page-link"><i class="fa-solid fa-angles-right"></i></a>
+                <?php
+            } else {
+                if ($_GET['page-nr'] >= $pages) {
+                    ?>
+                    <a class="page-link"><i class="fa-solid fa-angles-right"></i></a>
+                    <?php
+                } else {
+                    ?>
+                    <a href="?page-nr=<?php echo $_GET['page-nr'] + 1 ?>" class="page-link"><i
+                            class="fa-solid fa-angles-right"></i></a>
+                    <?php
+                }
+
+            }
+
+            ?>
+        </div>
     </div>
 
 </body>
