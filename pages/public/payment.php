@@ -97,24 +97,26 @@ if (isset($_POST['payment_option'])) {
 
     <?php include("nav.php") ?>
     <!-- for payment page  -->
+    <br>
+    <br>
 
     <div class="main">
         <div class="container">
             <div>
                 <form action="#" method="post">
-                   <div id="total_amt">
-                   <h3>Total Amount To Pay</h3>
-                    <p>Rs.
-                        <?php echo $total_amount; ?>
-                    </p>
-                   </div>
+                    <div id="total_amt">
+                        <h3>Total Amount To Pay</h3>
+                        <p>Rs.
+                            <?php echo $total_amount; ?>
+                        </p>
+                    </div>
                     <h3 style="margin-bottom: 10px;">Payment Option</h3>
                     <select name="payment-method" required>
                         <option value="C-O-D">Cash On Delivery</option>
                     </select>
-                    <button type="submit" name="payment_option1" id="payment_option1">Esewa</button>
+                    <button type="submit" name="payment_option" id="payment_option1"> Esewa</button>
                     <p style="display: inline; font-size:20px">or</p>
-                    <button type="submit" name="payment_option2" id="payment_option2">Khalti</button>
+                    <button type="submit" name="payment_option" id="payment_option2"> Khalti</button>
 
                     <button type="submit" name="payment" id="payment"> <i class="fa-solid fa-circle-check"
                             style="margin-right: 1px; padding:3px;"></i> Confirm

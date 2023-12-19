@@ -28,6 +28,8 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Signup</title>
     <link rel="stylesheet" href="../../assets/signup.css" />
+  <link rel="stylesheet" href="../../assets/icons/css/all.css">
+
   </head>
   <body>
     <div class="container">
