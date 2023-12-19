@@ -273,13 +273,13 @@ if (isset($_POST['add_product'])) {
 
         <div class="right">
           <label for="product_price">Price</label>
-          <input type="text" name="product_price" required>
+          <input type="number" name="product_price" id="product_price" required>
 
           <label for="quantity">Quantity</label>
           <input type="number" name="product_quantity" id="product_quantity" value="1" min="1" required>
 
           <label for="product_image">Choose Product Image</label>
-          <input type="file" name="product_image1" required>
+          <input type="file" name="product_image1" id="product_image1" required>
 
           <label for="product_image">Product Image 2 (Optional) </label>
           <input type="file" name="product_image2">
@@ -315,24 +315,25 @@ if (isset($_POST['add_product'])) {
     }
   </script>
   <script>
-    function validateForm() {
-      var product_name = document.getElementById("product_name").value;
-      var product_category = document.getElementById("product_category").value;
-      var product_details = document.getElementById("product_details").value;
-      var product_size = document.getElementById("product_size").value;
-      var product_color = document.getElementById("product_color").value;
-      var product_quantity = document.getElementById("product_quantity").value;
-      var product_price = document.getElementById("product_price").value;
+  function validateForm() {
+    // Get form elements
+    var productName = document.getElementById("product_name").value;
+    var productCategory = document.getElementById("product_category").value;
+    var productDetails = document.getElementById("product_details").value;
+    var productColor = document.getElementById("product_color").value;
+    var productSize = document.getElementById("product_size").value;
+    var productPrice = document.getElementById("product_price").value;
+    var productQuantity = document.getElementById("product_quantity").value;
+    var productImage1 = document.getElementById("product_image1").value;
 
 
-      if (product_name.trim() === "" || product_category.trim() === "" || product_size.trim() === ""|| product_color.trim() === "" || product_price.trim() === "" || product_details.trim() === "" || product_quantity.trim() === "" ) {
-        alert("Please enter the fields");
-        return false;
-      }
-
-      return true;
+    if (productName === "" || productCategory === "" || productDetails === "" || productColor === "" || productSize === "" || productPrice === "" || productQuantity === "" || productImage1 === "") {
+      alert("Please fill in all required fields.");
+      return false;
     }
-  </script>
+    return true;
+  }
+</script>  
 </body>
 
 </html>
