@@ -56,7 +56,7 @@ if (isset($_POST['add_rating'])) {
     $page = "productdetail.php";
     header("location: login.php?page=$page&product_id=$product_id");
   }
-  $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : "";
+  $customer_id = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : '';
   $sql_select_history = "SELECT * FROM tbl_history WHERE product_id=$product_id AND customer_id=$customer_id";
   $result_select_history = mysqli_query($connection, $sql_select_history);
   $db_data_history = mysqli_fetch_assoc($result_select_history);
@@ -78,7 +78,7 @@ if (isset($_POST['add_rating'])) {
     }
     $result_update_rating = mysqli_query($connection, $sql_insert_rating);
 
-    $sql_insert_rating_review = "INSERT INTO tbl_ratings_and_reviews (customer_id,product_id,rating,reviews) VALUES ($customer_id, $product_id, $rating_form,'$reviews";
+    $sql_insert_rating_review = "INSERT INTO tbl_ratings_and_reviews (customer_id,product_id,rating,reviews) VALUES ($customer_id, $product_id, $rating_form,'$reviews')";
     $result_insert_rating_review = mysqli_query($connection, $sql_insert_rating_review);
   }
 }
