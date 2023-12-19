@@ -1,11 +1,20 @@
 <?php
+session_start();
 include("db_connection.php");
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-if (isset($_POST['reset'])) {
+require '../../assets/PHPMailer/src/PHPMailer.php';
+require '../../assets/PHPMailer/src/Exception.php';
+require '../../assets/PHPMailer/src/SMTP.php';
+
+
+
+
+if (isset($_POST['send_otp'])) {
 
     $email = $_POST['email'];
-    $pwd = $_POST['pwd'];
     $phone = $_POST['phone'];
 
     $select_user = "SELECT email, phone FROM tbl_customers WHERE email='$email'";
@@ -18,23 +27,42 @@ if (isset($_POST['reset'])) {
         $dbphone = $data['phone'];
 
         if ($email == $dbemail && $phone == $dbphone) {
+            $otp = rand(1000,9999);
 
+            $body = "Verification code is $otp";
 
-            $pwd = $_POST['pwd'];
-            $conf_pwd = $_POST['cpwd'];
-            $hash_pass = sha1($pwd);
+            $mail = new PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'sanjeevprjl52310@gmail.com';
+            $mail->Password = 'nvrh gfyf gwrp lltx';
+            $mail->SMTPSecure = 'ssl';
 
-            if ($pwd == $conf_pwd) {
-                $sql = "UPDATE tbl_customers SET password = '$hash_pass' WHERE email='$email' ";
-                $result = mysqli_query($connection, $sql);
-                // if (!$result) {
-                //     echo "Data insertion failed.";
-                // }
-            }
-        } else {
-            echo "data not matched";
+            $mail->Port = 465;
+
+            $mail->setFrom('sanjeevprjl52310@gmail.com');
+
+            $mail->addAddress($email);
+
+            $mail->isHTML(true);
+
+            $mail->Subject = 'Verfication Code';
+            $mail->Body = $body;
+
+            $mail->send();
+            $_SESSION['customer_email'] = $email;
+            $_SESSION['otp'] = $otp;
+
+            echo"<script>alert('Sent successfully');document.location.href = 'otp.php';</script>";
+        }
+        else{
+            echo"<script>alert('Input Wrong');</script>";
         }
     }
+
+
+    // header("location: otp.php");
 }
 ?>
 
@@ -70,24 +98,10 @@ if (isset($_POST['reset'])) {
                     <input type="text" name="phone" />
         </div>
 
-        <div class="input-grp">
-            <i class="fa-solid fa-unlock"></i>
-            <label for="password">Create New Password</label>
-            <input type="password" name="pwd" id="" />
-        </div>
-        <div class="input-grp">
-            <i class="fa-solid fa-unlock"></i>
-            <label for="password">Confirm Password</label>
-            <input type="password" name="cpwd" id="" />
-        </div>
-        <div class="input-grp">
-            <i class="fa-solid fa-message"></i>
-            <label for="text">Enter OTP</label>
-            <input type="text" name="enter_otp" id="" />
-        </div>
 
-        <button type="submit" name="reset">Reset Password</button>
+        <button type="submit" name="send_otp">Send OTP</button>
         </form>
+        
     </div>
     </div>
 </body>
